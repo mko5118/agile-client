@@ -97,3 +97,45 @@ class PublicUserApiTests(TestCase):
         res = self.client.get(ME_URL)
         # Assertions
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+
+
+# AUTHENTICATED USERS (LOGGED IN)
+class PrivateUserApiTests(TestCase):
+    """Test API requests that require authentication"""
+
+    def setUp(self):
+        self.user = create_user(
+            email='test@email.com',
+            password='password',
+            name='name'
+        )
+        self.client = APIClient()
+        self.client.force_authenticate(user=self.user)
+
+    def test_retrieve_profile_success(self):
+        """Test retrieving profile for logged in user"""
+        # HTTP GET request
+        res = self.client.get(ME_URL)
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.data, {
+            'name': self.user.name,
+            'email': self.user.email
+        })
+
+    def test_post_me_not_allowed(self):
+        """Test that POST request is not allowed on the 'me' URL"""
+        res = self.client.post(ME_URL, {})
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def test_update_user_profile(self):
+        """Test updating the user profile for authenticated user"""
+        payload = {'name': 'New Name', 'password': 'newpassword'}
+        # HTTP PATCH request
+        res = self.client.patch(ME_URL, payload)
+        self.user.refresh_from_db()
+        # Assertions
+        self.assertEqual(self.user.name, payload['name'])
+        # self.assertTrue(self.user.check_password(payload['password']))
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
