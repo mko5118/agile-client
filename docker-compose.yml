@@ -1,0 +1,27 @@
+version: "3"
+
+# Services
+services:
+  api:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api:/api
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=agile_client
+      - DB_USER=postgres
+      - DB_PASS=password
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_DB=agile_client
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
