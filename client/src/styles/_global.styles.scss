@@ -1,0 +1,23 @@
+// *************************** FONT VARIABLES *************************** //
+$primary-font: 'Inter', sans-serif;
+$secondary-font: 'Roboto', sans-serif;
+
+// *************************** COLOR VARIABLES *************************** //
+
+$white:               #FFFFFF;
+$black:               #050500;
+$dark-grey:           #878789;
+$light-grey:          #F2F2F2;
+$strong-blue:         #3082E2;
+$stoplight-yellow:    #FAEE12;
+$stoplight-red:       #EC320D;
+
+// *************************** GLOBAL SETTINGS *************************** //
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.5rem;
+  font-family: $primary-font;
+}
