@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,18 +39,24 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Core Apps
+    # Imported Apps
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
+
+    # Core Apps
     'core',
     'user',
     'task',
 ]
 
 MIDDLEWARE = [
+    # Other Middlewares
+    'corsheaders.middleware.CorsMiddleware',
+
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -132,3 +139,15 @@ STATIC_URL = '/static/'
 
 # AUTH USER MODEL
 AUTH_USER_MODEL = 'core.User'
+
+# CORS SETTINGS
+CORS_ALLOW_HEADERS = default_headers + (
+  'access-control-allow-credentials',
+  'access-control-allow-origin',
+  'access-control-expose-headers',
+)
+
+# CORS MIDDLEWARE WHITELIST
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",        # React Frontend Endpoint
+]
