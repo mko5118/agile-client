@@ -5,9 +5,15 @@ import { Provider } from 'react-redux';
 import { store } from '../redux/store';
 
 // APP PAGES
-import Navbar from '../pages/navbar/Navbar';
+import Navbar from '../components/navbar/Navbar';
+
+// NOT AUTHENTICATED PAGES
 import HomePage from '../pages/unauthenticated/home-page/HomePage';
-import LoginPage from '../pages/unauthenticated/login-page/LoginPage';
+import SigninPage from '../pages/unauthenticated/signin-page/SigninPage';
+import SignupPage from '../pages/unauthenticated/signup-page/SignupPage';
+
+// AUTHENTICATED PAGES
+import TaskPage from '../pages/authenticated/task-page/TaskPage';
 
 import style from './app.modules.scss';
 
@@ -22,8 +28,12 @@ const App = () => {
           <div className={style.content}>
             <Navbar />
             <Switch>
+              {/* NOT AUTHENTICATED ROUTES */}
               <Route exact path='/' component={HomePage} />
-              <Route exact path='/login' component={LoginPage} />
+              <Route exact path='/signin' component={SigninPage} />
+              <Route exact path='/signup' component={SignupPage} />
+              {/* AUTHENTICATED ROUTES */}
+              <Route exact path='/tasks' component={TaskPage} />
             </Switch>
           </div>
 

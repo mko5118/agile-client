@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 
 import { loginUser } from '../../../redux/auth/auth.actions';
 
-import style from './login-page.module.scss';
+import style from './signin-page.module.scss';
 
-// *************************** LOGIN PAGE COMPONENT *************************** //
-const LoginPage = ({ loginUser }) => {
+// *************************** SIGNIN PAGE COMPONENT *************************** //
+const SigninPage = ({ loginUser }) => {
   const [ formData, setFormData ] = useState({
     email: '',
     password: '',
@@ -26,10 +26,10 @@ const LoginPage = ({ loginUser }) => {
   };
 
   return (
-    <div className={style.loginPage}>
+    <div className={style.signinPage}>
 
       <form className={style.form} onSubmit={onSubmit}>
-        <h1>Log In</h1>
+        <h1>Sign In</h1>
         <input
           type='email'
           name='email'
@@ -46,7 +46,7 @@ const LoginPage = ({ loginUser }) => {
           onChange={onChange}
           autoComplete='off'
         />
-        <button>Log In</button>
+        <button>Sign In</button>
       </form>
 
     </div>
@@ -58,4 +58,4 @@ const mapDispatchToProps = (dispatch) => ({
   loginUser: (email, password) => dispatch(loginUser(email, password)),
 });
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(null, mapDispatchToProps)(SigninPage);

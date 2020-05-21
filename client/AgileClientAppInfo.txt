@@ -1,0 +1,5 @@
+# Primary Font Inter
+<link href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700,800,900|Roboto:400,400i,500,500i&amp;display=swap" rel="stylesheet">
+
+# Primary Font Nunito
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900|Roboto:400,400i,500,500i&amp;display=swap" rel="stylesheet">

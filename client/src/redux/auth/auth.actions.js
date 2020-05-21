@@ -6,7 +6,7 @@ import {
 } from './auth.types';
 
 
-const route = 'http://localhost:8000';
+const API_URL = 'http://localhost:8000';
 
 // *************************** SET AUTH TOKEN *************************** //
 const setAuthToken = (token) => {
@@ -32,7 +32,7 @@ export const loadUser = () => async (dispatch) => {
   };
 
   try {
-    const res = await axios.get(`${route}/api/user/me/`, config);
+    const res = await axios.get(`${API_URL}/api/user/me/`, config);
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -46,7 +46,7 @@ export const loadUser = () => async (dispatch) => {
 
 
 // *************************** REGISTER USER *************************** //
-export const registerUser = ({ name, email, password }) => async (dispatch) => {
+export const registerUser = ({ email, password, name }) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -54,14 +54,15 @@ export const registerUser = ({ name, email, password }) => async (dispatch) => {
       }
     };
     
-    const body = JSON.stringify({ name, email, password });
+    const body = JSON.stringify({ email, password, name });
 
-    const res = await axios.post(`${route}/api/user/create/`, config, body);
+    const res = await axios.post(`${API_URL}/api/user/create/`, body, config);
+
     dispatch({
       type: REGISTRATION_SUCCESS,
       payload: res.data
     });
-    dispatch(loadUser());
+    dispatch(loginUser(email, password));
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -86,7 +87,7 @@ export const loginUser = (email, password) => async (dispatch) => {
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post(`${route}/api/user/token/`, body, config)
+    const res = await axios.post(`${API_URL}/api/user/token/`, body, config)
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,

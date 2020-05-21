@@ -123,3 +123,27 @@ class PrivateTaskApiTest(TestCase):
         self.assertEqual(task.title, payload['title'])
         self.assertEqual(task.body, payload['body'])
         self.assertTrue(task.is_complete)
+
+    def test_task_delete_successful(self):
+        """Test deleting Task is successful"""
+        Task.objects.create(user=self.user, title='Title 2', body='Body2')
+        task1 = Task.objects.create(user=self.user, title='Title 1', body='Body1')
+        url = reverse('task:task-detail', args=[task1.id])  # /api/task/tasks/<TASK_ID>
+        # HTTP DELETE request
+        res = self.client.delete(url)
+        # Assertions
+        exists = Task.objects.filter(user=self.user, title='Title 1').exists()
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertFalse(exists)
+
+
+
+
+
+
+
+
+
+
+
+

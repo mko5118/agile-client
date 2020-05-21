@@ -141,11 +141,11 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'core.User'
 
 # CORS SETTINGS
-CORS_ALLOW_HEADERS = default_headers + (
+CORS_ALLOW_HEADERS = list(default_headers) + [
   'access-control-allow-credentials',
   'access-control-allow-origin',
   'access-control-expose-headers',
-)
+]
 
 # CORS MIDDLEWARE WHITELIST
 CORS_ORIGIN_WHITELIST = [

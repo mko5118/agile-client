@@ -25,7 +25,6 @@ class TaskViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """Retrieve all Task objects for AUTHENTICATED User"""
-
         queryset = self.queryset
         return queryset.filter(user=self.request.user)
 
