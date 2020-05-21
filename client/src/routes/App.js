@@ -15,6 +15,7 @@ import style from './app.modules.scss';
 const App = () => {
   return (
     <Provider store={store}>
+
       <div className={style.app}>
         <BrowserRouter>
 
@@ -28,6 +29,7 @@ const App = () => {
 
         </BrowserRouter>
       </div>
+      
     </Provider>
   )
 };
