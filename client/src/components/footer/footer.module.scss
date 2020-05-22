@@ -1,0 +1,25 @@
+@import '../../styles/global.styles';
+
+// ************* FOOTER COMPONENT STYLES ************* //
+.footer {
+  border: 1px solid $black;
+}
+
+// ************* MEDIA QUERIES ************* //
+@media screen and (min-width: 500px) {
+  .footer {
+    
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .footer {
+
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .footer {
+
+  }
+}

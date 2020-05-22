@@ -6,6 +6,7 @@ import { store } from '../redux/store';
 
 // APP PAGES
 import Navbar from '../components/navbar/Navbar';
+import Footer from '../components/footer/Footer';
 
 // NOT AUTHENTICATED PAGES
 import HomePage from '../pages/unauthenticated/home-page/HomePage';
@@ -36,6 +37,7 @@ const App = () => {
               <Route exact path='/tasks' component={TaskPage} />
             </Switch>
           </div>
+          <Footer />
 
         </BrowserRouter>
       </div>
