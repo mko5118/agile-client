@@ -18,6 +18,7 @@ export const taskReducer = (state=INITIAL_STATE, action) => {
         loading: false,
       };
     case GET_A_TASK:
+    case UPDATE_TASK:
       return {
         ...state,
         task: action.payload,
@@ -26,6 +27,17 @@ export const taskReducer = (state=INITIAL_STATE, action) => {
     case CREATE_TASK:
       return {
         tasks: [action.payload, ...state.tasks],
+        loading: false,
+      };
+    case DELETE_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.filter(task => task.id !== action.payload)
+      };
+    case TASK_ERROR:
+      return {
+        ...state,
+        error: action.payload,
         loading: false,
       };
     default:

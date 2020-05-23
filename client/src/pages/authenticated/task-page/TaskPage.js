@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { getAllTasks, getTask, createTask } from '../../../redux/task/task.actions';
+import { getAllTasks, createTask } from '../../../redux/task/task.actions';
+
+import Button from '../../../components/button/Button';
+import TaskItem from '../../../components-auth/tasks-page/TaskItem/TaskItem';
 
 import style from './task-page.module.scss';
 
 // *************************** TASK PAGE COMPONENT *************************** //
-const TaskPage = ({ taskState, getAllTasks, getTask, createTask }) => {
+const TaskPage = ({ taskState, getAllTasks, createTask }) => {
   const { tasks, task, loading, error } = taskState;
 
   const [ formData, setFormData ] = useState({
@@ -57,13 +60,7 @@ const TaskPage = ({ taskState, getAllTasks, getTask, createTask }) => {
       <h3>Current Tasks</h3>
       {
         tasks.map(task => (
-          <div key={task.id}>
-            <h4>{task.title}</h4>
-            <p>{task.body}</p>
-            <p>{task.date_created}</p>
-            <p>{task.is_complete ? 'Complete' : 'Not Complete'}</p>
-            <button onClick={() => getTask(task.id)}>Click</button>
-          </div>
+          <TaskItem key={task.id} task={task} />
         ))
       }
     </div>
@@ -77,7 +74,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getAllTasks: () => dispatch(getAllTasks()),
-  getTask: (id) => dispatch(getTask(id)),
   createTask: (title, body) => dispatch(createTask(title, body)),
 });
 

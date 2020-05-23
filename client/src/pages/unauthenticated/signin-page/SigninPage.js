@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { loginUser } from '../../../redux/auth/auth.actions';
@@ -6,7 +7,8 @@ import { loginUser } from '../../../redux/auth/auth.actions';
 import style from './signin-page.module.scss';
 
 // *************************** SIGNIN PAGE COMPONENT *************************** //
-const SigninPage = ({ loginUser }) => {
+const SigninPage = ({ isAuthenticated, loginUser }) => {
+  const history = useHistory()
   const [ formData, setFormData ] = useState({
     email: '',
     password: '',
@@ -23,6 +25,7 @@ const SigninPage = ({ loginUser }) => {
     e.preventDefault();
     loginUser(formData.email, formData.password);
     setFormData({ email: '', password: ''});
+    history.push('/dashboard');
   };
 
   return (
@@ -54,8 +57,11 @@ const SigninPage = ({ loginUser }) => {
 };
 
 // REDUX
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+})
 const mapDispatchToProps = (dispatch) => ({
   loginUser: (email, password) => dispatch(loginUser(email, password)),
 });
 
-export default connect(null, mapDispatchToProps)(SigninPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SigninPage);

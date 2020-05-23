@@ -25,7 +25,7 @@
     flex-direction: row;
 
     .notAuthLink {
-      color: $dark-grey;
+      color: lighten($dark-grey, 10%);
       font-size: 1.7rem;
       font-weight: 700;
       margin-left: 2rem;
@@ -44,7 +44,7 @@
     flex-direction: row;
 
     .authLink {
-      color: $dark-grey;
+      color: lighten($dark-grey, 10%);
       font-size: 1.7rem;
       font-weight: 700;
       margin-left: 2rem;

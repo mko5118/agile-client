@@ -1,0 +1,26 @@
+@import '../../styles/global.styles';
+
+// ************* BUTTON COMPONENT STYLES ************* //
+.button {
+  cursor: pointer;
+  border: none;
+}
+
+// ************* MEDIA QUERIES ************* //
+@media screen and (min-width: 500px) {
+  .button {
+  
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .button {
+
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .button {
+
+  }
+}

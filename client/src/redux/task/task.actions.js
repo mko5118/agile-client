@@ -99,6 +99,57 @@ export const createTask = (title, body) => async (dispatch) => {
 
 
 // *************************** UPDATE TASK *************************** //
+export const updateTask = (id, formData) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${localStorage.token}`,
+      }
+    };
+    
+    const body = JSON.stringify({formData});
+
+    const res = await axios.put(`${API_URL}/api/task/tasks/${id}/`, body, config);
+
+    dispatch({
+      type: UPDATE_TASK,
+      payload: res.data,
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach(error => dispatch(
+        setAlert(error.msg, 'danger', 2000)
+      ));
+    };
+  }
+};
 
 
 // *************************** DELETE TASK *************************** //
+export const deleteTask = (id) => async (dispatch) => {
+  if (window.confirm('Confirm you want to delete this task.')) {
+    try {
+      const config = {
+        headers: {
+          'Authorization': `Token ${localStorage.token}`,
+        }
+      };
+  
+      await axios.delete(`${API_URL}/api/task/tasks/${id}/`, config);
+  
+      dispatch({
+        type: DELETE_TASK,
+        payload: id,
+      });
+    } catch (err) {
+      const errors = err.response.data.errors;
+      if (errors) {
+        errors.forEach(error => dispatch(
+          setAlert(error.msg, 'danger', 2000)
+        ));
+      };
+    }
+  }
+};
