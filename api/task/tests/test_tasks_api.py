@@ -8,7 +8,8 @@ from rest_framework.test import APIClient
 from task.models import Task
 from task.serializers import TaskSerializer
 
-TASKS_URL = reverse('task:task-list')
+
+TASKS_URL = reverse('task:task-list')   # /api/task/
 
 
 # NOT AUTHORIZED / PUBLIC TESTS (NOT LOGGED IN)

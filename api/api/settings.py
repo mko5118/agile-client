@@ -48,10 +48,11 @@ INSTALLED_APPS = [
     'core',
     'user',
     'task',
+    'client',
 ]
 
 MIDDLEWARE = [
-    # Other Middlewares
+    # Other Middleware
     'corsheaders.middleware.CorsMiddleware',
 
     'django.middleware.common.CommonMiddleware',
