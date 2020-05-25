@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { IoIosContacts } from 'react-icons/io';
 import { FaHome, FaTasks } from 'react-icons/fa';
 
+import ContactsPage from '../contacts-page/ContactsPage';
 import TaskPage from '../task-page/TaskPage';
 
 import style from './dashboard-page.module.scss';
@@ -16,20 +17,14 @@ const DashboardPage = () => {
 
   const iconClickHome = () => {
     setCurrentSection({ 'home': true, 'contacts': false, 'todos': false });
-    console.log(document.getElementById('home').textContent);
-    console.log(currentSection);
   };
 
   const iconClickContacts = () => {
     setCurrentSection({ 'home': false, 'contacts': true, 'todos': false });
-    console.log(document.getElementById('contacts').textContent);
-    console.log(currentSection);
   };
 
   const iconClickTodos = () => {
     setCurrentSection({ 'home': false, 'contacts': false, 'todos': true });
-    console.log(document.getElementById('todos').textContent);
-    console.log(currentSection);
   }
 
   return (
@@ -57,7 +52,7 @@ const DashboardPage = () => {
           (!currentSection.contacts && !currentSection.todos) && <h2>HOME SECTION SMALL</h2>
         }
         {
-          currentSection.contacts && <h2>CONTACTS SECTION SMALL</h2>
+          currentSection.contacts && <ContactsPage />
         }
         {
           currentSection.todos && <TaskPage />
@@ -69,7 +64,7 @@ const DashboardPage = () => {
           (!currentSection.contacts && !currentSection.todos) && <h1>HOME SECTION LARGE</h1>
         }
         {
-          currentSection.contacts && <h1>CONTACTS SECTION LARGE</h1>
+          currentSection.contacts && <ContactsPage />
         }
         {
           currentSection.todos && <TaskPage />

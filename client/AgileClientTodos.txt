@@ -1,0 +1,243 @@
+# TASK APP
+  1. Integrate 'UPDATE_TASK / PUT' functionality
+  2. Integrate the TaskPage - TaskItem components correctly
+
+############ CLIENTS APP #############
+
+1. Need to run docker-compose up to initialize Dockerfile
+  a. after running docker-compose up, need to create a new superuser
+2. Need to figure out the issues with the 'models.py' file for Client
+  a. Currently having issues creating a new Client with an empty Company and empty Log fields (objects)
+  b. Need to figure out how to tie the Log to a specific Client instead of having it linked to a specific user as it is right now...
+3. Below are pre messing around 'models.py', 'serializers.py', 'views.py' files for Client
+
+4. Added ability to filter all Clients of a specific Company in Django. See how to incorporate this into the frontend. 
+    a. At some point allow user to view all Clients by name, click on the name and then see related info 
+    b. Allow User to view all Companys created, click on the Company name and view all associated Clients with that specific Company
+
+####################################################################################
+MODEL
+####################################################################################
+
+from django.db import models
+from django.conf import settings
+from django.utils import timezone
+
+
+# COMPANY MODEl
+class Company(models.Model):
+    """
+    - Store Company info of a Client (Will allow for search/filter by Company)
+    - Many Clients can belong to the same Company
+    """
+    company_name = models.CharField(max_length=50, blank=False)
+    website = models.CharField(max_length=100, blank=True)
+    company_number = models.CharField(max_length=50, blank=True)
+    address = models.CharField(max_length=150, blank=True)
+    company_notes = models.TextField(max_length=1500, blank=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.company_name
+
+
+# LOGS MODEL
+class Log(models.Model):
+    """
+    - Store past meetings/contact with Client
+    - One Client can have many Logs associated with them
+    """
+    type = models.CharField(max_length=50, blank=False)
+    details = models.TextField(max_length=1500, blank=True)
+    log_date = models.DateTimeField(default=timezone.now)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return f'{self.type} - {self.user}'
+
+
+# CLIENT MODEL
+class Client(models.Model):
+    """
+    Store Client info
+    """
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    first_name = models.CharField(max_length=50, blank=False)
+    last_name = models.CharField(max_length=50, blank=False)
+    email = models.EmailField(max_length=50, blank=True)
+    phone_number = models.CharField(max_length=50, blank=True)
+    job_title = models.CharField(max_length=100, blank=True)
+    notes = models.TextField(max_length=1500, blank=True)
+    # Company + Log Models in Client
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    logs = models.ForeignKey(Log, on_delete=models.CASCADE)
+    # company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
+    # logs = models.ForeignKey(Log, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
+
+####################################################################################
+SERIALIZERS
+####################################################################################
+
+from rest_framework import serializers
+
+from .models import Client, Company, Log
+
+
+# Company Serializer
+class CompanySerializer(serializers.ModelSerializer):
+    """Serializer for Company object"""
+    class Meta:
+        model = Company
+        fields = ('id', 'company_name', 'website', 'company_number', 'address', 'company_notes')
+        read_only_fields = ('id',)
+
+
+# Log Serializer
+class LogSerializer(serializers.ModelSerializer):
+    """Serializer for Log object"""
+    class Meta:
+        model = Log
+        fields = ('id', 'type', 'details', 'log_date')
+        read_only_fields = ('id',)
+
+
+# Client Serializer
+class ClientSerializer(serializers.ModelSerializer):
+    """Serializer for Client object"""
+
+    company = serializers.PrimaryKeyRelatedField(
+        many=True,
+        queryset=Company.objects.all()
+    )
+
+    logs = serializers.PrimaryKeyRelatedField(
+        many=True,
+        queryset=Log.objects.all()
+    )
+
+    class Meta:
+        model = Client
+        fields = ('id', 'first_name', 'last_name', 'email', 'phone_number', 'job_title', 'notes', 'company', 'logs')
+        read_only_fields = ('id',)
+
+
+####################################################################################
+VIEWS
+####################################################################################
+
+from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+from .models import Client, Company, Log
+from .serializers import ClientSerializer, CompanySerializer, LogSerializer
+
+
+# Company ViewSet (Inherits from GenericAPIView)
+class CompanyViewSet(viewsets.ModelViewSet):
+    """
+    Manage Company objects in database
+    """
+
+    queryset = Company.objects.all()
+    serializer_class = CompanySerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        """Retrieve all Company objects for AUTH user"""
+        queryset = self.queryset
+        return queryset.filter(user=self.request.user)
+
+    def get_serializer_class(self):
+        """Return appropriate serializer class"""
+        if self.action == 'retrieve':
+            return CompanySerializer
+
+        return self.serializer_class
+
+    def perform_create(self, serializer):
+        """Create a new Company object"""
+        return serializer.save(user=self.request.user)
+
+
+# Log ViewSet
+class LogViewSet(viewsets.ModelViewSet):
+    """
+    Manage Log objects in database
+    """
+    queryset = Log.objects.all()
+    serializer_class = LogSerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        """Retrieve all Log objects for AUTH user"""
+        queryset = self.queryset
+        return queryset.filter(user=self.request.user)
+
+    def get_serializer_class(self):
+        """Return appropriate serializer class"""
+        if self.action == 'retrieve':
+            return LogSerializer
+
+        return self.serializer_class
+
+    def perform_create(self, serializer):
+        """Create a new Log object"""
+        return serializer.save(user=self.request.user)
+
+
+# Client ViewSet
+class ClientViewSet(viewsets.ModelViewSet):
+    """
+    Manage Client objects in database
+    """
+    queryset = Client.objects.all()                     # all Client objects
+    serializer_class = ClientSerializer
+    authentication_classes = (TokenAuthentication,)     # use token to authenticate User
+    permission_classes = (IsAuthenticated,)             # Users who use API are authenticated
+
+    # PRIVATE Helper Function (convert string to int)
+    def _params_to_ints(self, querystring):
+        """Convert a list of String ID to a list of ints"""
+        return [int(str_id) for str_id in querystring.split(',')]
+
+    def get_queryset(self):
+        """Retrieve all Client objects for AUTH user"""
+        company = self.request.query_params.get('company')
+        logs = self.request.query_params.get('logs')
+        queryset = self.queryset
+
+        if company:
+            company_ids = self._params_to_ints(company)
+            queryset = queryset.filter(company__id__in=company_ids)
+        if logs:
+            logs_id = self._params_to_ints(logs)
+            queryset = queryset.filter(logs__id__in=logs_id)
+
+        return queryset.filter(user=self.request.user)
+
+    def get_serializer_class(self):
+        """Return appropriate serializer class"""
+        if self.action == 'retrieve':
+            return ClientSerializer
+
+        return self.serializer_class
+
+    def perform_create(self, serializer):
+        """Create a new Client object"""
+        return serializer.save(user=self.request.user)

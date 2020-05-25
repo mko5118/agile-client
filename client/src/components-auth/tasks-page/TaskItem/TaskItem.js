@@ -27,7 +27,7 @@ const TaskItem = ({ task, getTask, updateTask, deleteTask }) => {
       <p>{date_created}</p>
       <p>{is_complete ? 'Complete' : 'Not Complete'}</p>
       <Button onClick={() => getTask(id)}>Click</Button>
-      <Button onClick={() => deleteTask(id)} deleteTask>Delete</Button>
+      <Button onClick={() => deleteTask(id)}>Delete</Button>
       <button>Edit</button>
     </div>
   )

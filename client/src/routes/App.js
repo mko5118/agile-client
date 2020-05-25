@@ -16,6 +16,7 @@ import SignupPage from '../pages/unauthenticated/signup-page/SignupPage';
 
 // AUTHENTICATED PAGES
 import DashboardPage from '../pages/authenticated/dashboard-page/DashboardPage';
+import ContactsPage from '../pages/authenticated/contacts-page/ContactsPage';
 import TaskPage from '../pages/authenticated/task-page/TaskPage';
 import TaskItem from '../components-auth/tasks-page/TaskItem/TaskItem';
 
@@ -37,6 +38,7 @@ const App = () => {
               <Route exact path='/signup' component={SignupPage} />
               {/* PRIVATE ROUTES */}
               <Route exact path='/dashboard' component={DashboardPage} />
+              <Route exact path='/dashboard/contacts' component={ContactsPage} />
               <Route exact path='/dashboard/tasks' component={TaskPage} />
               <Route exact path='/dashboard/tasks/:id' component={TaskItem} />
             </Switch>
