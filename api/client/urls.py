@@ -5,9 +5,9 @@ from client import views
 
 
 router = DefaultRouter()
-router.register('companys', views.CompanyViewSet)        # Company API URL - /api/client/company/
-router.register('logs', views.LogViewSet)                # Log API URL     - /api/client/log/
-router.register('clients', views.ClientViewSet)          # Client API URL  - /api/client/client/
+router.register('company', views.CompanyViewSet)        # Company API URL - /api/client/company/
+router.register('logs', views.LogViewSet)                # Log API URL     - /api/client/logs/
+router.register('clients', views.ClientViewSet)          # Client API URL  - /api/client/clients/
 
 app_name = 'client'
 

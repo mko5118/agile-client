@@ -5,7 +5,7 @@ from .views import TaskViewSet
 
 
 router = DefaultRouter()
-router.register('tasks', TaskViewSet)       # Tasks API URL
+router.register('tasks', TaskViewSet)       # /api/task/tasks/
 
 app_name = 'task'
 

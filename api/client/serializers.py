@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from .models import Client, Company, Log
 
+
 # Company Serializer
 class CompanySerializer(serializers.ModelSerializer):
     """Serializer for Company object"""
@@ -25,12 +26,12 @@ class ClientSerializer(serializers.ModelSerializer):
     """Serializer for Client object"""
 
     company = serializers.PrimaryKeyRelatedField(
-        many=True,
+        # many=True,
         queryset=Company.objects.all()
     )
 
     logs = serializers.PrimaryKeyRelatedField(
-        many=True,
+        # many=True,
         queryset=Log.objects.all()
     )
 

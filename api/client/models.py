@@ -36,15 +36,20 @@ class Log(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
+    associated_client = models.ForeignKey(
+        'Client',
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
-        return self.type
+        # return f'{self.type} - {self.user}'
+        return f'{self.type} - {self.associated_client} - {self.user}'
 
 
 # CLIENT MODEL
 class Client(models.Model):
     """
-    - Store Client info
+    Store Client info
     """
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -52,13 +57,15 @@ class Client(models.Model):
     )
     first_name = models.CharField(max_length=50, blank=False)
     last_name = models.CharField(max_length=50, blank=False)
-    email = models.EmailField(max_length=50, unique=True, blank=True)
+    email = models.EmailField(max_length=50, blank=True)
     phone_number = models.CharField(max_length=50, blank=True)
     job_title = models.CharField(max_length=100, blank=True)
     notes = models.TextField(max_length=1500, blank=True)
     # Company + Log Models in Client
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    logs = models.ForeignKey(Log, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
+    logs = models.ForeignKey(Log, on_delete=models.CASCADE, null=True, blank=True)
+    # company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    # logs = models.ForeignKey(Log, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
