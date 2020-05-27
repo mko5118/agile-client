@@ -9,7 +9,7 @@ from client.models import Client, Company, Log
 from client.serializers import ClientSerializer
 
 
-CLIENTS_URL = reverse('client:client-list')    # /api/client/
+CLIENTS_URL = reverse('client:client-list')    # /api/client/clients/
 
 
 # Default Objects for Testing
@@ -84,9 +84,67 @@ class PrivateClientApiTests(TestCase):
 
     def test_retrieve_client_limited_to_user(self):
         """Test retrieving Client objects for ONLY logged in User"""
-        pass
+        # User 1
+        Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        # User 2
+        user2 = get_user_model().objects.create_user('user2@email.com', 'password')
+        Client.objects.create(user=user2, first_name='Jeff', last_name='Bezos')
+        # HTTP GET request
+        res = self.client.get(CLIENTS_URL)
+        clients = Client.objects.filter(user=self.user)
+        serializer = ClientSerializer(clients, many=True)
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(res.data), 1)
+        self.assertEqual(res.data[0]['first_name'], 'Bill')
+        self.assertEqual(res.data, serializer.data)
 
+    def test_view_client_detail(self):
+        """Test retrieving specific Client details"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        client2 = Client.objects.create(user=self.user, first_name='Jeff', last_name='Bezos')
+        # HTTP GET request
+        url = reverse('client:client-detail', args=[client1.id])
+        serializer = ClientSerializer(client1)
+        res = self.client.get(url)
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.data['last_name'], 'Gates')
+        self.assertEqual(res.data, serializer.data)
 
+    def test_partial_update_client(self):
+        """Test updating Client with PATCH method (Only fields in payload)"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        payload = {
+            'first_name': 'Elon'
+        }
+        # HTTP PATCH request
+        url = reverse('client:client-detail', args=[client1.id])
+        res = self.client.patch(url, payload)
+        client1.refresh_from_db()
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(client1.first_name, 'Elon')
+
+    def test_full_update_client(self):
+        """Test updating Client with PUT method (Full object update)"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        payload = {
+            'first_name': 'Bill',
+            'last_name': 'Gates',
+            'email': 'billgates@microsoft.com',
+            'phone_number': '111-222-3333',
+            'job_title': 'Founder',
+            'notes': 'One of the biggest Tech founders today'
+        }
+        # HTTP PUT request
+        url = reverse('client:client-detail', args=[client1.id])
+        res = self.client.put(url, payload)
+        client1.refresh_from_db()
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(client1.email, payload['email'])
+        self.assertEqual(client1.job_title, 'Founder')
 
 
 

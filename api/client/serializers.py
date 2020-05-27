@@ -6,18 +6,28 @@ from .models import Client, Company, Log
 # Company Serializer
 class CompanySerializer(serializers.ModelSerializer):
     """Serializer for Company object"""
+    associated_client = serializers.PrimaryKeyRelatedField(
+        # many=True,
+        queryset=Client.objects.all(),
+    )
+
     class Meta:
         model = Company
-        fields = ('id', 'company_name', 'website', 'company_number', 'address', 'company_notes')
+        fields = ('id', 'company_name', 'website', 'company_number', 'address', 'company_notes', 'associated_client')
         read_only_fields = ('id',)
 
 
 # Log Serializer
 class LogSerializer(serializers.ModelSerializer):
     """Serializer for Log object"""
+    associated_client = serializers.PrimaryKeyRelatedField(
+        # many=True,
+        queryset=Client.objects.all(),
+    )
+
     class Meta:
         model = Log
-        fields = ('id', 'type', 'details', 'log_date')
+        fields = ('id', 'type', 'details', 'log_date', 'associated_client')
         read_only_fields = ('id',)
 
 
@@ -25,17 +35,19 @@ class LogSerializer(serializers.ModelSerializer):
 class ClientSerializer(serializers.ModelSerializer):
     """Serializer for Client object"""
 
-    company = serializers.PrimaryKeyRelatedField(
+    client_company = serializers.PrimaryKeyRelatedField(
         # many=True,
-        queryset=Company.objects.all()
+        queryset=Company.objects.all(),
+        required=False
     )
 
     logs = serializers.PrimaryKeyRelatedField(
         # many=True,
-        queryset=Log.objects.all()
+        queryset=Log.objects.all(),
+        required=False,
     )
 
     class Meta:
         model = Client
-        fields = ('id', 'first_name', 'last_name', 'email', 'phone_number', 'job_title', 'notes', 'company', 'logs')
+        fields = ('id', 'first_name', 'last_name', 'email', 'phone_number', 'job_title', 'notes', 'client_company', 'logs')
         read_only_fields = ('id',)

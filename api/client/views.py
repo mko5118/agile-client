@@ -22,11 +22,17 @@ class CompanyViewSet(viewsets.ModelViewSet):
         - Retrieve all Company objects for AUTH user
         - IF QUERY PARAM (company_id) is passed, only show company for
           auth User + specific company ID (/api/client/company/?company_id=<INT_ID>)
+        - IF QUERY PARAM (associated_client ID) is passed, only show logs
+          for auth User + associated_client
+          (/api/client/company/?associated_client=<CLIENT_ID>)
         """
         queryset = self.queryset
         company_id = self.request.query_params.get('company_id', None)
+        associated_client = self.request.query_params.get('associated_client', None)
         if company_id is not None:
             queryset = queryset.filter(id=int(company_id))
+        if associated_client is not None:
+            queryset = queryset.filter(associated_client=int(associated_client))
         return queryset.filter(user=self.request.user)
 
     def get_serializer_class(self):

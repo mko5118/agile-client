@@ -9,7 +9,7 @@ from client.models import Client, Log
 from client.serializers import ClientSerializer, LogSerializer
 
 
-LOGS_URL = reverse('client:log-list')
+LOGS_URL = reverse('client:log-list')   # /api/client/logs/
 
 
 # NOT AUTHORIZED / PUBLIC ROUTES TEST (NOT LOGGED IN)
@@ -44,21 +44,69 @@ class PrivateLogsApiTests(TestCase):
 
     def test_retrieve_logs(self):
         """Test retrieving Log objects"""
-        Log.objects.create(user=self.user, type='Lunch', details='Quick lunch with John')
-        Log.objects.create(user=self.user, type='Meeting', details='Initial meeting with John')
+        client1 = Client.objects.create(user=self.user, first_name='Test', last_name='User')
+        Log.objects.create(user=self.user, type='Lunch', associated_client=client1)
+        Log.objects.create(user=self.user, type='Dinner', associated_client=client1)
         # HTTP GET request
         res = self.client.get(LOGS_URL)
-        logs = Log.objects.all()
-        serializer = LogSerializer(logs, many=True)
         # Assertions
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(res.data, serializer.data)
+        self.assertEqual(len(res.data), 2)
 
+    def test_retrieve_logs_limited_to_user(self):
+        """Test can only retrieve Log objects belonging to auth User"""
+        # User 1 => Client object for Log
+        client1 = Client.objects.create(user=self.user, first_name='Mark', last_name='Zuck')
+        Log.objects.create(user=self.user, type='Lunch', associated_client=client1)
+        # User 2 => Client object for Log
+        user2 = get_user_model().objects.create_user('user2@email.com', 'password')
+        client2 = Client.objects.create(user=user2, first_name='Jeff', last_name='Bezos')
+        Log.objects.create(user=user2, type='Dinner', associated_client=client2)
+        # HTTP GET request (for User 1)
+        res = self.client.get(LOGS_URL)
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(res.data), 1)
+        self.assertEqual(res.data[0]['type'], 'Lunch')
 
+    def test_create_log_successful(self):
+        """Test creating a Log object is successful"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        payload = {
+            "type": "Meeting",
+            "details": "Quick meeting with Bill Gates - Test Config",
+            "associated_client": client1.id
+        }
+        # HTTP POST request
+        self.client.post(LOGS_URL, payload)
+        # Assertions
+        exists = Log.objects.filter(
+            user=self.user,
+            type=payload['type']
+        ).exists()
+        self.assertTrue(exists)
 
+    def test_create_log_invalid(self):
+        """Test creating a Log object is invalid if required field empty"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        payload = {'type': '', 'details': 'Testing invalid data', 'associated_client': client1.id}
+        # HTTP POST request
+        res = self.client.post(LOGS_URL, payload)
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
-
-
+    def test_retrieve_logs_with_associated_client(self):
+        """Test retrieving all Log objects only for requested associated_client parameter"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        client2 = Client.objects.create(user=self.user, first_name='Jeff', last_name='Bezos')
+        Log.objects.create(user=self.user, type='Lunch', associated_client=client1)
+        Log.objects.create(user=self.user, type='Dinner', associated_client=client1)
+        Log.objects.create(user=self.user, type='Meeting', associated_client=client2)
+        # HTTP GET request
+        res = self.client.get(LOGS_URL, {'associated_client': client1.id})
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(res.data), 2)
 
 
 

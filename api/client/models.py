@@ -18,6 +18,10 @@ class Company(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
+    associated_client = models.ForeignKey(
+        'Client',
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.company_name
@@ -42,7 +46,6 @@ class Log(models.Model):
     )
 
     def __str__(self):
-        # return f'{self.type} - {self.user}'
         return f'{self.type} - {self.associated_client} - {self.user}'
 
 
@@ -62,10 +65,8 @@ class Client(models.Model):
     job_title = models.CharField(max_length=100, blank=True)
     notes = models.TextField(max_length=1500, blank=True)
     # Company + Log Models in Client
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
-    logs = models.ForeignKey(Log, on_delete=models.CASCADE, null=True, blank=True)
-    # company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    # logs = models.ForeignKey(Log, on_delete=models.CASCADE)
+    client_company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, blank=True)
+    logs = models.ForeignKey(Log, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'

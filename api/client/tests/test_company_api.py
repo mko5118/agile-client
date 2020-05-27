@@ -9,7 +9,7 @@ from client.models import Client, Company
 from client.serializers import ClientSerializer, CompanySerializer
 
 
-COMPANYS_URL = reverse('client:company-list')
+COMPANYS_URL = reverse('client:company-list')   # /api/client/company/
 
 
 # NOT AUTHORIZED / PUBLIC ROUTES TEST (NOT LOGGED IN)
@@ -44,22 +44,10 @@ class PrivateCompanyApiTests(TestCase):
 
     def test_retrieve_companys(self):
         """Test retrieving all Company objects"""
-        Company.objects.create(
-            user=self.user,
-            company_name='Microzon',
-            website='www.microzon.com',
-            company_number='555-555-5555',
-            address='1234 Fake Street Reeding, CA 55555',
-            company_notes='Merger of Microsoft and Amazon',
-        )
-        Company.objects.create(
-            user=self.user,
-            company_name='Amasoft',
-            website='www.amasoft.com',
-            company_number='222-222-2222',
-            address='9876 Real Street Hipsterville, WA 22222',
-            company_notes='Jeff Bezo takes over the world',
-        )
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        client2 = Client.objects.create(user=self.user, first_name='Jeff', last_name='Bezos')
+        Company.objects.create(user=self.user, company_name='Microzon', associated_client=client1)
+        Company.objects.create(user=self.user, company_name='Amasoft', associated_client=client2)
         # HTTP GET request
         res = self.client.get(COMPANYS_URL)
         companys = Company.objects.all()
@@ -68,7 +56,60 @@ class PrivateCompanyApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
 
+    def test_retrieve_companys_limited_to_user(self):
+        """Test only retrieves Company objects for auth User"""
+        # User 1
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        Company.objects.create(user=self.user, company_name='Microsoft', associated_client=client1)
+        # User 2
+        user2 = get_user_model().objects.create_user('user2@email.com', 'password')
+        client2 = Client.objects.create(user=user2, first_name='Jeff', last_name='Bezos')
+        Company.objects.create(user=user2, company_name='Amazon', associated_client=client2)
+        # HTTP GET request
+        res = self.client.get(COMPANYS_URL)
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(res.data), 1)
+        self.assertEqual(res.data[0]['company_name'], 'Microsoft')
 
+    def test_create_company_successful(self):
+        """Test creating a new Company object is successful"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        payload = {
+            'company_name': 'Microsoft',
+            'associated_client': client1.id
+        }
+        # HTTP POST request
+        res = self.client.post(COMPANYS_URL, payload)
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
+        exists = Company.objects.filter(
+            user=self.user,
+            company_name=payload['company_name']
+        ).exists()
+        self.assertTrue(exists)
+
+    def test_create_company_invalid(self):
+        """Test creating Company object is invalid if required field is empty"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        Company.objects.create(user=self.user, company_name='', associated_client=client1)
+        # HTTP POST request
+        res = self.client.post(COMPANYS_URL)
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_retrieve_companys_with_associated_client_param(self):
+        """Test retrieving all Company objects with associated_client parameter query"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        client2 = Client.objects.create(user=self.user, first_name='Jeff', last_name='Bezos')
+        client3 = Client.objects.create(user=self.user, first_name='Paul', last_name='Allen')
+        Company.objects.create(user=self.user, company_name='Microsoft', associated_client=client1)
+        Company.objects.create(user=self.user, company_name='Amazon', associated_client=client2)
+        # HTTP GET request
+        res = self.client.get(COMPANYS_URL, {'associated_client': client1.id})
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(res.data), 1)
 
 
 
