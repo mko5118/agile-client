@@ -6,8 +6,8 @@ import style from './company-item.module.scss';
 // *************************** COMPANY ITEM PAGE COMPONENT *************************** //
 const CompanyItem = ({ client }) => {
   // 'client' passed down as object via 'ContactsPage.js' to allow Company filtering
-  console.log(client)
-  const { company: company_id } = client;
+
+  // const { client_company: company_id } = client;
   const [ allCompanies, setAllCompanies ] = useState([]);
 
   useEffect(() => {
@@ -29,14 +29,14 @@ const CompanyItem = ({ client }) => {
       <div>
         {
           allCompanies.map(company => (
-            company.id === company_id &&
-            <div key={company.id}>
-              <h4>{company.company_name}</h4>
-              <p>{company.website}</p>
-              <p>{company.address}</p>
-              <p>{company.company_number}</p>
-              <p>{company.notes}</p>
-            </div>
+            company.associated_client === client.id &&
+              <div key={company.id}>
+                <h4>{company.company_name}</h4>
+                <p>{company.website}</p>
+                <p>{company.address}</p>
+                <p>{company.company_number}</p>
+                <p>{company.company_notes}</p>
+              </div>
           ))
         }
       </div>
@@ -45,3 +45,16 @@ const CompanyItem = ({ client }) => {
 };
 
 export default CompanyItem;
+
+// {
+//   allCompanies.map(company => (
+//     company.id === company_id &&
+//     <div key={company.id}>
+      // <h4>{company.company_name}</h4>
+      // <p>{company.website}</p>
+      // <p>{company.address}</p>
+      // <p>{company.company_number}</p>
+      // <p>{company.notes}</p>
+//     </div>
+//   ))
+// }

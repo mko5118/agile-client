@@ -28,18 +28,21 @@ const ContactsPage = () => {
     <div className={style.contactsPage}>
       <div>
         {
-          allClients.map(client => (
-            <div key={client.id}>
-              <h2>{client.first_name} {client.last_name}</h2>
-              <hr />
-              <p>{client.job_title}</p>
-              <p>{client.email}</p>
-              <p>{client.phone_number}</p>
-              <p>{client.notes}</p>
-              <CompanyItem client={client} />
-              <LogItem client={client} />
-            </div>
-          ))
+          allClients.length > 0
+            ?
+              allClients.map(client => (
+                <div key={client.id}>
+                  <h2>{client.first_name} {client.last_name}</h2>
+                  <hr />
+                  <p>{client.job_title}</p>
+                  <p>{client.email}</p>
+                  <p>{client.phone_number}</p>
+                  <p>{client.notes}</p>
+                  <CompanyItem client={client} />
+                  <LogItem client={client} />
+                </div>
+              ))
+            : <p>Currently no contacts...</p>
         }
       </div>
     </div>
