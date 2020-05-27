@@ -99,6 +99,22 @@ class PrivateClientApiTests(TestCase):
         self.assertEqual(res.data[0]['first_name'], 'Bill')
         self.assertEqual(res.data, serializer.data)
 
+    def test_create_client_successful(self):
+        """Test creating a Client object is successful"""
+        payload = {
+            'first_name': 'Bill',
+            'last_name': 'Gates',
+        }
+        # HTTP POST request
+        res = self.client.post(CLIENTS_URL, payload)
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
+        exists = Client.objects.filter(
+            user=self.user,
+            first_name=payload['first_name']
+        ).exists()
+        self.assertTrue(exists)
+
     def test_view_client_detail(self):
         """Test retrieving specific Client details"""
         client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')

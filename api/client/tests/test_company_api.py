@@ -98,6 +98,40 @@ class PrivateCompanyApiTests(TestCase):
         # Assertions
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
+    def test_partial_update_company(self):
+        """Test updating Company object with PATCH method (Only update fields in payload)"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        company1 = Company.objects.create(user=self.user, company_name='Microsoft', associated_client=client1)
+        payload = {'company_name': 'Amazon'}
+        # HTTP PATCH request
+        url = reverse('client:company-detail', args=[company1.id])
+        res = self.client.patch(url, payload)
+        company1.refresh_from_db()
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(company1.company_name, 'Amazon')
+
+    def test_full_update_company(self):
+        """Test updating Company object with PUT method (Full object update)"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        company1 = Company.objects.create(user=self.user, company_name='Microsoft', associated_client=client1)
+        payload = {
+            'company_name': 'Microsoft',
+            'website': 'www.microsoft.com',
+            'company_number': '111-222-3333',
+            'address': '1111 Fakeville Drive Seattle, WA 11111',
+            'company_notes': 'One of the largest Tech companies in the world',
+            'associated_client': client1.id
+        }
+        # HTTP PUT request
+        url = reverse('client:company-detail', args=[company1.id])
+        res = self.client.put(url, payload)
+        company1.refresh_from_db()
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(company1.company_notes, payload['company_notes'])
+        self.assertEqual(company1.website, 'www.microsoft.com')
+
     def test_retrieve_companys_with_associated_client_param(self):
         """Test retrieving all Company objects with associated_client parameter query"""
         client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')

@@ -95,6 +95,37 @@ class PrivateLogsApiTests(TestCase):
         # Assertions
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
+    def test_partial_update_log(self):
+        """Test updating Log object with PATCH method (Only update fields in payload)"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        log1 = Log.objects.create(user=self.user, type='Dinner', associated_client=client1)
+        payload = {'type': 'Lunch'}
+        # HTTP PATCH request
+        url = reverse('client:log-detail', args=[log1.id])
+        res = self.client.patch(url, payload)
+        log1.refresh_from_db()
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(log1.type, 'Lunch')
+
+    def test_full_update_log(self):
+        """Test updating Log object with PUT method (Full object update)"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        log1 = Log.objects.create(user=self.user, type='Lunch', associated_client=client1)
+        payload = {
+            'type': 'Lunch',
+            'details': 'Lunch meeting with Bill Gates - Client 1',
+            'associated_client': client1.id
+        }
+        # HTTP PUT request
+        url = reverse('client:log-detail', args=[log1.id])
+        res = self.client.put(url, payload)
+        log1.refresh_from_db()
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(log1.details, payload['details'])
+        self.assertEqual(log1.associated_client.id, payload['associated_client'])
+
     def test_retrieve_logs_with_associated_client(self):
         """Test retrieving all Log objects only for requested associated_client parameter"""
         client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
