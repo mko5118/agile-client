@@ -162,6 +162,14 @@ class PrivateClientApiTests(TestCase):
         self.assertEqual(client1.email, payload['email'])
         self.assertEqual(client1.job_title, 'Founder')
 
+    def test_delete_client_successful(self):
+        """Test delete/destroy Client object is successful"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        # HTTP DELETE request
+        url = reverse('client:client-detail', args=[client1.id])
+        res = self.client.delete(url)
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
 
 
 

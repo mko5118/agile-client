@@ -126,6 +126,18 @@ class PrivateLogsApiTests(TestCase):
         self.assertEqual(log1.details, payload['details'])
         self.assertEqual(log1.associated_client.id, payload['associated_client'])
 
+    def test_delete_log_successful(self):
+        """Test deleting/destroy Log object is successful"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        log1 = Log.objects.create(user=self.user, type='Dinner', associated_client=client1)
+        log2 = Log.objects.create(user=self.user, type='Lunch', associated_client=client1)
+        # HTTP DELETE request
+        url = reverse('client:log-detail', args=[log1.id])
+        res = self.client.delete(url)
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(log2.type, 'Lunch')
+
     def test_retrieve_logs_with_associated_client(self):
         """Test retrieving all Log objects only for requested associated_client parameter"""
         client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')

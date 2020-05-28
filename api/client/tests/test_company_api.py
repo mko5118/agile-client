@@ -132,6 +132,16 @@ class PrivateCompanyApiTests(TestCase):
         self.assertEqual(company1.company_notes, payload['company_notes'])
         self.assertEqual(company1.website, 'www.microsoft.com')
 
+    def test_delete_company_successful(self):
+        """Test delete/destroy Company object is successful"""
+        client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
+        company1 = Company.objects.create(user=self.user, company_name='Microsoft', associated_client=client1)
+        # HTTP DELETE request
+        url = reverse('client:company-detail', args=[company1.id])
+        res = self.client.delete(url)
+        # Assertions
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+
     def test_retrieve_companys_with_associated_client_param(self):
         """Test retrieving all Company objects with associated_client parameter query"""
         client1 = Client.objects.create(user=self.user, first_name='Bill', last_name='Gates')
