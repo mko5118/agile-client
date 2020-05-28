@@ -5,20 +5,20 @@ import { Provider } from 'react-redux';
 import { store } from '../redux/store';
 
 // APP PAGES
-import Navbar from '../components/navbar/Navbar';
-import Footer from '../components/footer/Footer';
+import Navbar from '../pages/navbar/Navbar';
+import Footer from '../pages/footer/Footer';
 import PrivateRoute from '../components/private-route/PrivateRoute';
 
 // NOT AUTHENTICATED PAGES
-import HomePage from '../pages/unauthenticated/home-page/HomePage';
-import SigninPage from '../pages/unauthenticated/signin-page/SigninPage';
-import SignupPage from '../pages/unauthenticated/signup-page/SignupPage';
+import HomePage from '../pages/home-page/HomePage';
+import SigninPage from '../pages/signin-page/SigninPage';
+import SignupPage from '../pages/signup-page/SignupPage';
 
 // AUTHENTICATED PAGES
-import DashboardPage from '../pages/authenticated/dashboard-page/DashboardPage';
-import ContactsPage from '../pages/authenticated/contacts-page/ContactsPage';
-import TaskPage from '../pages/authenticated/task-page/TaskPage';
-import TaskItem from '../components-auth/tasks-page/TaskItem/TaskItem';
+import DashboardPage from '../pages/dashboard-page/DashboardPage';
+import ClientsPage from '../components-dashboard-client/clients-page/ClientsPage';
+import TaskPage from '../components-dashboard-tasks/task-page/TaskPage';
+import TaskItem from '../components-dashboard-tasks/task-item/TaskItem';
 
 import style from './app.modules.scss';
 
@@ -38,7 +38,7 @@ const App = () => {
               <Route exact path='/signup' component={SignupPage} />
               {/* PRIVATE ROUTES */}
               <Route exact path='/dashboard' component={DashboardPage} />
-              <Route exact path='/dashboard/contacts' component={ContactsPage} />
+              <Route exact path='/dashboard/contacts' component={ClientsPage} />
               <Route exact path='/dashboard/tasks' component={TaskPage} />
               <Route exact path='/dashboard/tasks/:id' component={TaskItem} />
             </Switch>

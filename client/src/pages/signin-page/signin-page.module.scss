@@ -1,0 +1,18 @@
+@import '../../styles/global.styles';
+
+// ************* SIGNIN PAGE COMPONENT STYLES ************* //
+.signinPage {
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+  }
+}
+
+// ************* MEDIA QUERIES ************* //
+@media screen and (min-width: 500px) {
+  .signinPage {
+    
+  }
+}
