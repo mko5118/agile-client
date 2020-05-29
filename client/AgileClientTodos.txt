@@ -1,3 +1,7 @@
+### INTEGRATE CLIENT LOGS (DATETIMEFIELD) INTO A CALENDAR PAGE ON THE FRONT END ###
+    1. Should be able to do this all on the frontend via react and node calendar packages?
+
+
 # TASK APP
   1. Integrate 'UPDATE_TASK / PUT' functionality
   2. Integrate the TaskPage - TaskItem components correctly
