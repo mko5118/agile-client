@@ -1,0 +1,6 @@
+export const GET_ALL_CLIENTS = 'GET_ALL_CLIENTS';
+export const GET_A_CLIENT = 'GET_A_CLIENT';
+export const CREATE_CLIENT = 'CREATE_CLIENT';
+export const DELETE_CLIENT = 'DELETE_CLIENT';
+export const UPDATE_CLIENT = 'UPDATE_CLIENT';
+export const CLIENT_ERROR = 'CLIENT_ERROR';

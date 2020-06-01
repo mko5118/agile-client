@@ -1,0 +1,90 @@
+import moxios from 'moxios';
+
+import { storeFactory } from '../../utils/testUtils';
+import { 
+  REGISTRATION_SUCCESS, REGISTRATION_FAIL, 
+  USER_LOADED, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_USER, AUTH_ERROR, 
+} from './auth.types';
+import {
+  setAuthToken, loadUser, registerUser, loginUser, logoutUser,
+} from './auth.actions';
+
+// *************************** AUTH ACTIONS TESTS *************************** //
+
+/**
+ * Describe to group all 'registerUser' tests together
+ */
+describe('"registerUser" action creator tests', () => {
+
+  // 'beforeEach' runs before every test below
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  // 'afterEach' runs after each test to clean up for the next tests
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
+  // Integration Tests
+  test('creates "REGISTRATION_SUCCESS" when user registration successful', () => {
+    const store = storeFactory();
+    const user = { email: 'testuser1@email.com', password: 'password', name: 'Test User 1'};
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        respond: user,
+      });
+    });
+
+    return store.dispatch(registerUser(user))
+                .then(() => {
+                  const newState = store.getState();
+                  const actions = store.getActions();
+                  expect(actions[0].type).toBe(REGISTRATION_SUCCESS);
+                });
+  });
+
+  // test('creates "REGISTRATION_FAIL" when user registration is unsuccessful', () => {
+  //   const store = storeFactory();
+  //   const user = {email: 'test', password: 'password', name: 'Test User 1'};
+
+  //   moxios.wait(() => {
+  //     const request = moxios.requests.mostRecent();
+  //     request.respondWith({
+  //       status: 400,
+  //       respond: user
+  //     });
+  //   });
+
+  //   return store.dispatch(registerUser(user))
+  //               .then(() => {
+  //                 const actions = store.getActions();
+  //                 expect(actions).toBe(REGISTRATION_FAIL);
+  //               });
+  // });
+
+  // test('register a user', () => {
+  //   const user = { email: 'testuser1@email.com', password: 'password', name: 'Test User 1'};
+  //   const store = storeFactory();
+
+  //   // Tell 'moxios' how to respond when a request is made to 'axios'
+  //   moxios.wait(() => {
+  //     const request = moxios.requests.mostRecent();
+  //     request.respondWith({
+  //       status: 200,
+  //       respond: user,
+  //     });
+  //   });
+
+  //   // Return Promise
+  //   return store.dispatch(registerUser(user))
+  //               .then(() => {
+  //                 const newState = store.getState();
+  //                 expect(newState.user).toBe(user);
+  //               });
+  // });
+
+});

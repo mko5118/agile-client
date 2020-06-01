@@ -7,7 +7,7 @@ import style from './home-page.module.scss';
 // *************************** HOME PAGE COMPONENT *************************** //
 const HomePage = () => {
   return (
-    <div className={style.homePage}>
+    <div className={style.homePage} test-attr='component-homepage'>
       
       <HomeLanding />
 

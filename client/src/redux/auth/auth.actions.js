@@ -9,7 +9,7 @@ import {
 const API_URL = 'http://localhost:8000';
 
 // *************************** SET AUTH TOKEN *************************** //
-const setAuthToken = (token) => {
+export const setAuthToken = (token) => {
   if (token) {
     axios.defaults.headers.common['Authorization'] = token;
   } else {

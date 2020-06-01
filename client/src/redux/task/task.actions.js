@@ -22,15 +22,10 @@ export const getAllTasks = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    const errors = err.response.data.errors;
-    if (errors) {
-      errors.forEach(error => dispatch(
-        setAlert(error.msg, 'danger', 2000)
-      ));
-    };
-    dispatch({
-      type: TASK_ERROR,
-    });
+    // const errors = err.response.data.errors;
+    const errors = err.response.statusText;
+    errors && dispatch(setAlert(errors, 'danger', 2000));
+    dispatch({ type: TASK_ERROR });
   }
 };
 
@@ -52,15 +47,9 @@ export const getTask = (id) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    const errors = err.response.data.errors;
-    if (errors) {
-      errors.forEach(error => dispatch(
-        setAlert(error.msg, 'danger', 2000)
-      ));
-    }
-    dispatch({
-      type: TASK_ERROR,
-    });
+    const errors = err.response.statusText;
+    errors && dispatch(setAlert(errors, 'danger', 2000));
+    dispatch({ type: TASK_ERROR });
   }
 }
 
@@ -85,15 +74,9 @@ export const createTask = (title, body) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    const errors = err.response.data.errors;
-    if (errors) {
-      errors.forEach(error => dispatch(
-        setAlert(error.msg, 'danger', 2000)
-      ));
-    }
-    dispatch({
-      type: TASK_ERROR
-    });
+    const errors = err.response.statusText;
+    errors && dispatch(setAlert(errors, 'danger', 20000));
+    dispatch({ type: TASK_ERROR });
   }
 }
 
@@ -117,12 +100,9 @@ export const updateTask = (id, formData) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    const errors = err.response.data.errors;
-    if (errors) {
-      errors.forEach(error => dispatch(
-        setAlert(error.msg, 'danger', 2000)
-      ));
-    };
+    const errors = err.response.statusText;
+    errors && dispatch(setAlert(errors, 'danger', 2000));
+    dispatch({ type: TASK_ERROR });
   }
 };
 
@@ -144,12 +124,9 @@ export const deleteTask = (id) => async (dispatch) => {
         payload: id,
       });
     } catch (err) {
-      const errors = err.response.data.errors;
-      if (errors) {
-        errors.forEach(error => dispatch(
-          setAlert(error.msg, 'danger', 2000)
-        ));
-      };
+      const errors = err.response.statusText;
+      errors && dispatch(setAlert(errors, 'danger', 2000));
+      dispatch({ type: TASK_ERROR });
     }
   }
 };

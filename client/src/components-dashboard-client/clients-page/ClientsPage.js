@@ -1,52 +1,61 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
+import { getAllClients } from '../../redux/clients/clients.actions';
+
+import ClientItem from '../client-item/ClientItem';
 import CompanyItem from '../../components-dashboard-company/company-item/CompanyItem';
 import LogItem from '../../components-dashboard-logs/log-item/LogItem';
 
 import style from './clients-page.module.scss';
 
 // *************************** CLIENTS PAGE COMPONENT *************************** //
-const ClientsPage = () => {
-  const [ allClients, setAllClients ] = useState([]);
+const ClientsPage = ({ clients, getAllClients }) => {
+  // 'clients' and 'getAllClients' passed as props from Redux store
+  const { clients: allClients, client, loading, error } = clients;
 
   useEffect(() => {
-    getAllClients()
-  }, [])
+    getAllClients();
+  }, [getAllClients]);
 
-  const getAllClients = async () => {
-    const config = {
-      headers: {
-        'Authorization': `Token ${localStorage.token}`
-      }
-    }
-    const res = await axios.get(`http://localhost:8000/api/client/clients/`, config);
-    setAllClients(res.data)
-  };
+  const clientContainer = (
+    allClients.length > 0
+    ?
+      allClients.map(client => (
+        <div key={client.id} className={style.clientContainer}>
+          <ClientItem client={client} />
+          <CompanyItem client={client} />
+          <LogItem client={client} />
+        </div>
+      ))
+    : <p>Currently no contacts...</p>
+  )
 
   return (
     <div className={style.clientsPage}>
       <div>
         {
-          allClients.length > 0
-            ?
-              allClients.map(client => (
-                <div key={client.id}>
-                  <h2>{client.first_name} {client.last_name}</h2>
-                  <hr />
-                  <p>{client.job_title}</p>
-                  <p>{client.email}</p>
-                  <p>{client.phone_number}</p>
-                  <p>{client.notes}</p>
-                  <CompanyItem client={client} />
-                  <LogItem client={client} />
-                </div>
-              ))
-            : <p>Currently no contacts...</p>
+          loading ? <p>Loading...</p> : clientContainer
         }
       </div>
     </div>
-  )
+  );
 };
 
-export default ClientsPage;
+// PROP TYPES
+ClientsPage.propTypes = {
+  clients: PropTypes.object.isRequired,
+  getAllClients: PropTypes.func.isRequired,
+};
+
+// REDUX
+const mapStateToProps = (state) => ({
+  clients: state.clients,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getAllClients: () => dispatch(getAllClients()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClientsPage);

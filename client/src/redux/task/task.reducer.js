@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   task: null,
   loading: true,
   error: {},
-}
+};
 
 export const taskReducer = (state=INITIAL_STATE, action) => {
   switch (action.type) {

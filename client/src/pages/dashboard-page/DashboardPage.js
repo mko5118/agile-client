@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { IoIosContacts } from 'react-icons/io';
 import { FaHome, FaTasks } from 'react-icons/fa';
 
-import ContactsPage from '../../components-dashboard-client/clients-page/ClientsPage';
+import ClientsPage from '../../components-dashboard-client/clients-page/ClientsPage';
 import TaskPage from '../../components-dashboard-tasks/task-page/TaskPage';
+import ClientCreate from '../../components-dashboard-client/client-create/ClientCreate';
 
 import style from './dashboard-page.module.scss';
 
@@ -25,7 +26,7 @@ const DashboardPage = () => {
 
   const iconClickTodos = () => {
     setCurrentSection({ 'home': false, 'contacts': false, 'todos': true });
-  }
+  };
 
   return (
     <div className={style.dashboardPage}>
@@ -52,7 +53,7 @@ const DashboardPage = () => {
           (!currentSection.contacts && !currentSection.todos) && <h2>HOME SECTION SMALL</h2>
         }
         {
-          currentSection.contacts && <ContactsPage />
+          currentSection.contacts && <ClientCreate />
         }
         {
           currentSection.todos && <TaskPage />
@@ -64,7 +65,7 @@ const DashboardPage = () => {
           (!currentSection.contacts && !currentSection.todos) && <h1>HOME SECTION LARGE</h1>
         }
         {
-          currentSection.contacts && <ContactsPage />
+          currentSection.contacts && <ClientsPage />
         }
         {
           currentSection.todos && <TaskPage />

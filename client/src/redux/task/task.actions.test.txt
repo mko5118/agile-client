@@ -1,0 +1,51 @@
+import moxios from 'moxios';
+
+import { storeFactory } from '../../utils/testUtils';
+
+import { } from '../auth/auth.types';
+import { } from '../auth/auth.actions';
+
+import { 
+  GET_ALL_TASKS, GET_A_TASK, CREATE_TASK, DELETE_TASK, UPDATE_TASK, TASK_ERROR
+} from './task.types';
+import { getAllTasks, } from './task.actions';
+
+// *************************** TASK ACTIONS TESTS *************************** //
+
+// 'describe' to group all tests for 'getAllTasks' action creator
+describe('"getAllTasks" action creator tests', () => {
+  // 'beforeEach' runs before every test below
+  beforeEach(() => {
+    moxios.install();
+    // put function to login/load a user before every test?
+  });
+
+  // 'afterEach' runs after every test to cleanup for next test
+  afterEach(() => {
+    moxios.uninstall();
+    // put function to logout user after every test?
+  });
+
+  // Integration Tests
+  test('retrieves all tasks', () => {
+    const allTasks = [ {title:'Task1', body:'Test Task 1'} ];
+    const store = storeFactory();
+    
+    // Moxios => tell moxios how to respond when axios request is made
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        respond: allTasks,
+      });
+    });
+
+    // Returns Promise
+    return store.dispatch(getAllTasks())
+                .then(() => {
+                  const newState = store.getState();
+                  expect(newState.tasks).toBe(allTasks);
+                });
+  });
+
+});
