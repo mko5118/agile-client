@@ -9,6 +9,7 @@ const INITIAL_STATE = {
   error: {},
 };
 
+// *************************** CLIENTS REDUCER *************************** //
 export const clientsReducer = (state=INITIAL_STATE, action) => {
   switch(action.type) {
     case GET_ALL_CLIENTS:

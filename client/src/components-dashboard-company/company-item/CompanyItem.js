@@ -1,45 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { getAllCompanies, deleteCompany } from '../../redux/company/company.actions';
 
 import style from './company-item.module.scss';
 
 // *************************** COMPANY ITEM PAGE COMPONENT *************************** //
-const CompanyItem = ({ client }) => {
-  // 'client' passed down as object via 'ContactsPage.js' to allow Company filtering
-  const [ allCompanies, setAllCompanies ] = useState([]);
+const CompanyItem = ({ client, company, getAllCompanies, deleteCompany }) => {
+  // 'client' passed down as object via 'ClientsPage.js' to allow Company filtering
+  const { companies, loading } = company;
 
   useEffect(() => {
-    getAllCompanies()
-  }, [])
+    getAllCompanies();
+  }, []);
 
-  const getAllCompanies = async () => {
-    const config = {
-      headers: {
-        'Authorization': `Token ${localStorage.token}`
-      }
-    };
-    const res = await axios.get(`http://localhost:8000/api/client/company/`, config)
-    setAllCompanies(res.data)
+  const history = useHistory();
+  const navigateToCompany = (companyId) => {
+    history.push(`/dashboard/clients/company/${companyId}`);
   };
+  const navigateToCreateCompany = (clientId) => {
+    history.push(`/dashboard/clients/company-create/${clientId}`);
+  };
+
+  const companyContainer = (
+    companies.map(company => (
+      company.associated_client === client.id
+        ?
+          <div key={company.id}>
+            <h4>{company.company_name}</h4>
+            <p>{company.website}</p>
+            <p>{company.address}</p>
+            <p>{company.company_number}</p>
+            <p>{company.company_notes}</p>
+
+            <button onClick={() => navigateToCompany(company.id)}>View Company</button>
+            <button onClick={() => deleteCompany(company.id)}>Delete Company</button>
+          </div>
+        : <button onClick={() => navigateToCreateCompany(client.id)}>Add Company</button>
+
+    ))
+  );
 
   return (
     <div className={style.companyItem}>
-      <div>
-        {
-          allCompanies.map(company => (
-            company.associated_client === client.id &&
-              <div key={company.id}>
-                <h4>{company.company_name}</h4>
-                <p>{company.website}</p>
-                <p>{company.address}</p>
-                <p>{company.company_number}</p>
-                <p>{company.company_notes}</p>
-              </div>
-          ))
-        }
-      </div>
+      {
+        loading ? <p>Loading...</p> : companyContainer
+      }
     </div>
   )
 };
 
-export default CompanyItem;
+// PROP TYPES
+CompanyItem.propTypes = {
+  client: PropTypes.object.isRequired,
+  company: PropTypes.object.isRequired,
+  getAllCompanies: PropTypes.func.isRequired,
+  deleteCompany: PropTypes.func.isRequired,
+};
+
+// REDUX
+const mapStateToProps = (state) => ({
+  company: state.company,  
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getAllCompanies: () => dispatch(getAllCompanies()),
+  deleteCompany: (companyId) => dispatch(deleteCompany(companyId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyItem);

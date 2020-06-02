@@ -9,6 +9,7 @@ const INITIAL_STATE = {
   error: {},
 };
 
+// *************************** TASK REDUCER *************************** //
 export const taskReducer = (state=INITIAL_STATE, action) => {
   switch (action.type) {
     case GET_ALL_TASKS:
