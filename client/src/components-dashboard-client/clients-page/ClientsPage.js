@@ -20,6 +20,9 @@ const ClientsPage = ({ clients, getAllClients, deleteClient }) => {
   const navigateToClient = (clientId) => {
     history.push(`/dashboard/clients/${clientId}`);
   };
+  const navigateToCreateLog = (clientId) => {
+    history.push(`/dashboard/clients/log-create/${clientId}`);
+  };
 
   useEffect(() => {
     getAllClients();
@@ -35,6 +38,7 @@ const ClientsPage = ({ clients, getAllClients, deleteClient }) => {
           <LogItem client={client} />
           <h4>Client Id: {client.id}</h4>
           <div className={style.buttons}>
+            <button onClick={() => navigateToCreateLog(client.id)}>Add Log</button>
             <button onClick={() => navigateToClient(client.id)}>Edit Client</button>
             <button onClick={() => deleteClient(client.id)}>Delete Client</button>
           </div>

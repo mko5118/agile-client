@@ -1,0 +1,62 @@
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { getClientLogs } from '../../redux/log/log.actions';
+
+import style from './log-item.module.scss';
+
+// *************************** LOG ITEM PAGE COMPONENT *************************** //
+const LogItem = ({ client, clientLogs, loading, getClientLogs }) => {
+  // 'client' passed down as object via 'ContactsPage.js' to allow Log filtering
+
+  useEffect(() => {
+    getClientLogs(client.id);
+  }, []);
+
+  // const getClientLogs = async () => {
+  //   const config = {
+  //     headers: {
+  //       'Authorization': `Token ${localStorage.token}`
+  //     }
+  //   };
+  //   const res = await axios.get(`http://localhost:8000/api/client/logs/?associated_client=${client.id}`, config);
+  //   setClientLogs(res.data);
+  // };
+
+  console.log(clientLogs);
+
+  return (
+    <div className={style.logItem}>
+      {
+        clientLogs.map(log => (
+          <div key={log.id}>
+            <h4>{log.type}</h4>
+            <p>{log.details}</p>
+            <p>{log.log_date}</p>
+          </div>
+        ))
+      }
+    </div>
+  )
+};
+
+// PROP TYPES
+LogItem.propTypes = {
+  client: PropTypes.object.isRequired,
+  clientLogs: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
+  getClientLogs: PropTypes.func.isRequired,
+};
+
+// REDUX
+const mapStateToProps = (state) => ({
+  clientLogs: state.log.clientLogs,
+  loading: state.log.loading,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getClientLogs: (clientId) => dispatch(getClientLogs(clientId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogItem);

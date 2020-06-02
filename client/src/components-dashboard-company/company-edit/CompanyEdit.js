@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getCompany } from '../../redux/company/company.actions';
+import { getCompany, updateCompany } from '../../redux/company/company.actions';
 
 import style from './company-edit.module.scss';
 
 // *************************** COMPANY EDIT COMPONENT *************************** //
-const CompanyEdit = ({ currentCompany, loading, getCompany }) => {
+const CompanyEdit = ({ currentCompany, loading, getCompany, updateCompany }) => {
   const { company_id } = useParams();
 
   useEffect(() => {
@@ -36,6 +36,7 @@ CompanyEdit.propTypes = {
   currentCompany: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   getCompany: PropTypes.func.isRequired,
+  updateCompany: PropTypes.func.isRequired,
 }
 
 // REDUX
@@ -46,6 +47,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getCompany: (companyId) => dispatch(getCompany(companyId)),
+  updateCompany: (companyId, formData) => dispatch(updateCompany(companyId, formData)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyEdit);

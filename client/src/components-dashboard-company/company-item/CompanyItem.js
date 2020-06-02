@@ -38,7 +38,7 @@ const CompanyItem = ({ client, company, getAllCompanies, deleteCompany }) => {
             <button onClick={() => navigateToCompany(company.id)}>View Company</button>
             <button onClick={() => deleteCompany(company.id)}>Delete Company</button>
           </div>
-        : <button onClick={() => navigateToCreateCompany(client.id)}>Add Company</button>
+        : <button key={company.id} onClick={() => navigateToCreateCompany(client.id)}>Add Company</button>
 
     ))
   );

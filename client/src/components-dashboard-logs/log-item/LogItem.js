@@ -1,40 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { getAllLogs, deleteLog } from '../../redux/log/log.actions';
 
 import style from './log-item.module.scss';
 
-// *************************** LOG ITEM PAGE COMPONENT *************************** //
-const LogItem = ({ client }) => {
+// *************************** LOG ITEM COMPONENT *************************** //
+const LogItem = ({ client, logs, loading, getAllLogs, deleteLog }) => {
   // 'client' passed down as object via 'ContactsPage.js' to allow Log filtering
-  const [ clientLogs, setClientLogs ] = useState([]);
 
   useEffect(() => {
-    getClientLogs()
-  }, []);
+    getAllLogs();
+  }, [getAllLogs]);
 
-  const getClientLogs = async () => {
-    const config = {
-      headers: {
-        'Authorization': `Token ${localStorage.token}`
-      }
-    };
-    const res = await axios.get(`http://localhost:8000/api/client/logs/?associated_client=${client.id}`, config);
-    setClientLogs(res.data);
+  const history = useHistory();
+  const navigateToEditLog = (logId) => {
+    history.push(`/dashboard/clients/log/${logId}`);
   };
 
   return (
     <div className={style.logItem}>
       {
-        clientLogs.map(log => (
-          <div key={log.id}>
-            <h4>{log.type}</h4>
-            <p>{log.details}</p>
-            <p>{log.log_date}</p>
-          </div>
+        loading
+          ? <p>Loading...</p>
+          : logs.map(log => (
+              log.associated_client === client.id
+              &&
+                <div key={log.id}>
+                  <h4>{log.type}</h4>
+                  <p>{log.details}</p>
+                  <p>{log.log_date}</p>
+                  <p>Log ID: {log.id}</p>
+                  <button onClick={() => navigateToEditLog(log.id)}>Edit Log</button>
+                  <button onClick={() => deleteLog(log.id)}>Delete Log</button>
+                </div>
         ))
       }
     </div>
   )
 };
 
-export default LogItem;
+// PROP TYPES
+LogItem.propTypes = {
+  client: PropTypes.object.isRequired,
+  logs: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
+  getAllLogs: PropTypes.func.isRequired,
+  deleteLog: PropTypes.func.isRequired,
+};
+
+// REDUX
+const mapStateToProps = (state) => ({
+  logs: state.log.logs,
+  loading: state.log.loading,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getAllLogs: () => dispatch(getAllLogs()),
+  deleteLog: (logId) => dispatch(deleteLog(logId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogItem);
