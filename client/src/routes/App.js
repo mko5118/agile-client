@@ -11,6 +11,7 @@ import PrivateRoute from '../components/private-route/PrivateRoute';
 
 // NOT AUTHENTICATED PAGES
 import HomePage from '../pages/home-page/HomePage';
+import DeveloperPage from '../pages/developer-page/DeveloperPage';
 import SigninPage from '../pages/signin-page/SigninPage';
 import SignupPage from '../pages/signup-page/SignupPage';
 
@@ -39,6 +40,7 @@ const App = () => {
             <Navbar />
             <Switch>
               <Route exact path='/' component={HomePage} />
+              <Route exact path='/developers' component={DeveloperPage} />
               <Route exact path='/signin' component={SigninPage} />
               <Route exact path='/signup' component={SignupPage} />
               {/* PRIVATE ROUTES */}
@@ -57,6 +59,7 @@ const App = () => {
               <Route exact path='/dashboard/tasks/:id' component={TaskItem} />
             </Switch>
           </div>
+          
           <Footer />
 
         </BrowserRouter>

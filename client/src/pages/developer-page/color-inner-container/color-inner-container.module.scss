@@ -1,0 +1,124 @@
+@import '../../../styles/global.styles';
+
+// ************* COLOR INNER CONTAINER COMPONENT STYLES ************* //
+.colorInnerContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+
+  .colorName {
+    width: 30%;
+    font-size: 2rem;
+  }
+
+  .colorText {
+    width: 70%;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .icon {
+      border-radius: 5rem;
+      margin-right: 1rem;
+      font-size: 1.5rem;
+      border: 0.5px solid $black;
+
+      &.whiteIcon {
+        color: $white;
+      }
+
+      &.blackIcon {
+        color: $black;
+      }
+
+      &.darkGreyIcon {
+        color: $dark-grey;
+      }
+
+      &.lightGreyIcon {
+        color: $light-grey;
+      }
+
+      &.greyIcon {
+        color: $grey;
+      }
+
+      &.stoplightYellowIcon {
+        color: $stoplight-yellow;
+      }
+
+      &.stoplightRedIcon {
+        color: $stoplight-red;
+      }
+
+      &.strongBlueIcon {
+        color: $strong-blue;
+      }
+
+      &.lightBlueIcon {
+        color: $light-blue;
+      }
+
+      &.navyBlueIcon {
+        color: $navy-blue;
+      }
+
+      &.brightBlueIcon {
+        color: $bright-blue;
+      }
+
+      &.offBlueIcon {
+        color: $off-blue;
+      }
+
+      &.darkTealIcon {
+        color: $dark-teal;
+      }
+
+      &.lightTealIcon {
+        color: $light-teal;
+      }
+
+      &.stoplightGreenIcon {
+        color: $stoplight-green;
+      }
+
+      &.jungleGreenIcon {
+        color: $jungle-green;
+      }
+
+      &.strongOrangeIcon {
+        color: $strong-orange;
+      }
+
+      &.lightOrangeIcon {
+        color: $light-orange;
+      }
+
+      &.flamingoPinkIcon {
+        color: $flamingo-pink;
+      }
+    }
+
+  }
+}
+
+// ************* MEDIA QUERIES ************* //
+@media screen and (min-width: 500px) {
+  .colorInnerContainer {
+    
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .colorInnerContainer {
+
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .colorInnerContainer {
+
+  }
+}

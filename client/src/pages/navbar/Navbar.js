@@ -25,6 +25,9 @@ const Navbar = ({ auth, logoutUser }) => {
         <NavLink to='/' className={style.notAuthLink}>Features</NavLink>
       </li>
       <li>
+        <NavLink to='/developers' className={style.notAuthLink}>Developers</NavLink>
+      </li>
+      <li>
         <NavLink to='/signup' className={style.notAuthLink}>Sign Up</NavLink>
       </li>
       <li>
