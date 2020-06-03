@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import style from './color-inner-container.module.scss';
 
 // *************************** COLOR INNER CONTAINER COMPONENT *************************** //
-const ColorInnerContainer = ({ title, hexcode, white, black, darkGrey, lightGrey, grey, stoplightYellow, stoplightRed, strongBlue, lightBlue, navyBlue, brightBlue, offBlue, darkTeal, lightTeal, stoplightGreen, jungleGreen, strongOrange, lightOrange, flamingoPink }) => {
+const ColorInnerContainer = ({ title, hexcode, white, black, darkGrey, lightGrey, grey, stoplightYellow, stoplightRed, strongBlue, lightBlue, navyBlue, brightBlue, offBlue, darkTeal, lightTeal, stoplightGreen, jungleGreen, strongOrange, softOrange, lightOrange, flamingoPink }) => {
   return (
     <div className={style.colorInnerContainer}>
       <h3 className={style.colorName}>{title}</h3>
@@ -30,6 +30,7 @@ const ColorInnerContainer = ({ title, hexcode, white, black, darkGrey, lightGrey
             ${stoplightGreen ? style.stoplightGreenIcon : ''}
             ${jungleGreen ? style.jungleGreenIcon : ''}
             ${strongOrange ? style.strongOrangeIcon : ''}
+            ${softOrange ? style.softOrangeIcon : ''}
             ${lightOrange ? style.lightOrangeIcon : ''}
             ${flamingoPink ? style.flamingoPinkIcon : ''}
           `} 

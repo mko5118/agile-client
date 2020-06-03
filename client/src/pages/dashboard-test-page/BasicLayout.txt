@@ -1,0 +1,101 @@
+import React, { useState } from 'react';
+import { IoIosContacts } from 'react-icons/io';
+import { FaHome, FaTasks, FaRegCalendarAlt, FaLeaf } from 'react-icons/fa';
+
+import style from './dashboard-testpage.module.scss';
+
+// *************************** DASHBOARD TEST PAGE COMPONENT *************************** //
+const DashboardTestPage = () => {
+  const [ toggleHome, setToggleHome ] = useState({ 'home': true, isActive: true });
+  const [ toggleContacts, setToggleContacts ] = useState({ 'contacts': false, isActive: false });
+  const [ toggleTodos, setToggleTodos ] = useState({ 'todos': false, isActive: false });
+  const [ toggleCalendar, setToggleCalendar ] = useState({ 'calendar': false, isActive: false });
+
+  const onClickHome = () => {
+    setToggleHome({ 'home': true, isActive: true });
+    setToggleContacts({ 'contacts': false, isActive: false });
+    setToggleTodos({ 'todos': false, isActive: false });
+    setToggleCalendar({ 'calendar': false, isActive: false });
+  };
+
+  const onClickContacts = () => {
+    setToggleHome({ 'home': false, isActive: false });
+    setToggleContacts({ 'contacts': true, isActive: true });
+    setToggleTodos({ 'todos': false, isActive: false });
+    setToggleCalendar({ 'calendar': false, isActive: false });
+  };
+
+  const onClickTodos = () => {
+    setToggleHome({ 'home': false, isActive: false });
+    setToggleContacts({ 'contacts': false, isActive: false });
+    setToggleTodos({ 'todos': true, isActive: true });
+    setToggleCalendar({ 'calendar': false, isActive: false });
+  };
+
+  const onClickCalendar = () => {
+    setToggleHome({ 'home': false, isActive: false });
+    setToggleContacts({ 'contacts': false, isActive: false });
+    setToggleTodos({ 'todos': false, isActive: false });
+    setToggleCalendar({ 'calendar': true, isActive: true });
+  };
+
+  return (
+    <div className={style.dashboardTestPage}>
+      
+      {/* NAVIGATION SECTION */}
+      <div className={style.navigationContainer}>
+        
+        <div className={style.navigationInnerContainer}>
+          <h1 className={style.navigationTitle}>MENU</h1>
+
+          <div className={style.navigationMenu}>
+            <div className={style.iconContainer} id={toggleHome.isActive ? style.isActiveContainer : ''} onClick={onClickHome}>
+              <FaHome className={style.icon} id={toggleHome.isActive ? style.isActiveIcon : ''} />
+              <span className={style.iconText} id={toggleHome.isActive ? style.isActiveText : ''}>Home</span>
+            </div>
+            <div className={style.iconContainer} id={toggleContacts.isActive ? style.isActiveContainer : ''} onClick={onClickContacts}>
+              <IoIosContacts className={style.icon} id={toggleContacts.isActive ? style.isActiveIcon : ''} />
+              <span className={style.iconText} id={toggleContacts.isActive ? style.isActiveText : ''}>Contacts</span>
+            </div>
+            <div className={style.iconContainer} id={toggleTodos.isActive ? style.isActiveContainer : ''} onClick={onClickTodos}>
+              <FaTasks className={style.icon} id={toggleTodos.isActive ? style.isActiveIcon : ''} />
+              <span className={style.iconText} id={toggleTodos.isActive ? style.isActiveText : ''}>Todos</span>
+            </div>
+            <div className={style.iconContainer} id={toggleCalendar.isActive ? style.isActiveContainer : ''} onClick={onClickCalendar}>
+              <FaRegCalendarAlt className={style.icon} id={toggleCalendar.isActive ? style.isActiveIcon : ''} />
+              <span className={style.iconText} id={toggleCalendar.isActive ? style.isActiveText : ''}>Calendar</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* SMALL SECTION */}
+      <div className={style.smallContainer}>
+        
+        <div className={style.smallInnerContainer}>
+          { (!toggleContacts.isActive && !toggleTodos.isActive && !toggleCalendar.isActive) && <h2>HOME SECTION</h2> }
+          { toggleContacts.isActive && <h2>CONTACTS SECTION</h2> }
+          { toggleTodos.isActive && <h2>TODOS SECTION</h2> }
+          { toggleCalendar.isActive && <h2>CALENDAR SECTION</h2> }
+        </div>
+
+      </div>
+
+      {/* LARGE SECTION */}
+      <div className={style.largeContainer}>
+        
+        <div className={style.largeInnerContainer}>
+          { (!toggleContacts.isActive && !toggleTodos.isActive && !toggleCalendar.isActive) && <h2>HOME SECTION</h2> }
+          { toggleContacts.isActive && <h2>CONTACTS SECTION</h2> }
+          { toggleTodos.isActive && <h2>TODOS SECTION</h2> }
+          { toggleCalendar.isActive && <h2>CALENDAR SECTION</h2> }
+        </div>
+
+      </div>
+
+    </div>
+  )
+};
+
+export default DashboardTestPage;

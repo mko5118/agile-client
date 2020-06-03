@@ -30,6 +30,7 @@ const DeveloperPage = () => {
         <ColorInnerContainer title='Stoplight Green' hexcode='#2ADA51' stoplightGreen />
         <ColorInnerContainer title='Jungle Green' hexcode='#75D884' jungleGreen />
         <ColorInnerContainer title='Strong Orange' hexcode='#FA4A00' strongOrange />
+        <ColorInnerContainer title='Soft Orange' hexcode='#F8715F' softOrange />
         <ColorInnerContainer title='Light Orange' hexcode='#FB5A14' lightOrange />
         <ColorInnerContainer title='Flamingo Pink' hexcode='#FAB3BE' flamingoPink />
       </div>
