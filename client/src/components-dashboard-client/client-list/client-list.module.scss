@@ -2,7 +2,40 @@
 
 // ************* CLIENT LIST COMPONENT STYLES ************* //
 .clientList {
+  height: 95%;
+  overflow: auto;
 
+  .clientListTitle {
+    color: $strong-blue;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+
+  .clientListItem {
+    cursor: pointer;
+    // border: 1px solid $dark-grey;
+    border-bottom: 1px solid $grey;
+    padding: 2rem 2rem;
+
+    .letter {
+      margin-bottom: 2rem;
+      margin-left: -2rem;
+    }
+
+    .clientName {
+      color: $dark-grey;
+      margin-bottom: 1rem;
+
+      &:hover {
+        color: lighten($strong-blue, 15%);
+      }
+    }
+  }
+
+  .clientListItem:last-child {
+    border-bottom: none;
+  }
 }
 
 // ************* MEDIA QUERIES ************* //

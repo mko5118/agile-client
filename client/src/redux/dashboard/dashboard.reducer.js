@@ -3,8 +3,8 @@ import {
 } from './dashboard.types';
 
 const INITIAL_STATE = {
-  homeMenu: { isActive: true },
-  clientsMenu: { isActive: false },
+  homeMenu: { isActive: false },
+  clientsMenu: { isActive: true },
   tasksMenu: { isActive: false },
   calendarMenu: { isActive: false },
 };
