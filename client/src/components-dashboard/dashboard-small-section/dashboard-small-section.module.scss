@@ -1,0 +1,51 @@
+@import '../../styles/global.styles';
+
+// ************* DASHBOARD SMALL SECTION COMPONENT STYLES ************* //
+.dashboardSmallSection {
+  // 'dashbboardMenuSection' = width: 20% || 'dashboardLargeSection' = width: 50%
+  width: 30%;
+  height: 100%;
+  // border: 1px solid $black;
+
+  .smallInnerContainer {
+    margin: 2rem 1rem;
+    padding: 2rem;
+    border: 1px solid $grey;
+    border-radius: 1rem;
+    height: 95%;
+    // box-shadow: 2.5px 2.5px 8px 1px $grey;
+  }
+}
+
+
+// ************* MEDIA QUERIES ************* //
+@media screen and (min-width: 500px) {
+  .dashboardSmallSection {
+
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .dashboardSmallSection {
+
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .dashboardSmallSection {
+
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  // 'dashbboardMenuSection' = width: 15% || 'dashboardLargeSection' = width: 60%
+  .dashboardSmallSection {
+    width: 25%;
+  }
+}
+@media screen and (min-width: 2400px) {
+  // 'dashbboardMenuSection' = width: 10% || 'dashboardLargeSection' = width: 70%
+  .dashboardSmallSection {
+    width: 20%;
+  }
+}

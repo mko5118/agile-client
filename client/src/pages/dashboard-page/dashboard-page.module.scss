@@ -3,67 +3,14 @@
 // ************* DASHBOARD PAGE COMPONENT STYLES ************* //
 .dashboardPage {
   display: flex;
-  flex-direction: row;
   height: 100vh;
-
-  // NAVBAR CONTAINER
-  .navbarContainer {
-    // border: 1px solid $black;
-    width: 15%;
-    background-color: $dark-teal;
-
-    .navbar {
-      display: flex;
-      flex-direction: column;
-      padding: 2rem;
-
-      .iconContainer {
-        cursor: pointer;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 1rem 0;
-        margin-bottom: 1rem;
-        border-bottom: 1px solid $grey;
-
-        .icon {
-          color: $white;
-          font-size: 3rem;
-          margin-right: 2rem;
-        }
-
-        .iconText {
-          color: $white;
-          font-family: $tertiary-font;
-          font-size: 1.5rem;
-          font-weight: 500;
-          letter-spacing: 0.5px;
-          text-transform: uppercase;
-          margin-top: auto;
-        }
-      }
-    }
-  }
-
-  // SMALL CONTAINER
-  .smallContainer {
-    border: 1px solid $grey;
-    width: 25%;
-    padding: 1rem;
-  }
-
-  // LARGE CONTAINER
-  .largeContainer {
-    border: 1px solid $grey;
-    width: 65%;
-    padding: 1rem;
-  }
+  // border: 1px solid $black;
 }
 
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: 500px) {
   .dashboardPage {
-    
+
   }
 }
 
@@ -74,6 +21,18 @@
 }
 
 @media screen and (min-width: 1200px) {
+  .dashboardPage {
+
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .dashboardPage {
+
+  }
+}
+
+@media screen and (min-width: 2400px) {
   .dashboardPage {
 
   }

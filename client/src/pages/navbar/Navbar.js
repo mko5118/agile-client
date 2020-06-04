@@ -21,12 +21,6 @@ const Navbar = ({ auth, logoutUser }) => {
       <li>
         <NavLink to='/dashboard' className={style.notAuthLink}>Dashboard</NavLink>
       </li>
-
-      {/* DELETE THIS WHEN NO LONGER NEEDED */}
-      <li>
-        <NavLink to='/dashboard-test-page' className={style.notAuthLink}>Dashboard Test</NavLink>
-      </li>
-
       <li>
         <NavLink to='/' className={style.notAuthLink}>Features</NavLink>
       </li>

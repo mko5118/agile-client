@@ -17,9 +17,16 @@ export const getAllClients = () => async (dispatch) => {
 
     const res = await axios.get(`${API_URL}/api/client/clients/`, config);
 
+    // Sort 'clients' in alphabetical order by LAST_NAME
+    const sortedClientsByLastName = res.data.sort((a, b) => {
+      if (a.last_name[0] < b.last_name[0]) { return -1 }
+      if (a.last_name[0] > b.last_name[0]) { return 1}
+      return 0
+    });
+
     dispatch({
       type: GET_ALL_CLIENTS,
-      payload: res.data,
+      payload: sortedClientsByLastName,
     });
   } catch (err) {
     // const errors = err.response.data.detail

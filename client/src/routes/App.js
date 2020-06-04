@@ -16,8 +16,6 @@ import SigninPage from '../pages/signin-page/SigninPage';
 import SignupPage from '../pages/signup-page/SignupPage';
 
 // AUTHENTICATED PAGES
-import DashboardTestPage from '../pages/dashboard-test-page/DashboardTestPage';
-
 import DashboardPage from '../pages/dashboard-page/DashboardPage';
 import ClientsPage from '../components-dashboard-client/clients-page/ClientsPage';
 import ClientEdit from '../components-dashboard-client/client-edit/ClientEdit';
@@ -46,9 +44,6 @@ const App = () => {
               <Route exact path='/signin' component={SigninPage} />
               <Route exact path='/signup' component={SignupPage} />
               {/* PRIVATE ROUTES */}
-
-              <Route exact path='/dashboard-test-page' component={DashboardTestPage} />
-
               <Route exact path='/dashboard' component={DashboardPage} />
 
               <Route exact path='/dashboard/clients' component={ClientsPage} />

@@ -1,79 +1,49 @@
-import React, { useState } from 'react';
-import { IoIosContacts } from 'react-icons/io';
-import { FaHome, FaTasks } from 'react-icons/fa';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-import ClientsPage from '../../components-dashboard-client/clients-page/ClientsPage';
-import TaskPage from '../../components-dashboard-tasks/task-page/TaskPage';
-import ClientCreate from '../../components-dashboard-client/client-create/ClientCreate';
+import { connect } from 'react-redux';
+import { getAllClients } from '../../redux/clients/clients.actions';
+
+import DashboardMenuSection from '../../components-dashboard/dashboard-menu-section/DashboardMenuSection';
+import DashboardSmallSection from '../../components-dashboard/dashboard-small-section/DashboardSmallSection';
+import DashboardLargeSection from '../../components-dashboard/dashboard-large-section/DashboardLargeSection';
 
 import style from './dashboard-page.module.scss';
 
-// *************************** DASHBOARD PAGE COMPONENT *************************** //
-const DashboardPage = () => {
-  const [ currentSection, setCurrentSection ] = useState({
-    'home': false,
-    'contacts': false,
-    'todos': false,
-  });
-
-  const iconClickHome = () => {
-    setCurrentSection({ 'home': true, 'contacts': false, 'todos': false });
-  };
-
-  const iconClickContacts = () => {
-    setCurrentSection({ 'home': false, 'contacts': true, 'todos': false });
-  };
-
-  const iconClickTodos = () => {
-    setCurrentSection({ 'home': false, 'contacts': false, 'todos': true });
-  };
+// *************************** DASHBOARD TEST PAGE COMPONENT *************************** //
+const DashboardPage = ({ clients, client, loading, getAllClients }) => {
+  useEffect(() => {
+    getAllClients();
+  }, []);
 
   return (
     <div className={style.dashboardPage}>
-      
-      <div className={style.navbarContainer}>
-        <div className={style.navbar}>
-          <div className={style.iconContainer} onClick={iconClickHome}>
-            <FaHome className={style.icon} />
-            <span className={style.iconText} id='home'>Home</span>
-          </div>
-          <div className={style.iconContainer} onClick={iconClickContacts}>
-            <IoIosContacts className={style.icon} />
-            <span className={style.iconText} id='contacts'>Contacts</span>
-          </div>
-          <div className={style.iconContainer} onClick={iconClickTodos}>
-            <FaTasks className={style.icon} />
-            <span className={style.iconText} id='todos'>Todos</span>
-          </div>
-        </div>
-      </div>
 
-      <div className={style.smallContainer}>
-        {
-          (!currentSection.contacts && !currentSection.todos) && <h2>HOME SECTION SMALL</h2>
-        }
-        {
-          currentSection.contacts && <ClientCreate />
-        }
-        {
-          currentSection.todos && <TaskPage />
-        }
-      </div>
-
-      <div className={style.largeContainer}>
-        {
-          (!currentSection.contacts && !currentSection.todos) && <h1>HOME SECTION LARGE</h1>
-        }
-        {
-          currentSection.contacts && <ClientsPage />
-        }
-        {
-          currentSection.todos && <TaskPage />
-        }
-      </div>
+      <DashboardMenuSection />
+      <DashboardSmallSection clients={clients} />
+      <DashboardLargeSection client={client} />
 
     </div>
   )
 };
 
-export default DashboardPage;
+// PROP TYPES
+DashboardPage.propTypes = {
+  clients: PropTypes.array,
+  client: PropTypes.object,
+  loading: PropTypes.bool.isRequired,
+  getAllClients: PropTypes.func.isRequired,
+};
+
+// REDUX
+const mapStateToProps = (state) => ({
+  clients: state.clients.clients,
+  client: state.clients.client,
+  loading: state.clients.loading,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getAllClients: () => dispatch(getAllClients()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

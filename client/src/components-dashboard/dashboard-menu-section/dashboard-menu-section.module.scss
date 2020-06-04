@@ -1,0 +1,105 @@
+@import '../../styles/global.styles';
+
+// ************* DASHBOARD MENU SECTION COMPONENT STYLES ************* //
+.dashboardMenuSection {
+  // 'dashbboardSmallSection' = width: 30% || 'dashboardLargeSection' = width: 50%
+  width: 20%;
+  // border: 1px solid $black;
+  height: 100%;
+  
+  .navigationInnerContainer {
+    margin: 2rem;
+    padding: 2rem;
+    border: 1px solid $grey;
+    border-radius: 1rem;
+    height: 95%;
+    box-shadow: 2.5px 2.5px 8px 1px $grey;
+
+    .navigationTitle {
+      font-family: $primary-font;
+      font-size: 2rem;
+      color: $strong-blue;
+      // text-decoration: underline;
+    }
+
+    .navigationMenu {
+      padding-top: 2rem;
+      padding-left: 2rem;
+
+      .iconContainer {
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem 0;
+        margin-bottom: 1rem;
+        // border-bottom: 1px solid $grey;
+
+        .icon {
+          color: $dark-grey;
+          font-size: 1.6rem;
+          margin-right: 1.5rem;
+        }
+
+        .iconText {
+          color: $dark-grey;
+          // font-family: $tertiary-font;
+          font-size: 1.4rem;
+          font-weight: 500;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          margin-top: auto;
+        }
+      }
+
+      // isActive 'id' if menu option is currently active
+      #isActiveContainer {
+        background: $light-blue;
+        box-shadow: 2px 2px 5px lighten($strong-blue, 25%);
+        padding-left: 1rem;
+
+        #isActiveIcon {
+          color: $strong-blue;
+        }
+
+        #isActiveText {
+          color: $strong-blue;
+          font-weight: 800;
+        }
+      }
+    }
+  }
+}
+
+// ************* MEDIA QUERIES ************* //
+@media screen and (min-width: 500px) {
+  .dashboardMenuSection {
+    
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .dashboardMenuSection {
+
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .dashboardMenuSection {
+
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .dashboardMenuSection {
+    // 'dashbboardSmallSection' = width: 25% || 'dashboardLargeSection' = width: 60%
+    width: 15%;
+  }
+}
+
+@media screen and (min-width: 2400px) {
+  .dashboardMenuSection {
+    // 'dashbboardSmallSection' = width: 20% || 'dashboardLargeSection' = width: 70%
+    width: 10%;
+  }
+}
