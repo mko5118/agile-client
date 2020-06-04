@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/dist/v4';
+import { FaPlusCircle, FaPlus } from 'react-icons/fa'
 
 import { getAClient } from '../../redux/clients/clients.actions';
 
@@ -10,7 +11,7 @@ import style from './client-list.module.scss';
 // *************************** CLIENT LIST COMPONENT *************************** //
 const ClientList = ({ clients, getAClient }) => {
   // 'clients' array passed down as prop from 'DashboardPage.js'
-  
+
   useEffect(() => {
 
   }, [getAClient]);
@@ -66,13 +67,13 @@ const ClientList = ({ clients, getAClient }) => {
       <div key={uuid()} className={style.clientListItem}>
         <h3 className={style.letter}>{name.letter}</h3>
         {name.sortedClients.map(client => (
-          <h3 
+          <p 
             key={client.id} 
             className={style.clientName}
             onClick={() => onClickSetClient(client.id)}
           >
             {client.first_name} {client.last_name}
-          </h3>
+          </p>
         ))}
       </div>
       : ''
@@ -80,10 +81,22 @@ const ClientList = ({ clients, getAClient }) => {
 
   return (
     <div className={style.clientList}>
-      <h2 className={style.clientListTitle}>Clients</h2>
-      {
-        clients.loading ? <p>Loading...</p> : clientsOrderedByLastName
-      }
+    
+      <div className={style.header}>
+        <div className={style.headerTop}>
+          <h2 className={style.clientListTitle}>Clients</h2>
+          <FaPlusCircle className={style.icon} onClick={() => console.log('Clicked')}/>
+        </div>
+        <input
+          className={style.searchbar} 
+          type='search'
+          placeholder='Search...'
+          aria-label='Search through Client list'
+        />
+      </div>
+
+      { clients.loading ? <p>Loading...</p> : clientsOrderedByLastName }
+
     </div>
   )
 };
