@@ -62,7 +62,7 @@ const ClientPage = ({ client, companies, getAllCompanies, getCompany }) => {
       </div>
 
       <div className={style.sectionContainer}>
-        <h3 className={style.sectionTitle}>Recent Meetings / Logs</h3>
+        <h3 className={style.sectionTitle}>Recent Logs</h3>
         <LogItem client={client} />
       </div>
 

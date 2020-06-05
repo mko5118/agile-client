@@ -3,6 +3,89 @@
 // ************* LOG ITEM COMPONENT STYLES ************* //
 .logItem {
 
+  // LOG CONTAINER
+  .logContainer {
+    margin-bottom: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid $grey;
+
+    // HEADER CONTAINER
+    .headerContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .logType {
+        width: 15%;
+        font-size: 1.6rem;
+        margin-right: 2rem;
+      }
+
+      // BUTTON CONTAINER
+      .buttonContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .editIconContainer {
+          cursor: pointer;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin-right: 2rem;
+
+          .editIcon {
+            color: darken($stoplight-yellow, 7.5%);
+            font-size: 2rem;
+            margin-right: 0.5rem;
+          }
+
+          .editText {
+            font-size: 1.3rem;
+            color: $dark-grey;
+            text-transform: uppercase;
+
+            &:hover {
+              color: $black;
+            }
+          }
+        }
+
+        .deleteIconContainer {
+          cursor: pointer;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin-right: 2rem;
+
+          .deleteIcon {
+            color: $stoplight-red;
+            font-size: 2rem;
+            margin-right: 0.5rem;
+          }
+
+          .deleteText {
+            font-size: 1.3rem;
+            color: $dark-grey;
+            text-transform: uppercase;
+
+            &:hover {
+              color: $black;
+            }
+          }
+        }
+      }
+
+    }
+
+
+    .logText {
+      color: darken($dark-grey, 20%);
+      font-size: 1.6rem;
+      margin-bottom: 0.25rem;
+    }
+  }
+
 }
 
 // ************* MEDIA QUERIES ************* //

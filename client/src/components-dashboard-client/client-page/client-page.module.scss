@@ -3,6 +3,8 @@
 // ************* CLIENT PAGE COMPONENT STYLES ************* //
 .clientPage {
   padding: 0 4rem;
+  height: 100%;
+  overflow: auto;
 
   // CLIENT HEADER SECTION
   .clientHeader {
@@ -28,7 +30,6 @@
 
   // SECTION CONTAINER
   .sectionContainer {
-    // margin-bottom: 2rem;
     margin-bottom: 4rem;
 
     .sectionTitle {

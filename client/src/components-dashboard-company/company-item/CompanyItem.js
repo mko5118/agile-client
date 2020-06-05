@@ -3,11 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MdRemoveRedEye, MdDeleteForever } from 'react-icons/md';
-import { FaPlusCircle, FaPlus } from 'react-icons/fa';
+import { FaPlusCircle } from 'react-icons/fa';
 
 import { deleteCompany } from '../../redux/company/company.actions';
-
-import Button from '../../components/button/Button';
 
 import style from './company-item.module.scss';
 

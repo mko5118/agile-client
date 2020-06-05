@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { MdEdit, MdDeleteForever } from 'react-icons/md';
 
 import { getAllLogs, deleteLog } from '../../redux/log/log.actions';
 
@@ -20,23 +21,39 @@ const LogItem = ({ client, logs, loading, getAllLogs, deleteLog }) => {
     history.push(`/dashboard/clients/log/${logId}`);
   };
 
+  console.log(logs);
+
+  const logContainer = (
+    logs.map(log => (
+      log.associated_client === client.id
+      &&
+        <div key={log.id} className={style.logContainer}>
+          <div className={style.headerContainer}>
+            <h4 className={style.logType}>{log.type}</h4>
+            <div className={style.buttonContainer}>
+              <div className={style.editIconContainer} onClick={() => navigateToEditLog(log.id)}>
+                <MdEdit className={style.editIcon} aria-label='Edit Log' />
+                <span className={style.editText}>Edit</span>
+              </div>
+              <div className={style.deleteIconContainer} onClick={() => deleteLog(log.id)}>
+                <MdDeleteForever className={style.deleteIcon} aria-label='Delete Log' />
+                <span className={style.deleteText}>Delete</span>
+              </div>
+            </div>
+          </div>
+          <p className={style.logText}>{log.details}</p>
+          {/* <p className={style.logText}>{log.log_date}</p>
+          <p className={style.logText}>{log.associated_client}</p> */}
+        </div>
+    ))
+  );
+
   return (
     <div className={style.logItem}>
       {
         loading
           ? <p>Loading...</p>
-          : logs.map(log => (
-              log.associated_client === client.id
-              &&
-                <div key={log.id}>
-                  <h4>{log.type}</h4>
-                  <p>{log.details}</p>
-                  <p>{log.log_date}</p>
-                  <p>Log ID: {log.id}</p>
-                  <button onClick={() => navigateToEditLog(log.id)}>Edit Log</button>
-                  <button onClick={() => deleteLog(log.id)}>Delete Log</button>
-                </div>
-        ))
+          : logContainer
       }
     </div>
   )
