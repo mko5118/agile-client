@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { } from 'react';
 import PropTypes from 'prop-types';
-import { MdEmail, MdPhoneInTalk } from 'react-icons/md';
-
-import { getAllCompanies, getCompany } from '../../redux/company/company.actions';
+import { MdEmail, MdPhoneInTalk } from 'react-icons/md'
 
 import ClientItem from '../client-item/ClientItem';
 import CompanyItem from '../../components-dashboard-company/company-item/CompanyItem';
@@ -12,19 +9,9 @@ import LogItem from '../../components-dashboard-logs/log-item/LogItem';
 import style from './client-page.module.scss';
 
 // *************************** CLIENT PAGE COMPONENT *************************** //
-const ClientPage = ({ client, companies, getAllCompanies, getCompany }) => {
+const ClientPage = ({ client }) => {
   // 'client' object passed as prop from 'DashboardPage.js'
   const { id, first_name, last_name, email, phone_number, job_title, notes, client_company, logs, loading } = client;
-
-  useEffect(() => {
-    getAllCompanies()
-  }, []);
-
-  companies.map(company => {
-    if (company.associated_client === client.id) {
-      getCompany(company.id);
-    }
-  });
 
   // Render Client Info to page
   const clientInfo = (
@@ -57,7 +44,7 @@ const ClientPage = ({ client, companies, getAllCompanies, getCompany }) => {
       </div>
 
       <div className={style.sectionContainer}>
-        <h3 className={style.sectionTitle}>Company Info</h3>
+        <h3 className={style.sectionTitle}>Company</h3>
         <CompanyItem client={client} />
       </div>
 
@@ -77,19 +64,6 @@ const ClientPage = ({ client, companies, getAllCompanies, getCompany }) => {
 // PROP TYPES
 ClientPage.propTypes = {
   client: PropTypes.object.isRequired,
-  companies: PropTypes.array,
-  getAllCompanies: PropTypes.func.isRequired,
-  getCompany: PropTypes.func.isRequired,
 };
 
-// REDUX
-const mapStateToProps = (state) => ({
-  companies: state.company.companies,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getAllCompanies: () => dispatch(getAllCompanies()),
-  getCompany: (companyId) => dispatch(getCompany(companyId)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ClientPage);
+export default ClientPage;

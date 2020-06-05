@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/dist/v4';
-import { FaPlusCircle } from 'react-icons/fa'
+import { FaPlusCircle, FaPlus } from 'react-icons/fa'
 
 import { getAClient, resetClient } from '../../redux/clients/clients.actions';
 
@@ -86,7 +86,7 @@ const ClientList = ({ clients, getAClient, resetClient }) => {
       <div className={style.header}>
         <div className={style.headerTop}>
           <h2 className={style.clientListTitle}>Clients</h2>
-          <FaPlusCircle className={style.icon} aria-label='Add Client' onClick={resetClient}/>
+          <FaPlus className={style.icon} aria-label='Add Client' onClick={resetClient}/>
         </div>
         <input
           className={style.searchbar} 

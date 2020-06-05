@@ -2,6 +2,68 @@
 
 // ************* CLIENT PAGE COMPONENT STYLES ************* //
 .clientPage {
+  padding: 0 4rem;
+
+  // CLIENT HEADER SECTION
+  .clientHeader {
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $grey;
+
+    .nameContainer {
+      .clientName {
+        color: $strong-blue;
+        font-size: 4.4rem;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+  
+      .jobTitle {
+        color: $black;
+        font-size: 2.4rem;
+        font-weight: 700;
+      }
+    }
+  }
+
+  // SECTION CONTAINER
+  .sectionContainer {
+    // margin-bottom: 2rem;
+    margin-bottom: 4rem;
+
+    .sectionTitle {
+      color: $black;
+      font-size: 2.2rem;
+      padding-bottom: 1.5rem;
+
+      // padding-top: 1.5rem;
+      // margin-bottom: 1rem;
+      // background-color: $light-blue;
+    }
+
+    .infoContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      .icon {
+        color: $strong-blue;
+        margin-right: 2rem;
+        font-size: 2rem;
+      }
+
+      .infoText {
+        color: darken($dark-grey, 20%);
+        font-size: 1.6rem;
+      }
+    }
+
+    .noteText {
+      color: darken($dark-grey, 20%);
+      font-size: 1.6rem;
+    }
+  }
 
 }
 

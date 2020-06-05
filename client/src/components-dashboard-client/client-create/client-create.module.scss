@@ -2,11 +2,13 @@
 
 // ************* CLIENT CREATE COMPONENT STYLES ************* //
 .clientCreate {
+  padding: 0 4rem;
 
   // HEADER SECTION
   .header {
     color: $strong-blue;
-    font-size: 2rem;
+    font-size: 3rem;
+    font-weight: 800;
     margin-bottom: 2rem;
     text-transform: uppercase;
   }
@@ -24,6 +26,7 @@
 
       .requiredText {
         color: $dark-grey;
+        font-size: 1.3rem;
       }
     }
 
@@ -48,6 +51,7 @@
       border: 1px solid lighten($dark-grey, 10%);
       border-radius: 1rem;
       margin-bottom: 1rem;
+      font-size: 1.3rem;
     }
   }
 }

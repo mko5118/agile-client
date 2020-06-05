@@ -4,7 +4,6 @@
 .dashboardMenuSection {
   // 'dashbboardSmallSection' = width: 30% || 'dashboardLargeSection' = width: 50%
   width: 20%;
-  // border: 1px solid $black;
   height: 100%;
   
   .navigationInnerContainer {
@@ -19,7 +18,6 @@
       font-family: $primary-font;
       font-size: 2rem;
       color: $strong-blue;
-      // text-decoration: underline;
     }
 
     .navigationMenu {
@@ -43,7 +41,6 @@
 
         .iconText {
           color: $dark-grey;
-          // font-family: $tertiary-font;
           font-size: 1.4rem;
           font-weight: 500;
           letter-spacing: 0.5px;
