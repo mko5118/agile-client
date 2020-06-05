@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { setAlert } from '../alert/alert.actions';
 import {
-  GET_ALL_CLIENTS, GET_A_CLIENT, CLIENT_ERROR, DELETE_CLIENT, UPDATE_CLIENT, CREATE_CLIENT
+  GET_ALL_CLIENTS, GET_A_CLIENT, RESET_CLIENT, CLIENT_ERROR, DELETE_CLIENT, UPDATE_CLIENT, CREATE_CLIENT
 } from './clients.types';
 
 const API_URL = 'http://localhost:8000';
@@ -129,4 +129,9 @@ export const updateClient = (id, formData) => async (dispatch) => {
     errors && dispatch(setAlert(errors, 'danger', 2000));
     dispatch({ type: CLIENT_ERROR });
   }
+};
+
+// *************************** RESET CLIENT *************************** //
+export const resetClient = () => (dispatch) => {
+  dispatch({ type: RESET_CLIENT });
 };

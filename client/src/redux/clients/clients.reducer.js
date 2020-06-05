@@ -1,5 +1,5 @@
 import {
-  GET_ALL_CLIENTS, GET_A_CLIENT, CLIENT_ERROR, DELETE_CLIENT, UPDATE_CLIENT, CREATE_CLIENT
+  GET_ALL_CLIENTS, GET_A_CLIENT, RESET_CLIENT, CLIENT_ERROR, DELETE_CLIENT, UPDATE_CLIENT, CREATE_CLIENT
 } from './clients.types';
 
 const INITIAL_STATE = {
@@ -35,6 +35,12 @@ export const clientsReducer = (state=INITIAL_STATE, action) => {
       return {
         ...state,
         clients: state.clients.filter(client => client.id !== action.payload),
+        loading: false,
+      };
+    case RESET_CLIENT:
+      return {
+        ...state,
+        client: null,
         loading: false,
       };
     case CLIENT_ERROR:

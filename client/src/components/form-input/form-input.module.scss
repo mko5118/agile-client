@@ -1,0 +1,40 @@
+@import '../../styles/global.styles';
+
+// ************* FORM INPUT COMPONENT STYLES ************* //
+.formInput {
+  padding: 0.5rem 1rem;
+  
+  // CLIENT INPUT (ClientCreate.js)
+  &.clientInput {
+    border: none;
+    border-left: 1px solid lighten($dark-grey, 10%);
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    font-size: 1.3rem;
+    width: 100%;
+
+    &.clientInput::placeholder {
+      color: $dark-grey;
+    }
+  }
+  
+}
+
+// ************* MEDIA QUERIES ************* //
+@media screen and (min-width: 500px) {
+  .formInput {
+    
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .formInput {
+
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .formInput {
+
+  }
+}

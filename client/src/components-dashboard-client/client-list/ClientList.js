@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/dist/v4';
-import { FaPlusCircle, FaPlus } from 'react-icons/fa'
+import { FaPlusCircle } from 'react-icons/fa'
 
-import { getAClient } from '../../redux/clients/clients.actions';
+import { getAClient, resetClient } from '../../redux/clients/clients.actions';
 
 import style from './client-list.module.scss';
 
 // *************************** CLIENT LIST COMPONENT *************************** //
-const ClientList = ({ clients, getAClient }) => {
+const ClientList = ({ clients, getAClient, resetClient }) => {
   // 'clients' array passed down as prop from 'DashboardPage.js'
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const ClientList = ({ clients, getAClient }) => {
     getAClient(id);
   };
 
-  // Setup to sort 'clients' by corresponding letter
+  // Setup to sort 'clients' by corresponding letter into correct array
   const sortedByLastName = [
     { letter: 'A', sortedClients: [] },
     { letter: 'B', sortedClients: [] },
@@ -60,32 +60,33 @@ const ClientList = ({ clients, getAClient }) => {
     }
   };
 
-  // Render 'clients' to User
+  // Render 'clients' to page
   const clientsOrderedByLastName = sortedByLastName.map(name => (
     name.sortedClients.length > 0 
       ?
-      <div key={uuid()} className={style.clientListItem}>
-        <h3 className={style.letter}>{name.letter}</h3>
-        {name.sortedClients.map(client => (
-          <p 
-            key={client.id} 
-            className={style.clientName}
-            onClick={() => onClickSetClient(client.id)}
-          >
-            {client.first_name} {client.last_name}
-          </p>
-        ))}
-      </div>
+        <div key={uuid()} className={style.clientListItem}>
+          <h3 className={style.letter}>{name.letter}</h3>
+          {name.sortedClients.map(client => (
+            <p 
+              key={client.id} 
+              className={style.clientName}
+              onClick={() => onClickSetClient(client.id)}
+            >
+              {client.first_name} {client.last_name}
+            </p>
+          ))}
+        </div>
       : ''
   ));
 
   return (
     <div className={style.clientList}>
-    
+
+      {/* HEADER SECTION */}
       <div className={style.header}>
         <div className={style.headerTop}>
           <h2 className={style.clientListTitle}>Clients</h2>
-          <FaPlusCircle className={style.icon} onClick={() => console.log('Clicked')}/>
+          <FaPlusCircle className={style.icon} aria-label='Add Client' onClick={resetClient}/>
         </div>
         <input
           className={style.searchbar} 
@@ -95,6 +96,7 @@ const ClientList = ({ clients, getAClient }) => {
         />
       </div>
 
+      {/* CLIENT LIST SECTION */}
       { clients.loading ? <p>Loading...</p> : clientsOrderedByLastName }
 
     </div>
@@ -105,11 +107,13 @@ const ClientList = ({ clients, getAClient }) => {
 ClientList.propTypes = {
   clients: PropTypes.array,
   getAClient: PropTypes.func.isRequired,
+  resetClient: PropTypes.func.isRequired,
 };
 
 // REDUX
 const mapDispatchToProps = (dispatch) => ({
   getAClient: (id) => dispatch(getAClient(id)),
+  resetClient: () => dispatch(resetClient()),
 });
 
 export default connect(null, mapDispatchToProps)(ClientList);

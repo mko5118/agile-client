@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { MdPerson, MdEmail, MdPhoneInTalk } from 'react-icons/md'
+import { FaUserTie } from 'react-icons/fa';
 
 import { createClient } from '../../redux/clients/clients.actions';
+
+import FormInput from '../../components/form-input/FormInput';
+import Button from '../../components/button/Button';
 
 import style from './client-create.module.scss';
 
@@ -39,51 +44,87 @@ const ClientCreate = ({ createClient }) => {
 
   return (
     <div className={style.clientCreate}>
-      <h2>Add New Client</h2>
+      <h2 className={style.header}>Add New Client</h2>
 
-      <form onSubmit={onSubmit}>
-        <input 
-          type='text'
-          name='first_name'
-          placeholder='First Name'
-          autoComplete='off'
-          value={formData.first_name}
-          onChange={onChange}
-          required
-        />
-        <input 
-          type='text'
-          name='last_name'
-          placeholder='Last Name'
-          autoComplete='off'
-          value={formData.last_name}
-          onChange={onChange}
-          required
-        />
-        <input 
-          type='email'
-          name='email'
-          placeholder='Email'
-          autoComplete='off'
-          value={formData.email}
-          onChange={onChange}
-        />
-        <input 
-          type='text'
-          name='phone_number'
-          placeholder='Phone Number'
-          autoComplete='off'
-          value={formData.phone_number}
-          onChange={onChange}
-        />
-        <input 
-          type='text'
-          name='job_title'
-          placeholder='Job Title'
-          autoComplete='off'
-          value={formData.job_title}
-          onChange={onChange}
-        />
+      <form className={style.form} onSubmit={onSubmit}>
+
+        <label className={style.formLabel}>
+          First Name <span className={style.requiredText}>(required)</span>
+        </label>
+        <div className={style.inputContainer}>
+          <MdPerson className={style.inputIcon} />
+          <FormInput 
+            type='text'
+            name='first_name'
+            placeholder='First Name'
+            autoComplete='off'
+            value={formData.first_name}
+            onChange={onChange}
+            required
+            clientInput
+          />
+        </div>
+
+        <label className={style.formLabel}>
+          Last Name <span className={style.requiredText}>(required)</span>
+        </label>
+        <div className={style.inputContainer}>
+          <MdPerson className={style.inputIcon} />
+          <FormInput 
+            type='text'
+            name='last_name'
+            placeholder='Last Name'
+            autoComplete='off'
+            value={formData.last_name}
+            onChange={onChange}
+            required
+            clientInput
+          />
+        </div>
+        
+        <label className={style.formLabel}>Email</label>
+        <div className={style.inputContainer}>
+          <MdEmail className={style.inputIcon} />
+          <FormInput 
+            type='email'
+            name='email'
+            placeholder='Email'
+            autoComplete='off'
+            value={formData.email}
+            onChange={onChange}
+            clientInput
+          />
+        </div>
+
+        <label className={style.formLabel}>Phone Number</label>
+        <div className={style.inputContainer}>
+          <MdPhoneInTalk className={style.inputIcon} />
+          <FormInput 
+            type='text'
+            name='phone_number'
+            placeholder='Phone Number'
+            autoComplete='off'
+            value={formData.phone_number}
+            onChange={onChange}
+            clientInput
+          />
+        </div>
+
+        <label className={style.formLabel}>Job Title</label>
+        <div className={style.inputContainer}>
+          <FaUserTie className={style.inputIcon} />
+          <FormInput 
+            type='text'
+            name='job_title'
+            placeholder='Job Title'
+            autoComplete='off'
+            value={formData.job_title}
+            onChange={onChange}
+            clientInput
+          />
+        </div>
+
+        <label className={style.formLabel}>Notes</label>
         <textarea 
           type='textarea'
           name='notes'
@@ -91,8 +132,10 @@ const ClientCreate = ({ createClient }) => {
           autoComplete='off'
           value={formData.notes}
           onChange={onChange}
+          className={style.textArea}
         />
-        <button type='submit'>Submit</button>
+
+        <Button type='submit' clientButton>Add Client</Button>
       </form>
 
     </div>
