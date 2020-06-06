@@ -32,14 +32,14 @@ const ClientPage = ({ client, companies, getAllCompanies, getCompany }) => {
       
       <div className={style.clientHeader}>
         <div className={style.nameContainer}>
-          <div className={style.nameHeader}>
-            <h2 className={style.clientName}>{first_name} {last_name}</h2>
+          <h2 className={style.clientName}>{first_name} {last_name}</h2>
+          <div className={style.jobTitleContainer}>
+            <p className={style.jobTitle}>{job_title}</p>
             <div className={style.iconContainer} onClick={() => console.log('Editing')}>
               <MdEdit className={style.editIcon} />
               <span className={style.editText}>Edit</span>
             </div>
           </div>
-          <p className={style.jobTitle}>{job_title}</p>
         </div>
       </div>
       

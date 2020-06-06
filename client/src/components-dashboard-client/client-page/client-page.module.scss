@@ -2,7 +2,7 @@
 
 // ************* CLIENT PAGE COMPONENT STYLES ************* //
 .clientPage {
-  padding: 0 4rem;
+  padding: 0 2rem;
   height: 100%;
   overflow: auto;
 
@@ -13,20 +13,24 @@
     border-bottom: 1px solid $grey;
 
     .nameContainer {
+      .clientName {
+        color: $strong-blue;
+        font-size: 4.4rem;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
 
-      .nameHeader {
+      .jobTitleContainer {
         display: flex;
         flex-direction: row;
         align-items: center;
-        // align-items: flex-start;
         justify-content: space-between;
         max-width: auto;
         
-        .clientName {
-          color: $strong-blue;
-          font-size: 4.4rem;
-          font-weight: 800;
-          text-transform: uppercase;
+        .jobTitle {
+          color: $black;
+          font-size: 2.4rem;
+          font-weight: 700;
         }
 
         .iconContainer {
@@ -51,12 +55,6 @@
             }
           }
         }
-      }
-  
-      .jobTitle {
-        color: $black;
-        font-size: 2.4rem;
-        font-weight: 700;
       }
     }
   }
@@ -115,6 +113,18 @@
 }
 
 @media screen and (min-width: 1200px) {
+  .clientPage {
+
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .clientPage {
+    padding: 0 4rem;
+  }
+}
+
+@media screen and (min-width: 2400px) {
   .clientPage {
 
   }
