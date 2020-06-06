@@ -91,9 +91,7 @@ export const updateTask = (id, formData) => async (dispatch) => {
       }
     };
     
-    const body = JSON.stringify({formData});
-
-    const res = await axios.put(`${API_URL}/api/task/tasks/${id}/`, body, config);
+    const res = await axios.put(`${API_URL}/api/task/tasks/${id}/`, formData, config);
 
     dispatch({
       type: UPDATE_TASK,

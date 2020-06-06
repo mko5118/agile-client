@@ -106,8 +106,7 @@ export const updateCompany = (companyId, formData) => async (dispatch) => {
       }
     };
 
-    const body = JSON.stringify({ formData });
-    const res = await axios.put(`${API_URL}/api/client/company/${companyId}/`, body, config);
+    const res = await axios.put(`${API_URL}/api/client/company/${companyId}/`, formData, config);
 
     dispatch({
       type: UPDATE_COMPANY,

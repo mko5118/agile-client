@@ -40,18 +40,12 @@ const ClientEdit = ({ client, loading, getAClient, updateClient }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     updateClient(client.id, formData);
-    // setFormData({
-    //   first_name: client.first_name ? client.first_name : '',
-    //   last_name: client.last_name ? client.last_name : '',
-    //   email: client.email ? client.email : '',
-    //   phone_number: client.phone_number ? client.phone_number : '',
-    //   job_title: client.job_title ? client.job_title : '',
-    //   notes: client.notes ? client.notes : ''
-    // });
   };
 
   const updateClientForm = (
     <div className={style.clientEdit}>
+      <h2 className={style.header}>Update Info</h2>
+
       <form className={style.form} onSubmit={onSubmit}>
         <label className={style.formLabel}>
           First Name <span className={style.requiredText}>(required)</span>

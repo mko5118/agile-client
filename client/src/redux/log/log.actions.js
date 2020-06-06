@@ -127,8 +127,7 @@ export const updateLog = (logId, formData) => async (dispatch) => {
       }
     };
 
-    const body = JSON.stringify({ formData });
-    const res = await axios.put(`${API_URL}/api/client/logs/${logId}`, body, config);
+    const res = await axios.put(`${API_URL}/api/client/logs/${logId}`, formData, config);
 
     dispatch({
       type: UPDATE_LOG,

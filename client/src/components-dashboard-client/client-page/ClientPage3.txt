@@ -14,7 +14,7 @@ import LogItem from '../../components-dashboard-logs/log-item/LogItem';
 import style from './client-page.module.scss';
 
 // *************************** CLIENT PAGE COMPONENT *************************** //
-const ClientPage = ({ client, companies, currentCompany, getAllCompanies, getCompany }) => {
+const ClientPage = ({ client, companies, getAllCompanies, getCompany }) => {
   // 'client' object passed as prop from 'DashboardPage.js'
   const { id, first_name, last_name, email, phone_number, job_title, notes, client_company, logs, loading } = client;
 
@@ -25,8 +25,8 @@ const ClientPage = ({ client, companies, currentCompany, getAllCompanies, getCom
   };
 
   useEffect(() => {
-    getAllCompanies();
-  }, []);
+    getAllCompanies()
+  }, [getCompany]);
 
   // Loop through 'companies' and set 'currentCompany' if matches 'client.id' 
   companies.map(company => {
@@ -122,7 +122,6 @@ const ClientPage = ({ client, companies, currentCompany, getAllCompanies, getCom
 ClientPage.propTypes = {
   client: PropTypes.object.isRequired,
   companies: PropTypes.array,
-  // currentCompany: PropTypes.object,
   getAllCompanies: PropTypes.func.isRequired,
   getCompany: PropTypes.func.isRequired,
 };
@@ -130,7 +129,6 @@ ClientPage.propTypes = {
 // REDUX
 const mapStateToProps = (state) => ({
   companies: state.company.companies,
-  // currentCompany: state.company.currentCompany,
 });
 
 const mapDispatchToProps = (dispatch) => ({

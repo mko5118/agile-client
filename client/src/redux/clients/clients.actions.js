@@ -119,8 +119,7 @@ export const updateClient = (id, formData) => async (dispatch) => {
       }
     };
 
-    const body = JSON.stringify({ formData });
-    const res = await axios.put(`${API_URL}/api/client/clients/${id}/`, body, config);
+    const res = await axios.put(`${API_URL}/api/client/clients/${id}/`, formData, config);
 
     dispatch({
       type: UPDATE_CLIENT,

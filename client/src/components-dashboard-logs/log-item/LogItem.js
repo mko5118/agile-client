@@ -21,8 +21,6 @@ const LogItem = ({ client, logs, loading, getAllLogs, deleteLog }) => {
     history.push(`/dashboard/clients/log/${logId}`);
   };
 
-  console.log(logs);
-
   const logContainer = (
     logs.map(log => (
       log.associated_client === client.id
