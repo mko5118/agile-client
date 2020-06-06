@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/dist/v4';
@@ -11,22 +11,10 @@ import style from './client-list.module.scss';
 // *************************** CLIENT LIST COMPONENT *************************** //
 const ClientList = ({ clients, getAClient, resetClient }) => {
   // 'clients' array passed down as prop from 'DashboardPage.js'
-  
-  
-  useEffect(() => {
-    
-  }, [getAClient]);
-  
-  // Allow User to filter 'clients' array to search for specific Client
-  const [ search, setSearch ] = useState('');
-  clients = clients.filter(client => {
-    return (client.first_name.toLowerCase().includes(search.toLowerCase()) || client.last_name.toLowerCase().includes(search.toLowerCase()))
-  });
 
-  // onChange method for filtering search input
-  const onChange = (e) => {
-    setSearch(e.target.value);
-  };
+  useEffect(() => {
+
+  }, [getAClient]);
 
   // Retrieve 'client' object from store and set 'client' by id onClick
   const onClickSetClient = (id) => {
@@ -105,7 +93,6 @@ const ClientList = ({ clients, getAClient, resetClient }) => {
           type='search'
           placeholder='Search...'
           aria-label='Search through Client list'
-          value={search}
           onChange={onChange}
         />
       </div>

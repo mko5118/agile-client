@@ -4,18 +4,18 @@ import {
 
 const INITIAL_STATE = {
   clients: [],
-  client: {
-    id: 11,
-    first_name: "Bill",
-    last_name: "Gates",
-    email: "billgates@microsoft.com",
-    phone_number: "123-456-8999",
-    job_title: "Founder",
-    notes: "One of the co-founders of Microsoft along with Paul Allen",
-    client_company: null,
-    logs: null,
-  },
-  // client: null,
+  // client: {
+  //   id: 11,
+  //   first_name: "Bill",
+  //   last_name: "Gates",
+  //   email: "billgates@microsoft.com",
+  //   phone_number: "123-456-8999",
+  //   job_title: "Founder",
+  //   notes: "One of the co-founders of Microsoft along with Paul Allen",
+  //   client_company: null,
+  //   logs: null,
+  // },
+  client: null,
   loading: true,
   error: {},
 };
