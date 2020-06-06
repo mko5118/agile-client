@@ -76,21 +76,23 @@ export const createCompany = ({ company_name, website, company_number, address, 
 
 // *************************** DELETE COMPANY *************************** //
 export const deleteCompany = (companyId) => async (dispatch) => {
-  try {
-    const config = {
-      headers: {
-        'Authorization': `Token ${localStorage.token}`,
-      }
-    };
-    await axios.delete(`${API_URL}/api/client/company/${companyId}/`, config);
-    dispatch({
-      type: DELETE_COMPANY,
-      payload: companyId,
-    });
-  } catch (err) {
-    const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 2000));
-    dispatch({ type: COMPANY_ERROR });
+  if (window.confirm('Please confirm you want to delete this company. This action cannot be undone.')) {
+    try {
+      const config = {
+        headers: {
+          'Authorization': `Token ${localStorage.token}`,
+        }
+      };
+      await axios.delete(`${API_URL}/api/client/company/${companyId}/`, config);
+      dispatch({
+        type: DELETE_COMPANY,
+        payload: companyId,
+      });
+    } catch (err) {
+      const errors = err.response.statusText;
+      errors && dispatch(setAlert(errors, 'danger', 2000));
+      dispatch({ type: COMPANY_ERROR });
+    }
   }
 };
 

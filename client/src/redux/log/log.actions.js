@@ -97,21 +97,23 @@ export const createLog = ({ type, details, associated_client }) => async (dispat
 
 // *************************** DELETE LOG *************************** //
 export const deleteLog = (logId) => async (dispatch) => {
-  try {
-    const config = {
-      headers: {
-        'Authorization': `Token ${localStorage.token}`,
-      }
-    };
-
-    await axios.delete(`${API_URL}/api/client/logs/${logId}/`, config);
-
-    dispatch({
-      type: DELETE_LOG,
-      payload: logId,
-    });
-  } catch (err) {
-    deployOnError(err, dispatch);
+  if (window.confirm('Please confirm you want to delete this log. This action cannot be undone.')) {
+    try {
+      const config = {
+        headers: {
+          'Authorization': `Token ${localStorage.token}`,
+        }
+      };
+  
+      await axios.delete(`${API_URL}/api/client/logs/${logId}/`, config);
+  
+      dispatch({
+        type: DELETE_LOG,
+        payload: logId,
+      });
+    } catch (err) {
+      deployOnError(err, dispatch);
+    }
   }
 };
 

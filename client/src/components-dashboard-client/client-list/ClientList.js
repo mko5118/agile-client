@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/dist/v4';
-import { FaPlusCircle, FaPlus } from 'react-icons/fa'
+import { FaPlus } from 'react-icons/fa';
 
 import { getAClient, resetClient } from '../../redux/clients/clients.actions';
 
@@ -11,7 +11,6 @@ import style from './client-list.module.scss';
 // *************************** CLIENT LIST COMPONENT *************************** //
 const ClientList = ({ clients, getAClient, resetClient }) => {
   // 'clients' array passed down as prop from 'DashboardPage.js'
-  
   
   useEffect(() => {
     

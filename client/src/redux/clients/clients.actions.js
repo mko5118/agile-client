@@ -87,23 +87,25 @@ export const createClient = ({ first_name, last_name, email, phone_number, job_t
 
 // *************************** DELETE CLIENT *************************** //
 export const deleteClient = (id) => async (dispatch) => {
-  try {
-    const config = {
-      headers: {
-        'Authorization': `Token ${localStorage.token}`,
-      }
-    };
-
-    await axios.delete(`${API_URL}/api/client/clients/${id}/`, config);
-
-    dispatch({
-      type: DELETE_CLIENT,
-      payload: id
-    });
-  } catch (err) {
-    const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 2000));
-    dispatch({ type: CLIENT_ERROR });
+  if (window.confirm('Please confirm you want to delete this client. This action cannot be undone.')) {
+    try {
+      const config = {
+        headers: {
+          'Authorization': `Token ${localStorage.token}`,
+        }
+      };
+  
+      await axios.delete(`${API_URL}/api/client/clients/${id}/`, config);
+  
+      dispatch({
+        type: DELETE_CLIENT,
+        payload: id
+      });
+    } catch (err) {
+      const errors = err.response.statusText;
+      errors && dispatch(setAlert(errors, 'danger', 2000));
+      dispatch({ type: CLIENT_ERROR });
+    }
   }
 };
 

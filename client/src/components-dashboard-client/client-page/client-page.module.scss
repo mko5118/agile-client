@@ -13,11 +13,44 @@
     border-bottom: 1px solid $grey;
 
     .nameContainer {
-      .clientName {
-        color: $strong-blue;
-        font-size: 4.4rem;
-        font-weight: 800;
-        text-transform: uppercase;
+
+      .nameHeader {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        // align-items: flex-start;
+        justify-content: space-between;
+        max-width: auto;
+        
+        .clientName {
+          color: $strong-blue;
+          font-size: 4.4rem;
+          font-weight: 800;
+          text-transform: uppercase;
+        }
+
+        .iconContainer {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          cursor: pointer;
+
+          .editIcon {
+            color: darken($stoplight-yellow, 7.5%);
+            font-size: 2rem;
+            margin-right: 0.5rem;
+          }
+
+          .editText {
+            font-size: 1.3rem;
+            color: $dark-grey;
+            text-transform: uppercase;
+
+            &:hover {
+              color: $black;
+            }
+          }
+        }
       }
   
       .jobTitle {

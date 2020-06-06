@@ -15,9 +15,9 @@ const DashboardLargeSection = ({ client, homeMenu, clientsMenu, tasksMenu, calen
     <div className={style.dashboardLargeSection}>
 
       <div className={style.largeInnerContainer}>
-        { (!clientsMenu.isActive && !tasksMenu.isActive && !calendarMenu.isActive && homeMenu.isActive) && <h2>HOME SECTION</h2> }
+        { homeMenu.isActive && <h2>HOME SECTION</h2> }
 
-        {/* If 'client' is NULL, render 'ClientCreate' component for User */}
+        {/* If 'client' is NULL, render 'ClientCreate.js' component for User */}
         { 
           clientsMenu.isActive && 
           (client !== null ? <ClientPage client={client} /> : <ClientCreate />) 

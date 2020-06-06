@@ -109,7 +109,7 @@ export const updateTask = (id, formData) => async (dispatch) => {
 
 // *************************** DELETE TASK *************************** //
 export const deleteTask = (id) => async (dispatch) => {
-  if (window.confirm('Confirm you want to delete this task.')) {
+  if (window.confirm('Confirm you want to delete this task. This action cannot be undone.')) {
     try {
       const config = {
         headers: {
