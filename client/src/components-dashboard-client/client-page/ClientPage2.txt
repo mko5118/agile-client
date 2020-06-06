@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MdEmail, MdPhoneInTalk } from 'react-icons/md';
+import { MdEmail, MdPhoneInTalk, MdEdit } from 'react-icons/md';
 
 import { getAllCompanies, getCompany } from '../../redux/company/company.actions';
 
@@ -20,6 +20,7 @@ const ClientPage = ({ client, companies, getAllCompanies, getCompany }) => {
     getAllCompanies()
   }, []);
 
+  // Loop through 'companies' and set 'currentCompany' if matches 'client.id' 
   companies.map(company => {
     if (company.associated_client === client.id) {
       getCompany(company.id);
@@ -33,7 +34,13 @@ const ClientPage = ({ client, companies, getAllCompanies, getCompany }) => {
       <div className={style.clientHeader}>
         <div className={style.nameContainer}>
           <h2 className={style.clientName}>{first_name} {last_name}</h2>
-          <p className={style.jobTitle}>{job_title}</p>
+          <div className={style.jobTitleContainer}>
+            <p className={style.jobTitle}>{job_title}</p>
+            <div className={style.iconContainer} onClick={() => console.log('Editing')}>
+              <MdEdit className={style.editIcon} />
+              <span className={style.editText}>Edit</span>
+            </div>
+          </div>
         </div>
       </div>
       
@@ -74,7 +81,7 @@ const ClientPage = ({ client, companies, getAllCompanies, getCompany }) => {
   );
 
   return (
-    loading ? <p>loading...</p> : clientInfo
+    loading ? <p>Loading...</p> : clientInfo
   )
 };
 

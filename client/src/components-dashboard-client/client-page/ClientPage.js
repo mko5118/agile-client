@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MdEmail, MdPhoneInTalk, MdEdit } from 'react-icons/md';
@@ -6,6 +6,7 @@ import { MdEmail, MdPhoneInTalk, MdEdit } from 'react-icons/md';
 import { getAllCompanies, getCompany } from '../../redux/company/company.actions';
 
 import ClientItem from '../client-item/ClientItem';
+import ClientEdit from '../client-edit/ClientEdit';
 import CompanyItem from '../../components-dashboard-company/company-item/CompanyItem';
 import LogItem from '../../components-dashboard-logs/log-item/LogItem';
 
@@ -16,10 +17,16 @@ const ClientPage = ({ client, companies, getAllCompanies, getCompany }) => {
   // 'client' object passed as prop from 'DashboardPage.js'
   const { id, first_name, last_name, email, phone_number, job_title, notes, client_company, logs, loading } = client;
 
+  const [ editClient, setEditClient ] = useState(false);
+  const onClickEditClient = () => {
+    setEditClient(!editClient);
+  };
+
   useEffect(() => {
     getAllCompanies()
   }, []);
 
+  // Loop through 'companies' and set 'currentCompany' if matches 'client.id' 
   companies.map(company => {
     if (company.associated_client === client.id) {
       getCompany(company.id);
@@ -35,7 +42,7 @@ const ClientPage = ({ client, companies, getAllCompanies, getCompany }) => {
           <h2 className={style.clientName}>{first_name} {last_name}</h2>
           <div className={style.jobTitleContainer}>
             <p className={style.jobTitle}>{job_title}</p>
-            <div className={style.iconContainer} onClick={() => console.log('Editing')}>
+            <div className={style.iconContainer} onClick={() => onClickEditClient()}>
               <MdEdit className={style.editIcon} />
               <span className={style.editText}>Edit</span>
             </div>
@@ -79,8 +86,32 @@ const ClientPage = ({ client, companies, getAllCompanies, getCompany }) => {
     </div>
   );
 
+  // Render 'ClientEdit.js' component if editClient === true
+  const renderClientEdit = (
+    <div className={style.clientPage}>
+      <div className={style.clientHeader}>
+        <div className={style.nameContainer}>
+          <h2 className={style.clientName}>{first_name} {last_name}</h2>
+          <div className={style.jobTitleContainer}>
+            <p className={style.jobTitle}>{job_title}</p>
+            <div className={style.iconContainer} onClick={() => onClickEditClient()}>
+              <MdEdit className={style.editIcon} />
+              <span className={style.editText}>Return to Client</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ClientEdit />
+    </div>
+  );
+
+  // Final render options for screen
+  const renderToScreen = (
+    editClient ? renderClientEdit : clientInfo
+  );
+
   return (
-    loading ? <p>Loading...</p> : clientInfo
+    loading ? <p>Loading...</p> : renderToScreen
   )
 };
 
