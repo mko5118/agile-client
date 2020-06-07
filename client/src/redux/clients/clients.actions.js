@@ -29,12 +29,8 @@ export const getAllClients = () => async (dispatch) => {
       payload: sortedClientsByLastName,
     });
   } catch (err) {
-    // const errors = err.response.data.detail
     const errors = err.response.statusText;
-    if (errors) {
-      console.log(errors);
-      dispatch(setAlert(errors, 'danger', 2000));
-    };
+    errors && dispatch(setAlert(errors, 'danger', 2000));
     dispatch({ type: CLIENT_ERROR });
   }
 };

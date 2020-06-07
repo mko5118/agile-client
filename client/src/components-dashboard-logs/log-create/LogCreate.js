@@ -41,12 +41,12 @@ const LogCreate = ({ client, createLog, resetLogState }) => {
 
   return (
     <div className={style.logCreate}>
-      <h2 className={style.header}>Create Meeting</h2>
+      <h2 className={style.header}>Create Log</h2>
 
       <form className={style.form} onSubmit={onSubmit}>
 
         <label className={style.formLabel}>
-          Log / Meeting Type <span className={style.requiredText}>(required)</span>
+          Log Type <span className={style.requiredText}>(required)</span>
         </label>
         <div className={style.inputContainer}>
           <MdInfoOutline className={style.inputIcon} />

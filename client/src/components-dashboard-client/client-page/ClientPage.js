@@ -96,7 +96,7 @@ const ClientPage = ({ client, companies, companyMenu, logMenu, editingClient, ge
       </div>
       {/* CLIENT LOGS SECTION */}
       <div className={style.sectionContainer}>
-        <h3 className={style.sectionTitle}>Recent Meetings</h3>
+        <h3 className={style.sectionTitle}>Recent Logs</h3>
         <LogItem />
       </div>
     </div>

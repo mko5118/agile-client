@@ -5,7 +5,7 @@ import {
 const INITIAL_STATE = {
   logs: [],
   clientLogs: [],
-  currentLog: null,
+  currentLog: {},
   loading: true,
   error: {},
 };

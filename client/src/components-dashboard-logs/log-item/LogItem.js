@@ -4,19 +4,20 @@ import PropTypes from 'prop-types';
 import { MdEdit, MdDeleteForever } from 'react-icons/md';
 import { FaPlusCircle } from 'react-icons/fa';
 
-import { getClientLogs, deleteLog } from '../../redux/log/log.actions';
+import { getClientLogs, getLog, deleteLog } from '../../redux/log/log.actions';
 import { toggleCreateLog, toggleEditLog } from '../../redux/dashboard/dashboard.actions';
 
 import style from './log-item.module.scss';
 
 // *************************** LOG ITEM COMPONENT *************************** //
-const LogItem = ({ client, loading, clientLogs, getClientLogs, deleteLog, toggleCreateLog, toggleEditLog }) => {
+const LogItem = ({ client, loading, clientLogs, getLog, getClientLogs, deleteLog, toggleCreateLog, toggleEditLog }) => {
   useEffect(() => {
     getClientLogs(client.id)
-  }, [getClientLogs, client.id]);
+  }, [getClientLogs, client.id, getLog]);
 
   // Will toggle 'logMenu.isEditing' state to render 'LogEdit.js' component in 'ClientPage.js'
-  const navigateToEditLog = () => {
+  const navigateToEditLog = async (logId) => {
+    await getLog(logId);
     toggleEditLog();
   };
   // Will toggle 'logMenu.isCreating' state to render 'LogCreate.js' component in 'ClientPage.js'
@@ -54,7 +55,7 @@ const LogItem = ({ client, loading, clientLogs, getClientLogs, deleteLog, toggle
     logContainer = (
       <div className={style.addLogContainer}>
         <p className={style.addLogText}>
-          No logs / meetings added currently. Click below if you would like to add a log / meeting for {client.first_name} {client.last_name}
+          No logs added currently. Click below if you would like to add a log for {client.first_name} {client.last_name}
         </p>
         <div className={style.addButtonContainer}>
           <div 
@@ -62,7 +63,7 @@ const LogItem = ({ client, loading, clientLogs, getClientLogs, deleteLog, toggle
             onClick={() => navigateToCreateLog()}
           >
             <FaPlusCircle className={style.addIcon} aria-label='Add Log' />
-            <span className={style.addText}>Add Meeting</span>
+            <span className={style.addText}>Add New Log</span>
           </div>
         </div>
       </div>
@@ -86,6 +87,8 @@ LogItem.propTypes = {
   client: PropTypes.object,
   clientLogs: PropTypes.array,
   loading: PropTypes.bool.isRequired,
+  getClientLogs: PropTypes.func.isRequired,
+  getLog: PropTypes.func.isRequired,
   deleteLog: PropTypes.func.isRequired,
   toggleCreateLog: PropTypes.func.isRequired,
   toggleEditLog: PropTypes.func.isRequired,
@@ -100,6 +103,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getClientLogs: (clientId) => dispatch(getClientLogs(clientId)),
+  getLog: (logId) => dispatch(getLog(logId)),
   deleteLog: (logId) => dispatch(deleteLog(logId)),
   toggleCreateLog: () => dispatch(toggleCreateLog()),
   toggleEditLog: () => dispatch(toggleEditLog()),
