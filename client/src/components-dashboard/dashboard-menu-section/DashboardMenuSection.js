@@ -21,6 +21,7 @@ const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, 
 
   const setClientsMenu = () => {
     toggleClientsMenu();
+    resetClient();
   };
 
   const setTasksMenu = () => {

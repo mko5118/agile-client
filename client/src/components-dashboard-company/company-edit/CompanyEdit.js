@@ -14,7 +14,7 @@ import style from './company-edit.module.scss';
 // *************************** COMPANY EDIT COMPONENT *************************** //
 const CompanyEdit = ({ client, currentCompany, loading, getCompany, updateCompany, resetCompanyState }) => {
   // 'client' object passed down as prop from 'ClientPage.js' component
-  
+
   useEffect(() => {
     getCompany(currentCompany.id);
   }, [getCompany]);
@@ -35,9 +35,9 @@ const CompanyEdit = ({ client, currentCompany, loading, getCompany, updateCompan
     });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    updateCompany(currentCompany.id, formData);
+    await updateCompany(currentCompany.id, formData);
   };
 
   const editCompanyForm = (

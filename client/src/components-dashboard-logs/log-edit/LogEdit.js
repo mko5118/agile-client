@@ -32,9 +32,9 @@ const LogEdit = ({ currentLog, loading, getLog, updateLog, resetLogState }) => {
     });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    updateLog(currentLog.id, formData);
+    await updateLog(currentLog.id, formData);
   };
 
   const logEditForm = (

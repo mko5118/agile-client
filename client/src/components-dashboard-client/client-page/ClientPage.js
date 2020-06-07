@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MdEmail, MdPhoneInTalk, MdEdit } from 'react-icons/md';
+import { MdEmail, MdPhoneInTalk, MdEdit, MdRemoveRedEye } from 'react-icons/md';
 
 import { getAllCompanies, getCompany } from '../../redux/company/company.actions';
-import { resetCompanyState, toggleEditClient } from '../../redux/dashboard/dashboard.actions';
+import { resetCompanyState, toggleEditClient, toggleAllLogs } from '../../redux/dashboard/dashboard.actions';
 
 import ClientEdit from '../client-edit/ClientEdit';
 import CompanyItem from '../../components-dashboard-company/company-item/CompanyItem';
@@ -17,7 +17,7 @@ import LogEdit from '../../components-dashboard-logs/log-edit/LogEdit';
 import style from './client-page.module.scss';
 
 // *************************** CLIENT PAGE COMPONENT *************************** //
-const ClientPage = ({ client, companies, companyMenu, logMenu, editingClient, getAllCompanies, getCompany, resetCompanyState, toggleEditClient }) => {
+const ClientPage = ({ client, companies, clientLogs, companyMenu, logMenu, editingClient, getAllCompanies, getCompany, resetCompanyState, toggleEditClient, toggleAllLogs, }) => {
   // 'client' object passed as prop from 'DashboardPage.js'
   const { id, first_name, last_name, email, phone_number, job_title, notes, client_company, logs, loading } = client;
 
@@ -96,7 +96,18 @@ const ClientPage = ({ client, companies, companyMenu, logMenu, editingClient, ge
       </div>
       {/* CLIENT LOGS SECTION */}
       <div className={style.sectionContainer}>
-        <h3 className={style.sectionTitle}>Recent Logs</h3>
+        {
+          (clientLogs.length > 0)
+            ?
+              <div className={style.titleHeader} onClick={() => toggleAllLogs()}>
+                <h3 className={style.sectionTitle}>Recent Logs</h3>
+                <div className={style.viewAllIconContainer}>
+                  <MdRemoveRedEye className={style.viewAllIcon} />
+                  <span className={style.viewAllText}>View All Logs</span>
+                </div>
+              </div>
+            : <h3 className={style.sectionTitle}>Recent Logs</h3>
+        }
         <LogItem />
       </div>
     </div>
@@ -142,6 +153,16 @@ const ClientPage = ({ client, companies, companyMenu, logMenu, editingClient, ge
     )
   }
 
+  // if User selects 'toggleAllLogs' in 'ClientPage' => Client Logs Section render 'LogAllItems' component to screen
+  if (logMenu.isViewingAllLogs) {
+    clientInfo = (
+      <div className={style.clientPage}>
+        { clientHeader }
+        ALL LOGS COMPONENT
+      </div>
+    )
+  };
+
   // Render 'ClientEdit.js' component if editingClient === true
   const renderClientEdit = (
     <div className={style.clientPage}>
@@ -165,6 +186,7 @@ const ClientPage = ({ client, companies, companyMenu, logMenu, editingClient, ge
 ClientPage.propTypes = {
   client: PropTypes.object.isRequired,
   companies: PropTypes.array,
+  clientLogs: PropTypes.array,
   companyMenu: PropTypes.object,
   logMenu: PropTypes.object,
   editingClient: PropTypes.bool.isRequired,
@@ -172,11 +194,13 @@ ClientPage.propTypes = {
   getCompany: PropTypes.func.isRequired,
   resetCompanyState: PropTypes.func.isRequired,
   toggleEditClient: PropTypes.func.isRequired,
+  toggleAllLogs: PropTypes.func.isRequired,
 };
 
 // REDUX
 const mapStateToProps = (state) => ({
   companies: state.company.companies,
+  clientLogs: state.log.clientLogs,
   companyMenu: state.dashboard.companyMenu,
   logMenu: state.dashboard.logMenu,
   editingClient: state.dashboard.editingClient,
@@ -187,6 +211,7 @@ const mapDispatchToProps = (dispatch) => ({
   getCompany: (companyId) => dispatch(getCompany(companyId)),
   resetCompanyState: () => dispatch(resetCompanyState()),
   toggleEditClient: () => dispatch(toggleEditClient()),
+  toggleAllLogs: () => dispatch(toggleAllLogs()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientPage);

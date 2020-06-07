@@ -1,5 +1,5 @@
 import { 
-  TOGGLE_HOME_MENU, TOGGLE_CLIENTS_MENU, TOGGLE_TASKS_MENU, TOGGLE_CALENDAR_MENU, TOGGLE_CREATE_COMPANY, TOGGLE_EDIT_COMPANY, RESET_COMPANY_STATE, TOGGLE_CREATE_LOG, TOGGLE_EDIT_LOG, RESET_LOG_STATE, TOGGLE_EDIT_CLIENT, RESET_EDIT_CLIENT,
+  TOGGLE_HOME_MENU, TOGGLE_CLIENTS_MENU, TOGGLE_TASKS_MENU, TOGGLE_CALENDAR_MENU, TOGGLE_CREATE_COMPANY, TOGGLE_EDIT_COMPANY, RESET_COMPANY_STATE, TOGGLE_ALL_LOGS, TOGGLE_CREATE_LOG, TOGGLE_EDIT_LOG, RESET_LOG_STATE, TOGGLE_EDIT_CLIENT, RESET_EDIT_CLIENT,
 } from './dashboard.types';
 
 // *************************** TOGGLE HOME MENU *************************** //
@@ -48,6 +48,13 @@ export const toggleEditCompany = () => (dispatch) => {
 export const resetCompanyState = () => (dispatch) => {
   dispatch({
     type: RESET_COMPANY_STATE,
+  });
+};
+
+// *************************** TOGGLE ALL LOGS *************************** //
+export const toggleAllLogs = () => (dispatch) => {
+  dispatch({
+    type: TOGGLE_ALL_LOGS,
   });
 };
 

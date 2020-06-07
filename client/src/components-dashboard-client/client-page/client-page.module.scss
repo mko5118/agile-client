@@ -95,6 +95,44 @@
       color: darken($dark-grey, 20%);
       font-size: 1.6rem;
     }
+
+    // TITLE HEADER SECTION
+    .titleHeader {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .sectionTitle {
+        color: $black;
+        font-size: 2.2rem;
+        padding-bottom: 1.5rem;
+      }
+
+      .viewAllIconContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        padding-bottom: 1.5rem;
+        
+        .viewAllIcon {
+          color: $strong-blue;
+          font-size: 2rem;
+          margin-right: 0.5rem;
+        }
+
+        .viewAllText {
+          font-size: 1.3rem;
+          color: $strong-blue;
+          text-transform: uppercase;
+
+          &:hover {
+            color: lighten($strong-blue, 10%);
+          }
+        }
+      }
+    }
   }
 
 }
