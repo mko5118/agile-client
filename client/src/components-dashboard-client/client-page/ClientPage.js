@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MdEmail, MdPhoneInTalk, MdEdit } from 'react-icons/md';
 
 import { getAllCompanies, getCompany } from '../../redux/company/company.actions';
+import { resetCompanyState, toggleEditClient } from '../../redux/dashboard/dashboard.actions';
 
-import ClientItem from '../client-item/ClientItem';
 import ClientEdit from '../client-edit/ClientEdit';
 import CompanyItem from '../../components-dashboard-company/company-item/CompanyItem';
 import CompanyCreate from '../../components-dashboard-company/company-create/CompanyCreate';
+import CompanyEdit from '../../components-dashboard-company/company-edit/CompanyEdit';
 import LogItem from '../../components-dashboard-logs/log-item/LogItem';
 
 import style from './client-page.module.scss';
 
 // *************************** CLIENT PAGE COMPONENT *************************** //
-const ClientPage = ({ client, companies, currentCompany, getAllCompanies, getCompany }) => {
+const ClientPage = ({ client, companies, currentCompany, companyMenu, editingClient, getAllCompanies, getCompany, resetCompanyState, toggleEditClient }) => {
   // 'client' object passed as prop from 'DashboardPage.js'
   const { id, first_name, last_name, email, phone_number, job_title, notes, client_company, logs, loading } = client;
 
-  // Move these to 'dashboard' redux folder 
-  const [ editClient, setEditClient ] = useState(false);
+  // Toggle whether User is currently editing 'client' object info
   const onClickEditClient = () => {
-    setEditClient(!editClient);
+    resetCompanyState();
+    toggleEditClient();
   };
 
   useEffect(() => {
@@ -35,22 +36,34 @@ const ClientPage = ({ client, companies, currentCompany, getAllCompanies, getCom
     }
   });
 
-  // Render Client Info to page
-  const clientInfo = (
-    <div className={style.clientPage}>
-      {/* HEADER SECTION */}
-      <div className={style.clientHeader}>
-        <div className={style.nameContainer}>
-          <h2 className={style.clientName}>{first_name} {last_name}</h2>
-          <div className={style.jobTitleContainer}>
-            <p className={style.jobTitle}>{job_title}</p>
-            <div className={style.iconContainer} onClick={() => onClickEditClient()}>
-              <MdEdit className={style.editIcon} />
-              <span className={style.editText}>Edit</span>
-            </div>
+  // ClientPage header (doesnt change as other Client items are being rendered)
+  const clientHeader = (
+    <div className={style.clientHeader}>
+      <div className={style.nameContainer}>
+        <h2 className={style.clientName}>{first_name} {last_name}</h2>
+        <div className={style.jobTitleContainer}>
+          <p className={style.jobTitle}>{job_title}</p>
+          <div className={style.iconContainer} onClick={() => onClickEditClient()}>
+            {/* <MdEdit className={style.editIcon} /> */}
+            {/* <span className={style.editText}>{editingClient ? 'Return to Client' : 'Edit'}</span> */}
+            {
+              !editingClient && 
+              <>
+                <MdEdit className={style.editIcon} /> 
+                <span className={style.editText}>Edit</span>
+              </>
+            }
           </div>
         </div>
       </div>
+    </div>
+  );
+
+  // Render Client Info to page
+  let clientInfo = (
+    <div className={style.clientPage}>
+      {/* CLIENT HEADER SECTION */}
+      { clientHeader }
       {/* CLIENT CONTACT INFO SECTION */}
       <div className={style.sectionContainer}>
         <h3 className={style.sectionTitle}>Contact Info</h3>
@@ -84,33 +97,49 @@ const ClientPage = ({ client, companies, currentCompany, getAllCompanies, getCom
         <h3 className={style.sectionTitle}>Recent Logs</h3>
         <LogItem client={client} />
       </div>
-
     </div>
   );
 
-  // Render 'ClientEdit.js' component if editClient === true
+  // if User selects 'toggleCreateCompany' in 'CompanyItem' render 'CompanyCreate' component to screen
+  if (companyMenu.isCreating) {
+    clientInfo = (
+      <div className={style.clientPage}>
+        { clientHeader }
+        <CompanyCreate client={client} />
+      </div>
+    )
+  };
+
+  // if User selects 'toggleEditCompany' in 'CompanyItem' render 'CompanyEdit' component to screen
+  if (companyMenu.isEditing) {
+    clientInfo = (
+      <div className={style.clientPage}>
+        { clientHeader }
+        <CompanyEdit />
+      </div>
+    )
+  }
+
+
+  // if User selects 'toggleCreateLog' in 'CompanyItem' render 'LogCreate' component to screen
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& WILL NEED TO ADD THESE FEATURES &&&&&&&&&&&&&&
+  
+  // if User selects 'toggleEditLog' in 'CompanyItem' render 'LogEdit' component to screen
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& WILL NEED TO ADD THESE FEATURES &&&&&&&&&&&&&&
+
+
+  // Render 'ClientEdit.js' component if editingClient === true
   const renderClientEdit = (
     <div className={style.clientPage}>
-      <div className={style.clientHeader}>
-        <div className={style.nameContainer}>
-          <h2 className={style.clientName}>{first_name} {last_name}</h2>
-          <div className={style.jobTitleContainer}>
-            <p className={style.jobTitle}>{job_title}</p>
-            <div className={style.iconContainer} onClick={() => onClickEditClient()}>
-              <MdEdit className={style.editIcon} />
-              <span className={style.editText}>Return to Client</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      { clientHeader }
       {/* CLIENT EDIT COMPONENT */}
-      <ClientEdit />
+      <ClientEdit client={client} />
     </div>
   );
 
   // Final render options for screen
   const renderToScreen = (
-    editClient ? renderClientEdit : clientInfo
+    editingClient ? renderClientEdit : clientInfo
   );
 
   return (
@@ -123,19 +152,27 @@ ClientPage.propTypes = {
   client: PropTypes.object.isRequired,
   companies: PropTypes.array,
   // currentCompany: PropTypes.object,
+  companyMenu: PropTypes.object,
+  editingClient: PropTypes.bool.isRequired,
   getAllCompanies: PropTypes.func.isRequired,
   getCompany: PropTypes.func.isRequired,
+  resetCompanyState: PropTypes.func.isRequired,
+  toggleEditClient: PropTypes.func.isRequired,
 };
 
 // REDUX
 const mapStateToProps = (state) => ({
   companies: state.company.companies,
   // currentCompany: state.company.currentCompany,
+  companyMenu: state.dashboard.companyMenu,
+  editingClient: state.dashboard.editingClient,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getAllCompanies: () => dispatch(getAllCompanies()),
   getCompany: (companyId) => dispatch(getCompany(companyId)),
+  resetCompanyState: () => dispatch(resetCompanyState()),
+  toggleEditClient: () => dispatch(toggleEditClient()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientPage);

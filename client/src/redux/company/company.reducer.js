@@ -4,7 +4,6 @@ import {
 
 const INITIAL_STATE = {
   companies: [],
-  // currentCompany: null,
   currentCompany: {},
   loading: true,
   error: {}
@@ -37,7 +36,6 @@ export const companyReducer = (state=INITIAL_STATE, action) => {
       return {
         ...state,
         companies: state.companies.filter(company => company.id !== action.payload),
-        // currentCompany: null,
         currentCompany: {},
         loading: false,
       };

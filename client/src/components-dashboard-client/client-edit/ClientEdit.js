@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MdPerson, MdEmail, MdPhoneInTalk } from 'react-icons/md'
+import { MdPerson, MdEmail, MdPhoneInTalk, MdKeyboardReturn } from 'react-icons/md'
 import { FaUserTie } from 'react-icons/fa';
 
 import { getAClient, updateClient } from '../../redux/clients/clients.actions';
+import { toggleEditClient } from '../../redux/dashboard/dashboard.actions';
 
 import FormInput from '../../components/form-input/FormInput';
 import Button from '../../components/button/Button';
@@ -13,14 +13,14 @@ import Button from '../../components/button/Button';
 import style from './client-edit.module.scss';
 
 // *************************** CLIENT EDIT COMPONENT *************************** //
-const ClientEdit = ({ client, loading, getAClient, updateClient }) => {
-  const { client_id } = useParams();
+const ClientEdit = ({ client, loading, getAClient, updateClient, toggleEditClient }) => {
 
   useEffect(() => {
-    getAClient(client_id);
+    getAClient(client.id);
     updateClient();
-  }, [getAClient, updateClient]);
+  }, [getAClient, updateClient, client.id]);
 
+  // Set initial form state with 'client' info if available
   const [ formData, setFormData ] = useState({
     first_name: client.first_name ? client.first_name : '',
     last_name: client.last_name ? client.last_name : '',
@@ -42,6 +42,7 @@ const ClientEdit = ({ client, loading, getAClient, updateClient }) => {
     updateClient(client.id, formData);
   };
 
+  // Render ClientForm to User
   const updateClientForm = (
     <div className={style.clientEdit}>
       <h2 className={style.header}>Update Info</h2>
@@ -134,6 +135,12 @@ const ClientEdit = ({ client, loading, getAClient, updateClient }) => {
 
         <Button type='submit' clientButton>Update</Button>
       </form>
+
+      <div className={style.returnContainer} onClick={() => toggleEditClient()}>
+        <MdKeyboardReturn className={style.returnIcon} aria-label='Return to Client' />
+        <p className={style.returnText}>Return to Client</p>
+      </div>
+
     </div>
   );
 
@@ -146,11 +153,11 @@ const ClientEdit = ({ client, loading, getAClient, updateClient }) => {
 
 // PROP TYPES
 ClientEdit.propTypes = {
-  client: PropTypes.object.isRequired,
-  // client: PropTypes.object,
+  client: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   getAClient: PropTypes.func.isRequired,
   updateClient: PropTypes.func.isRequired,
+  toggleEditClient: PropTypes.func.isRequired,
 };
 
 // REDUX
@@ -162,6 +169,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getAClient: (id) => dispatch(getAClient(id)),
   updateClient: (id, formData) => dispatch(updateClient(id, formData)),
+  toggleEditClient: () => dispatch(toggleEditClient()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientEdit);

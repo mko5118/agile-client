@@ -5,16 +5,24 @@ import uuid from 'uuid/dist/v4';
 import { FaPlus } from 'react-icons/fa';
 
 import { getAClient, resetClient } from '../../redux/clients/clients.actions';
+import { resetCompanyState, resetEditClient } from '../../redux/dashboard/dashboard.actions';
 
 import style from './client-list.module.scss';
 
 // *************************** CLIENT LIST COMPONENT *************************** //
-const ClientList = ({ clients, getAClient, resetClient }) => {
+const ClientList = ({ clients, getAClient, resetClient, resetCompanyState, resetEditClient }) => {
   // 'clients' array passed down as prop from 'DashboardPage.js'
   
   useEffect(() => {
     
   }, [getAClient]);
+
+  // Reset 'client' state to allow User to create new 'client' object
+  const resetClientState = () => {
+    resetClient();
+    resetCompanyState();
+    resetEditClient();
+  };
   
   // Allow User to filter 'clients' array to search for specific Client
   const [ search, setSearch ] = useState('');
@@ -30,6 +38,8 @@ const ClientList = ({ clients, getAClient, resetClient }) => {
   // Retrieve 'client' object from store and set 'client' by id onClick
   const onClickSetClient = (id) => {
     getAClient(id);
+    resetEditClient();
+    resetCompanyState();
   };
 
   // Setup to sort 'clients' by corresponding letter into correct array
@@ -71,7 +81,7 @@ const ClientList = ({ clients, getAClient, resetClient }) => {
     }
   };
 
-  // Render 'clients' to page
+  // Render sorted 'clients' to page
   const clientsOrderedByLastName = sortedByLastName.map(name => (
     name.sortedClients.length > 0 
       ?
@@ -97,7 +107,7 @@ const ClientList = ({ clients, getAClient, resetClient }) => {
       <div className={style.header}>
         <div className={style.headerTop}>
           <h2 className={style.clientListTitle}>Clients</h2>
-          <FaPlus className={style.icon} aria-label='Add Client' onClick={resetClient}/>
+          <FaPlus className={style.icon} aria-label='Add Client' onClick={() => resetClientState()}/>
         </div>
         <input
           className={style.searchbar} 
@@ -121,12 +131,16 @@ ClientList.propTypes = {
   clients: PropTypes.array,
   getAClient: PropTypes.func.isRequired,
   resetClient: PropTypes.func.isRequired,
+  resetCompanyState: PropTypes.func.isRequired,
+  resetEditClient: PropTypes.func.isRequired,
 };
 
 // REDUX
 const mapDispatchToProps = (dispatch) => ({
   getAClient: (id) => dispatch(getAClient(id)),
   resetClient: () => dispatch(resetClient()),
+  resetCompanyState: () => dispatch(resetCompanyState()),
+  resetEditClient: () => dispatch(resetEditClient()),
 });
 
 export default connect(null, mapDispatchToProps)(ClientList);

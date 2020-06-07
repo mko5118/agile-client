@@ -1,24 +1,24 @@
 import React, { } from 'react';
-import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MdRemoveRedEye, MdDeleteForever } from 'react-icons/md';
+import { MdRemoveRedEye, MdDeleteForever, MdEdit } from 'react-icons/md';
 import { FaPlusCircle } from 'react-icons/fa';
 
 import { deleteCompany } from '../../redux/company/company.actions';
+import { toggleCreateCompany, toggleEditCompany } from '../../redux/dashboard/dashboard.actions';
 
 import style from './company-item.module.scss';
 
 // *************************** COMPANY ITEM PAGE COMPONENT *************************** //
-const CompanyItem = ({ client, currentCompany, loading, deleteCompany }) => {
+const CompanyItem = ({ client, currentCompany, loading, deleteCompany, toggleCreateCompany, toggleEditCompany }) => {
   // 'client' passed down as object via 'ClientPage.js' to allow Company filtering
 
-  const history = useHistory();
-  const navigateToCompany = (companyId) => {
-    history.push(`/dashboard/clients/company/${companyId}`);
+  const navigateToCompany = () => {
+    toggleEditCompany();
   };
-  const navigateToCreateCompany = (clientId) => {
-    history.push(`/dashboard/clients/company-create/${clientId}`);
+
+  const navigateToCreateCompany = () => {
+    toggleCreateCompany();
   };
 
   // Render correct 'currentCompany' object for 'client' object
@@ -42,10 +42,10 @@ const CompanyItem = ({ client, currentCompany, loading, deleteCompany }) => {
           <div className={style.buttonContainer}>
             <div 
               className={style.viewIconContainer} 
-              onClick={() => navigateToCompany(currentCompany.id)}
+              onClick={() => navigateToCompany()}
             >
               <MdRemoveRedEye className={style.viewIcon} aria-label='View Company' />
-              <span className={style.viewText}>View Company</span>
+              <span className={style.viewText}>Edit Company</span>
             </div>
             <div 
               className={style.deleteIconContainer}
@@ -64,7 +64,7 @@ const CompanyItem = ({ client, currentCompany, loading, deleteCompany }) => {
           <div className={style.buttonContainer}>
             <div 
               className={style.addIconContainer} 
-              onClick={() => navigateToCreateCompany(client.id)}
+              onClick={() => navigateToCreateCompany()}
             >
               <FaPlusCircle className={style.addIcon} aria-label='Add Company' />
               <span className={style.addText}>Add Company</span>
@@ -88,6 +88,8 @@ CompanyItem.propTypes = {
   currentCompany: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   deleteCompany: PropTypes.func.isRequired,
+  toggleCreateCompany: PropTypes.func.isRequired,
+  toggleEditCompany: PropTypes.func.isRequired,
 };
 
 // REDUX
@@ -98,6 +100,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   deleteCompany: (companyId) => dispatch(deleteCompany(companyId)),
+  toggleCreateCompany: () => dispatch(toggleCreateCompany()),
+  toggleEditCompany: () => dispatch(toggleEditCompany()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyItem);

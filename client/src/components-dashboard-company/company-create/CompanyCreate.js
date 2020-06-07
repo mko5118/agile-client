@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MdPerson, MdWeb, MdPhoneInTalk, MdPlace } from 'react-icons/md';
+import { MdPerson, MdWeb, MdPhoneInTalk, MdPlace, MdKeyboardReturn } from 'react-icons/md';
 
 import { createCompany } from '../../redux/company/company.actions';
+import { resetCompanyState } from '../../redux/dashboard/dashboard.actions';
 
 import FormInput from '../../components/form-input/FormInput';
 import Button from '../../components/button/Button';
@@ -12,8 +12,8 @@ import Button from '../../components/button/Button';
 import style from './company-create.module.scss';
 
 // *************************** COMPANY CREATE COMPONENT *************************** //
-const CompanyCreate = ({ createCompany }) => {
-  const { client_id } = useParams();
+const CompanyCreate = ({ client, createCompany, resetCompanyState }) => {
+  // 'client' object passed down as prop from 'ClientPage.js' component
 
   const [ formData, setFormData ] = useState({
     company_name: '',
@@ -21,7 +21,7 @@ const CompanyCreate = ({ createCompany }) => {
     company_number: '',
     address: '',
     company_notes: '',
-    associated_client: client_id,
+    associated_client: client.id,
   });
 
   const onChange = (e) => {
@@ -40,13 +40,13 @@ const CompanyCreate = ({ createCompany }) => {
       company_number: '',
       address: '',
       company_notes: '',
-      associated_client: client_id,
+      associated_client: client.id,
     });
   };
 
   return (
     <div className={style.companyCreate}>
-      <h2 className={style.header}>Add Company</h2>
+      <h2 className={style.header}>Create Company</h2>
 
       <form className={style.form} onSubmit={onSubmit}>
 
@@ -119,20 +119,29 @@ const CompanyCreate = ({ createCompany }) => {
           onChange={onChange}
           className={style.textArea}
         />
-        <Button type='submit' clientButton>Add Company</Button>
+        <Button type='submit' clientButton>Create</Button>
       </form>
+
+      <div className={style.returnContainer} onClick={() => resetCompanyState()}>
+        <MdKeyboardReturn className={style.returnIcon} aria-label='Return to Client' />
+        <p className={style.returnText}>Return to Client</p>
+      </div>
+
     </div>
   )
 };
 
 // PROP TYPES
 CompanyCreate.propTypes = {
+  client: PropTypes.object,
   createCompany: PropTypes.func.isRequired,
+  resetCompanyState: PropTypes.func.isRequired,
 };
 
 // REDUX
 const mapDispatchToProps = (dispatch) => ({
   createCompany: ({ company_name, website, company_number, address, company_notes, associated_client }) => dispatch(createCompany({ company_name, website, company_number, address, company_notes, associated_client })),
+  resetCompanyState: () => dispatch(resetCompanyState()),
 });
 
 export default connect(null, mapDispatchToProps)(CompanyCreate);

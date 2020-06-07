@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MdPerson, MdWeb, MdPhoneInTalk, MdPlace } from 'react-icons/md'
+import { MdPerson, MdWeb, MdPhoneInTalk, MdPlace, MdKeyboardReturn } from 'react-icons/md'
 
 import { getCompany, updateCompany } from '../../redux/company/company.actions';
+import { resetCompanyState } from '../../redux/dashboard/dashboard.actions';
 
 import Button from '../../components/button/Button';
 import FormInput from '../../components/form-input/FormInput';
@@ -12,11 +12,11 @@ import FormInput from '../../components/form-input/FormInput';
 import style from './company-edit.module.scss';
 
 // *************************** COMPANY EDIT COMPONENT *************************** //
-const CompanyEdit = ({ currentCompany, loading, getCompany, updateCompany }) => {
-  const { company_id } = useParams();
-
+const CompanyEdit = ({ client, currentCompany, loading, getCompany, updateCompany, resetCompanyState }) => {
+  // 'client' object passed down as prop from 'ClientPage.js' component
+  
   useEffect(() => {
-    getCompany(company_id);
+    getCompany(currentCompany.id);
   }, [getCompany]);
 
   const [ formData, setFormData ] = useState({
@@ -37,7 +37,7 @@ const CompanyEdit = ({ currentCompany, loading, getCompany, updateCompany }) => 
 
   const onSubmit = (e) => {
     e.preventDefault();
-    updateCompany(company_id, formData);
+    updateCompany(currentCompany.id, formData);
   };
 
   const editCompanyForm = (
@@ -117,6 +117,12 @@ const CompanyEdit = ({ currentCompany, loading, getCompany, updateCompany }) => 
 
         <Button type='submit' clientButton>Update</Button>
       </form>
+
+      <div className={style.returnContainer} onClick={() => resetCompanyState()}>
+        <MdKeyboardReturn className={style.returnIcon} aria-label='Return to Client' />
+        <p className={style.returnText}>Return to Client</p>
+      </div>
+
     </div>
   );
 
@@ -129,11 +135,12 @@ const CompanyEdit = ({ currentCompany, loading, getCompany, updateCompany }) => 
 
 // PROP TYPES
 CompanyEdit.propTypes = {
-  // currentCompany: PropTypes.object.isRequired,
+  client: PropTypes.object,
   currentCompany: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   getCompany: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
+  resetCompanyState: PropTypes.func.isRequired,
 }
 
 // REDUX
@@ -145,6 +152,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getCompany: (companyId) => dispatch(getCompany(companyId)),
   updateCompany: (companyId, formData) => dispatch(updateCompany(companyId, formData)),
+  resetCompanyState: () => dispatch(resetCompanyState()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyEdit);

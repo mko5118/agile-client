@@ -47,10 +47,10 @@ const App = () => {
               <Route exact path='/dashboard' component={DashboardPage} />
 
               <Route exact path='/dashboard/clients' component={ClientsPage} />
-              <Route exact path='/dashboard/clients/:client_id' component={ClientEdit} />
+              {/* <Route exact path='/dashboard/clients/:client_id' component={ClientEdit} /> */}
 
-              <Route exact path='/dashboard/clients/company-create/:client_id' component={CompanyCreate} />
-              <Route exact path='/dashboard/clients/company/:company_id' component={CompanyEdit} />
+              {/* <Route exact path='/dashboard/clients/company-create/:client_id' component={CompanyCreate} />
+              <Route exact path='/dashboard/clients/company/:company_id' component={CompanyEdit} /> */}
 
               <Route exact path='/dashboard/clients/log-create/:client_id' component={LogCreate} />
               <Route exact path='/dashboard/clients/log/:log_id' component={LogEdit} />

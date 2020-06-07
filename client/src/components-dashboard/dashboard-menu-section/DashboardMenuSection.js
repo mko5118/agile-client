@@ -7,12 +7,31 @@ import PropTypes from 'prop-types';
 import { 
   toggleHomeMenu, toggleClientsMenu, toggleTasksMenu, toggleCalendarMenu 
 } from '../../redux/dashboard/dashboard.actions';
+import { resetClient } from '../../redux/clients/clients.actions';
 
 import style from './dashboard-menu-section.module.scss';
 
 // *************************** DASHBOARD MENU SECTION COMPONENT *************************** //
-const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, toggleHomeMenu, toggleClientsMenu, toggleTasksMenu, toggleCalendarMenu }) =>  {
+const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, toggleHomeMenu, toggleClientsMenu, toggleTasksMenu, toggleCalendarMenu, resetClient }) =>  {
 
+  const setHomeMenu = () => {
+    toggleHomeMenu();
+    resetClient();
+  };
+
+  const setClientsMenu = () => {
+    toggleClientsMenu();
+  };
+
+  const setTasksMenu = () => {
+    toggleTasksMenu();
+    resetClient();
+  };
+
+  const setCalendarMenu = () => {
+    toggleCalendarMenu();
+    resetClient();
+  };
 
   return (
     <div className={style.dashboardMenuSection}>
@@ -22,22 +41,22 @@ const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, 
 
         <div className={style.navigationMenu}>
 
-          <div className={style.iconContainer} id={homeMenu.isActive ? style.isActiveContainer : ''} onClick={toggleHomeMenu}>
+          <div className={style.iconContainer} id={homeMenu.isActive ? style.isActiveContainer : ''} onClick={setHomeMenu}>
             <FaHome className={style.icon} id={homeMenu.isActive ? style.isActiveIcon : ''} />
             <span className={style.iconText} id={homeMenu.isActive ? style.isActiveText : ''}>Home</span>
           </div>
 
-          <div className={style.iconContainer} id={clientsMenu.isActive ? style.isActiveContainer : ''} onClick={toggleClientsMenu}>
+          <div className={style.iconContainer} id={clientsMenu.isActive ? style.isActiveContainer : ''} onClick={setClientsMenu}>
             <IoIosContacts className={style.icon} id={clientsMenu.isActive ? style.isActiveIcon : ''} />
             <span className={style.iconText} id={clientsMenu.isActive ? style.isActiveText : ''}>Clients</span>
           </div>
 
-          <div className={style.iconContainer} id={tasksMenu.isActive ? style.isActiveContainer : ''} onClick={toggleTasksMenu}>
+          <div className={style.iconContainer} id={tasksMenu.isActive ? style.isActiveContainer : ''} onClick={setTasksMenu}>
             <FaTasks className={style.icon} id={tasksMenu.isActive ? style.isActiveIcon : ''} />
             <span className={style.iconText} id={tasksMenu.isActive ? style.isActiveText : ''}>Todos</span>
           </div>
 
-          <div className={style.iconContainer} id={calendarMenu.isActive ? style.isActiveContainer : ''} onClick={toggleCalendarMenu}>
+          <div className={style.iconContainer} id={calendarMenu.isActive ? style.isActiveContainer : ''} onClick={setCalendarMenu}>
             <FaRegCalendarAlt className={style.icon} id={calendarMenu.isActive ? style.isActiveIcon : ''} />
             <span className={style.iconText} id={calendarMenu.isActive ? style.isActiveText : ''}>Calendar</span>
           </div>
@@ -59,6 +78,7 @@ DashboardMenuSection.propTypes = {
   toggleClientsMenu: PropTypes.func.isRequired,
   toggleTasksMenu: PropTypes.func.isRequired,
   toggleCalendarMenu: PropTypes.func.isRequired,
+  resetClient: PropTypes.func.isRequired,
 };
 
 // REDUX
@@ -74,6 +94,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleClientsMenu: () => dispatch(toggleClientsMenu()),
   toggleTasksMenu: () => dispatch(toggleTasksMenu()),
   toggleCalendarMenu: () => dispatch(toggleCalendarMenu()),
+  resetClient: () => dispatch(resetClient()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardMenuSection);
