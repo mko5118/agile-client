@@ -1,30 +1,35 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MdEdit, MdDeleteForever } from 'react-icons/md';
+import { FaPlusCircle } from 'react-icons/fa';
 
-import { getAllLogs, deleteLog } from '../../redux/log/log.actions';
+import { getClientLogs, deleteLog } from '../../redux/log/log.actions';
+import { toggleCreateLog, toggleEditLog } from '../../redux/dashboard/dashboard.actions';
 
 import style from './log-item.module.scss';
 
 // *************************** LOG ITEM COMPONENT *************************** //
-const LogItem = ({ client, logs, loading, getAllLogs, deleteLog }) => {
-  // 'client' passed down as object via 'ContactsPage.js' to allow Log filtering
-
+const LogItem = ({ client, loading, clientLogs, getClientLogs, deleteLog, toggleCreateLog, toggleEditLog }) => {
   useEffect(() => {
-    getAllLogs();
-  }, [getAllLogs]);
+    getClientLogs(client.id)
+  }, [getClientLogs, client.id]);
 
-  const history = useHistory();
-  const navigateToEditLog = (logId) => {
-    history.push(`/dashboard/clients/log/${logId}`);
+  // Will toggle 'logMenu.isEditing' state to render 'LogEdit.js' component in 'ClientPage.js'
+  const navigateToEditLog = () => {
+    toggleEditLog();
+  };
+  // Will toggle 'logMenu.isCreating' state to render 'LogCreate.js' component in 'ClientPage.js'
+  const navigateToCreateLog = () => {
+    toggleCreateLog();
   };
 
-  const logContainer = (
-    logs.map(log => (
-      log.associated_client === client.id
-      &&
+  let logContainer;
+
+  // 'clientLogs' exists ? show User the 3 most recent logs : give User option to add new Log
+  if (clientLogs.length > 0) {
+    logContainer = (
+      clientLogs.slice(0, 3).map(log => (
         <div key={log.id} className={style.logContainer}>
           <div className={style.headerContainer}>
             <h4 className={style.logType}>{log.type}</h4>
@@ -40,12 +45,31 @@ const LogItem = ({ client, logs, loading, getAllLogs, deleteLog }) => {
             </div>
           </div>
           <p className={style.logText}>{log.details}</p>
-          {/* <p className={style.logText}>{log.log_date}</p>
-          <p className={style.logText}>{log.associated_client}</p> */}
+          <p className={style.logText}>{log.log_date}</p>
+          {/* <p className={style.logText}>{log.associated_client}</p> */}
         </div>
-    ))
-  );
+      ))
+    );
+  } else {
+    logContainer = (
+      <div className={style.addLogContainer}>
+        <p className={style.addLogText}>
+          No logs / meetings added currently. Click below if you would like to add a log / meeting for {client.first_name} {client.last_name}
+        </p>
+        <div className={style.addButtonContainer}>
+          <div 
+            className={style.addIconContainer} 
+            onClick={() => navigateToCreateLog()}
+          >
+            <FaPlusCircle className={style.addIcon} aria-label='Add Log' />
+            <span className={style.addText}>Add Meeting</span>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
+  
   return (
     <div className={style.logItem}>
       {
@@ -59,22 +83,26 @@ const LogItem = ({ client, logs, loading, getAllLogs, deleteLog }) => {
 
 // PROP TYPES
 LogItem.propTypes = {
-  client: PropTypes.object.isRequired,
-  logs: PropTypes.array,
+  client: PropTypes.object,
+  clientLogs: PropTypes.array,
   loading: PropTypes.bool.isRequired,
-  getAllLogs: PropTypes.func.isRequired,
   deleteLog: PropTypes.func.isRequired,
+  toggleCreateLog: PropTypes.func.isRequired,
+  toggleEditLog: PropTypes.func.isRequired,
 };
 
 // REDUX
 const mapStateToProps = (state) => ({
-  logs: state.log.logs,
+  client: state.clients.client,
+  clientLogs: state.log.clientLogs,
   loading: state.log.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getAllLogs: () => dispatch(getAllLogs()),
+  getClientLogs: (clientId) => dispatch(getClientLogs(clientId)),
   deleteLog: (logId) => dispatch(deleteLog(logId)),
+  toggleCreateLog: () => dispatch(toggleCreateLog()),
+  toggleEditLog: () => dispatch(toggleEditLog()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogItem);

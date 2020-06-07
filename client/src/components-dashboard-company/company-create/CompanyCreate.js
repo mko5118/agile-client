@@ -119,6 +119,7 @@ const CompanyCreate = ({ client, createCompany, resetCompanyState }) => {
           onChange={onChange}
           className={style.textArea}
         />
+        
         <Button type='submit' clientButton>Create</Button>
       </form>
 

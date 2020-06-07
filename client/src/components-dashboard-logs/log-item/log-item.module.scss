@@ -79,11 +79,55 @@
 
     }
 
-
     .logText {
       color: darken($dark-grey, 20%);
       font-size: 1.6rem;
       margin-bottom: 0.25rem;
+    }
+  }
+
+  // ADD LOG CONTAINER
+  .addLogContainer {
+
+    .addLogText {
+      color: darken($dark-grey, 20%);
+      font-size: 1.6rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .addButtonContainer {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .addIconContainer {
+        border: 1px solid darken($jungle-green, 20%);
+        border-radius: 2rem;
+        background: darken($jungle-green, 20%);
+        padding: 0.5rem 1rem;
+
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-right: 2rem;
+
+        .addIcon {
+          color: $white;
+          font-size: 1.8rem;
+          margin-right: 0.5rem;
+        }
+
+        .addText {
+          font-size: 1.3rem;
+          color: $white;
+        }
+
+        &:hover {
+          color: darken($jungle-green, 10%);
+        }
+      }
     }
   }
 

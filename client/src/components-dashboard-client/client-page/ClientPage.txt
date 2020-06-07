@@ -11,13 +11,11 @@ import CompanyItem from '../../components-dashboard-company/company-item/Company
 import CompanyCreate from '../../components-dashboard-company/company-create/CompanyCreate';
 import CompanyEdit from '../../components-dashboard-company/company-edit/CompanyEdit';
 import LogItem from '../../components-dashboard-logs/log-item/LogItem';
-import LogCreate from '../../components-dashboard-logs/log-create/LogCreate';
-import LogEdit from '../../components-dashboard-logs/log-edit/LogEdit';
 
 import style from './client-page.module.scss';
 
 // *************************** CLIENT PAGE COMPONENT *************************** //
-const ClientPage = ({ client, companies, companyMenu, logMenu, editingClient, getAllCompanies, getCompany, resetCompanyState, toggleEditClient }) => {
+const ClientPage = ({ client, companies, currentCompany, companyMenu, editingClient, getAllCompanies, getCompany, resetCompanyState, toggleEditClient }) => {
   // 'client' object passed as prop from 'DashboardPage.js'
   const { id, first_name, last_name, email, phone_number, job_title, notes, client_company, logs, loading } = client;
 
@@ -96,8 +94,8 @@ const ClientPage = ({ client, companies, companyMenu, logMenu, editingClient, ge
       </div>
       {/* CLIENT LOGS SECTION */}
       <div className={style.sectionContainer}>
-        <h3 className={style.sectionTitle}>Recent Meetings</h3>
-        <LogItem />
+        <h3 className={style.sectionTitle}>Recent Logs</h3>
+        <LogItem client={client} />
       </div>
     </div>
   );
@@ -122,25 +120,13 @@ const ClientPage = ({ client, companies, companyMenu, logMenu, editingClient, ge
     )
   }
 
+
   // if User selects 'toggleCreateLog' in 'CompanyItem' render 'LogCreate' component to screen
-  if (logMenu.isCreating) {
-    clientInfo = (
-      <div className={style.clientPage}>
-        { clientHeader }
-        <LogCreate />
-      </div>
-    )
-  }
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& WILL NEED TO ADD THESE FEATURES &&&&&&&&&&&&&&
   
   // if User selects 'toggleEditLog' in 'CompanyItem' render 'LogEdit' component to screen
-  if (logMenu.isEditing) {
-    clientInfo = (
-      <div className={style.clientPage}>
-        { clientHeader }
-        <LogEdit />
-      </div>
-    )
-  }
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& WILL NEED TO ADD THESE FEATURES &&&&&&&&&&&&&&
+
 
   // Render 'ClientEdit.js' component if editingClient === true
   const renderClientEdit = (
@@ -165,8 +151,8 @@ const ClientPage = ({ client, companies, companyMenu, logMenu, editingClient, ge
 ClientPage.propTypes = {
   client: PropTypes.object.isRequired,
   companies: PropTypes.array,
+  // currentCompany: PropTypes.object,
   companyMenu: PropTypes.object,
-  logMenu: PropTypes.object,
   editingClient: PropTypes.bool.isRequired,
   getAllCompanies: PropTypes.func.isRequired,
   getCompany: PropTypes.func.isRequired,
@@ -177,8 +163,8 @@ ClientPage.propTypes = {
 // REDUX
 const mapStateToProps = (state) => ({
   companies: state.company.companies,
+  // currentCompany: state.company.currentCompany,
   companyMenu: state.dashboard.companyMenu,
-  logMenu: state.dashboard.logMenu,
   editingClient: state.dashboard.editingClient,
 });
 
