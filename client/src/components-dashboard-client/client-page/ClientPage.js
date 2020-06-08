@@ -47,8 +47,6 @@ const ClientPage = ({ client, companies, clientLogs, companyMenu, logMenu, editi
         <div className={style.jobTitleContainer}>
           <p className={style.jobTitle}>{job_title}</p>
           <div className={style.iconContainer} onClick={() => onClickEditClient()}>
-            {/* <MdEdit className={style.editIcon} /> */}
-            {/* <span className={style.editText}>{editingClient ? 'Return to Client' : 'Edit'}</span> */}
             {
               !editingClient && 
               <>
@@ -185,7 +183,7 @@ const ClientPage = ({ client, companies, clientLogs, companyMenu, logMenu, editi
 
 // PROP TYPES
 ClientPage.propTypes = {
-  client: PropTypes.object.isRequired,
+  client: PropTypes.object,
   companies: PropTypes.array,
   clientLogs: PropTypes.array,
   companyMenu: PropTypes.object,

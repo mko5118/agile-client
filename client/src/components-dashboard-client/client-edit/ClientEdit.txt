@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MdPerson, MdEmail, MdPhoneInTalk, MdDeleteForever } from 'react-icons/md'
+import { MdPerson, MdEmail, MdPhoneInTalk } from 'react-icons/md'
 import { FaUserTie } from 'react-icons/fa';
 
-import { getAClient, updateClient, deleteClient, resetClient } from '../../redux/clients/clients.actions';
+import { getAClient, updateClient } from '../../redux/clients/clients.actions';
 import { toggleEditClient } from '../../redux/dashboard/dashboard.actions';
 
 import FormInput from '../../components/form-input/FormInput';
@@ -14,12 +14,12 @@ import ReturnContainer from '../../components/return-container/ReturnContainer';
 import style from './client-edit.module.scss';
 
 // *************************** CLIENT EDIT COMPONENT *************************** //
-const ClientEdit = ({ client, loading, getAClient, updateClient, deleteClient, resetClient, toggleEditClient }) => {
+const ClientEdit = ({ client, loading, getAClient, updateClient, toggleEditClient }) => {
 
   useEffect(() => {
     getAClient(client.id);
     updateClient();
-  }, [getAClient, updateClient, deleteClient, client.id]);
+  }, [getAClient, updateClient, client.id]);
 
   // Set initial form state with 'client' info if available
   const [ formData, setFormData ] = useState({
@@ -30,11 +30,6 @@ const ClientEdit = ({ client, loading, getAClient, updateClient, deleteClient, r
     job_title: client.job_title ? client.job_title : '',
     notes: client.notes ? client.notes : ''
   });
-
-  const onClientDelete = () => {
-    deleteClient(client.id);
-    resetClient();
-  };
 
   const onChange = (e) => {
     setFormData({
@@ -51,13 +46,7 @@ const ClientEdit = ({ client, loading, getAClient, updateClient, deleteClient, r
   // Render ClientForm to User
   const updateClientForm = (
     <div className={style.clientEdit}>
-      <div className={style.headerContainer}>
-        <h2 className={style.header}>Update Info</h2>
-        <div className={style.iconContainer} onClick={onClientDelete}>
-          <MdDeleteForever className={style.deleteIcon} aria-label='Delete Client' /> 
-          <span className={style.deleteText}>Delete Client</span>
-        </div>
-      </div>
+      <h2 className={style.header}>Update Info</h2>
 
       <form className={style.form} onSubmit={onSubmit}>
         <label className={style.formLabel}>
@@ -166,8 +155,6 @@ ClientEdit.propTypes = {
   loading: PropTypes.bool.isRequired,
   getAClient: PropTypes.func.isRequired,
   updateClient: PropTypes.func.isRequired,
-  deleteClient: PropTypes.func.isRequired,
-  resetClient: PropTypes.func.isRequired,
   toggleEditClient: PropTypes.func.isRequired,
 };
 
@@ -180,8 +167,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getAClient: (id) => dispatch(getAClient(id)),
   updateClient: (id, formData) => dispatch(updateClient(id, formData)),
-  deleteClient: (id) => dispatch(deleteClient(id)),
-  resetClient: () => dispatch(resetClient()),
   toggleEditClient: () => dispatch(toggleEditClient()),
 });
 
