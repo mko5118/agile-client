@@ -36,7 +36,7 @@ export const logReducer = (state=INITIAL_STATE, action) => {
       return {
         ...state,
         logs: [...state.logs, action.payload],
-        clientLogs: [...state.clientLogs, action.payload],
+        clientLogs: [action.payload, ...state.clientLogs],
         loading: false,
       };
     case DELETE_LOG:

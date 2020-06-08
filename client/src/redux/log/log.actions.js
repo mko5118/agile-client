@@ -44,7 +44,7 @@ export const getClientLogs = (clientId) => async (dispatch) => {
 
     const res = await axios.get(`${API_URL}/api/client/logs/?associated_client=${clientId}`, config);
 
-    // Sort 'clientLogs' by date with most recent logs first
+    // Sort 'clientLogs' by LOG_DATE with most recent logs first
     const sortedClientLogsByDate = res.data.sort((a, b) => {
       if (a.log_date > b.log_date) { return -1 }
       if (a.log_date < b.log_date) { return 1}
