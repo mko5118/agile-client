@@ -45,7 +45,14 @@ const CompanyItem = ({ client, currentCompany, loading, deleteCompany, toggleCre
               onClick={() => navigateToCompany()}
             >
               <MdRemoveRedEye className={style.viewIcon} aria-label='View Company' />
-              <span className={style.viewText}>View Company</span>
+              <span className={style.viewText}>Edit Company</span>
+            </div>
+            <div 
+              className={style.deleteIconContainer}
+              onClick={() => deleteCompany(currentCompany.id)}
+            >
+              <MdDeleteForever className={style.deleteIcon} aria-label='Delete Company' />
+              <span className={style.deleteText}>Remove Company</span>
             </div>
           </div>
         </div>

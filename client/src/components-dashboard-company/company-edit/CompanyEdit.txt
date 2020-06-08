@@ -1,57 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MdPerson, MdWeb, MdPhoneInTalk, MdPlace } from 'react-icons/md';
 
-import { createCompany } from '../../redux/company/company.actions';
+import { getCompany, updateCompany } from '../../redux/company/company.actions';
 import { resetCompanyState } from '../../redux/dashboard/dashboard.actions';
 
-import FormInput from '../../components/form-input/FormInput';
 import Button from '../../components/button/Button';
+import FormInput from '../../components/form-input/FormInput';
 import ReturnContainer from '../../components/return-container/ReturnContainer';
 
-import style from './company-create.module.scss';
+import style from './company-edit.module.scss';
 
-// *************************** COMPANY CREATE COMPONENT *************************** //
-const CompanyCreate = ({ client, createCompany, resetCompanyState }) => {
+// *************************** COMPANY EDIT COMPONENT *************************** //
+const CompanyEdit = ({ client, currentCompany, loading, getCompany, updateCompany, resetCompanyState }) => {
   // 'client' object passed down as prop from 'ClientPage.js' component
 
+  useEffect(() => {
+    getCompany(currentCompany.id);
+  }, [getCompany]);
+
   const [ formData, setFormData ] = useState({
-    company_name: '',
-    website: '',
-    company_number: '',
-    address: '',
-    company_notes: '',
-    associated_client: client.id,
+    company_name: currentCompany.company_name ? currentCompany.company_name : '',
+    website: currentCompany.website ? currentCompany.website : '',
+    company_number: currentCompany.company_number ? currentCompany.company_number : '',
+    address: currentCompany.address ? currentCompany.address : '',
+    company_notes: currentCompany.company_notes ? currentCompany.company_notes : '',
+    associated_client: currentCompany.associated_client ? currentCompany.associated_client : '',
   });
 
   const onChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
+    });
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await createCompany(formData);
-    setFormData({
-      company_name: '',
-      website: '',
-      company_number: '',
-      address: '',
-      company_notes: '',
-      associated_client: client.id,
-    });
-    resetCompanyState();
+    await updateCompany(currentCompany.id, formData);
   };
 
-  return (
-    <div className={style.companyCreate}>
-      <h2 className={style.header}>Create Company</h2>
+  const editCompanyForm = (
+    <div className={style.companyEdit}>
+      <h2 className={style.header}>Update Company</h2>
 
       <form className={style.form} onSubmit={onSubmit}>
-
         <label className={style.formLabel}>
           Company Name <span className={style.requiredText}>(required)</span>
         </label>
@@ -62,7 +56,7 @@ const CompanyCreate = ({ client, createCompany, resetCompanyState }) => {
             name='company_name'
             placeholder='Company Name'
             autoComplete='off'
-            value={createCompany.company_name}
+            value={formData.company_name}
             onChange={onChange}
             required
             clientInput
@@ -77,7 +71,7 @@ const CompanyCreate = ({ client, createCompany, resetCompanyState }) => {
             name='website'
             placeholder='Company Website'
             autoComplete='off'
-            value={createCompany.website}
+            value={formData.website}
             onChange={onChange}
             clientInput
           />
@@ -91,7 +85,7 @@ const CompanyCreate = ({ client, createCompany, resetCompanyState }) => {
             name='company_number'
             placeholder='Company Number'
             autoComplete='off'
-            value={createCompany.company_number}
+            value={formData.company_number}
             onChange={onChange}
             clientInput
           />
@@ -105,7 +99,7 @@ const CompanyCreate = ({ client, createCompany, resetCompanyState }) => {
             name='address'
             placeholder='Company Address'
             autoComplete='off'
-            value={createCompany.address}
+            value={formData.address}
             onChange={onChange}
             clientInput
           />
@@ -117,31 +111,46 @@ const CompanyCreate = ({ client, createCompany, resetCompanyState }) => {
           name='company_notes'
           placeholder='Company Notes'
           autoComplete='off'
-          value={createCompany.company_notes}
+          value={formData.company_notes}
           onChange={onChange}
           className={style.textArea}
         />
-        
-        <Button type='submit' clientButton>Create</Button>
+
+        <Button type='submit' clientButton>Update</Button>
       </form>
 
       <ReturnContainer returnToClient onClick={() => resetCompanyState()} />
 
     </div>
+  );
+
+  return (
+    (currentCompany === {} || loading)
+      ? <p>Loading...</p>
+      : editCompanyForm
   )
 };
 
 // PROP TYPES
-CompanyCreate.propTypes = {
+CompanyEdit.propTypes = {
   client: PropTypes.object,
-  createCompany: PropTypes.func.isRequired,
+  currentCompany: PropTypes.object,
+  loading: PropTypes.bool.isRequired,
+  getCompany: PropTypes.func.isRequired,
+  updateCompany: PropTypes.func.isRequired,
   resetCompanyState: PropTypes.func.isRequired,
-};
+}
 
 // REDUX
+const mapStateToProps = (state) => ({
+  currentCompany: state.company.currentCompany,
+  loading: state.company.loading,
+});
+
 const mapDispatchToProps = (dispatch) => ({
-  createCompany: ({ company_name, website, company_number, address, company_notes, associated_client }) => dispatch(createCompany({ company_name, website, company_number, address, company_notes, associated_client })),
+  getCompany: (companyId) => dispatch(getCompany(companyId)),
+  updateCompany: (companyId, formData) => dispatch(updateCompany(companyId, formData)),
   resetCompanyState: () => dispatch(resetCompanyState()),
 });
 
-export default connect(null, mapDispatchToProps)(CompanyCreate);
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyEdit);

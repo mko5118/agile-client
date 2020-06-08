@@ -43,7 +43,6 @@ const CompanyCreate = ({ client, createCompany, resetCompanyState }) => {
       company_notes: '',
       associated_client: client.id,
     });
-    resetCompanyState();
   };
 
   return (

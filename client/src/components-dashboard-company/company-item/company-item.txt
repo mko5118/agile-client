@@ -61,6 +61,34 @@
         }
       }
 
+      .deleteIconContainer {
+        border: 1px solid $stoplight-red;
+        border-radius: 2rem;
+        background: $stoplight-red;
+        padding: 0.5rem 1rem;
+
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-right: 2rem;
+
+        .deleteIcon {
+          color: $white;
+          font-size: 2rem;
+          margin-right: 0.5rem;
+        }
+
+        .deleteText {
+          font-size: 1.3rem;
+          color: $white;
+        }
+
+        &:hover {
+          background: lighten($stoplight-red, 10%);
+        }
+      }
+
       .addIconContainer {
         border: 1px solid darken($jungle-green, 20%);
         border-radius: 2rem;

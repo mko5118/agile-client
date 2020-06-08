@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MdPerson, MdWeb, MdPhoneInTalk, MdPlace } from 'react-icons/md';
+import { MdPerson, MdWeb, MdPhoneInTalk, MdPlace, MdDeleteForever } from 'react-icons/md';
 
-import { getCompany, updateCompany } from '../../redux/company/company.actions';
+import { getCompany, updateCompany, deleteCompany } from '../../redux/company/company.actions';
 import { resetCompanyState } from '../../redux/dashboard/dashboard.actions';
 
 import Button from '../../components/button/Button';
@@ -13,7 +13,7 @@ import ReturnContainer from '../../components/return-container/ReturnContainer';
 import style from './company-edit.module.scss';
 
 // *************************** COMPANY EDIT COMPONENT *************************** //
-const CompanyEdit = ({ client, currentCompany, loading, getCompany, updateCompany, resetCompanyState }) => {
+const CompanyEdit = ({ client, currentCompany, loading, getCompany, updateCompany, deleteCompany, resetCompanyState }) => {
   // 'client' object passed down as prop from 'ClientPage.js' component
 
   useEffect(() => {
@@ -29,6 +29,11 @@ const CompanyEdit = ({ client, currentCompany, loading, getCompany, updateCompan
     associated_client: currentCompany.associated_client ? currentCompany.associated_client : '',
   });
 
+  const onCompanyDelete = () => {
+    deleteCompany(currentCompany.id);
+    resetCompanyState();
+  };
+
   const onChange = (e) => {
     setFormData({
       ...formData,
@@ -43,7 +48,13 @@ const CompanyEdit = ({ client, currentCompany, loading, getCompany, updateCompan
 
   const editCompanyForm = (
     <div className={style.companyEdit}>
-      <h2 className={style.header}>Update Company</h2>
+      <div className={style.headerContainer}>
+        <h2 className={style.header}>Update Company</h2>
+        <div className={style.iconContainer} onClick={onCompanyDelete}>
+          <MdDeleteForever className={style.deleteIcon} aria-label='Delete Client' /> 
+          <span className={style.deleteText}>Delete Company</span>
+        </div>
+      </div>
 
       <form className={style.form} onSubmit={onSubmit}>
         <label className={style.formLabel}>
@@ -138,6 +149,7 @@ CompanyEdit.propTypes = {
   loading: PropTypes.bool.isRequired,
   getCompany: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
+  deleteCompany: PropTypes.func.isRequired,
   resetCompanyState: PropTypes.func.isRequired,
 }
 
@@ -150,6 +162,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getCompany: (companyId) => dispatch(getCompany(companyId)),
   updateCompany: (companyId, formData) => dispatch(updateCompany(companyId, formData)),
+  deleteCompany: (companyId) => dispatch(deleteCompany(companyId)),
   resetCompanyState: () => dispatch(resetCompanyState()),
 });
 

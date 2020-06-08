@@ -1,8 +1,8 @@
 @import '../../styles/global.styles';
 
-// ************* CLIENT EDIT COMPONENT STYLES ************* //
-.clientEdit {
-
+// ************* COMPANY EDIT COMPONENT STYLES ************* //
+.companyEdit {
+  
   // HEADER SECTION
   .header {
     color: $strong-blue;
@@ -59,19 +59,19 @@
 
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: 500px) {
-  .clientEdit {
+  .companyEdit {
     
   }
 }
 
 @media screen and (min-width: 800px) {
-  .clientEdit {
+  .companyEdit {
 
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .clientEdit {
+  .companyEdit {
 
   }
 }
