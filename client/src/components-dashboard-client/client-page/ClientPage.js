@@ -62,7 +62,7 @@ const ClientPage = ({ client, companies, clientLogs, companyMenu, logMenu, editi
     </div>
   );
 
-  // Render Client Info to page
+  // Render Client Info to page (Initial 'clientInfo' data that renders)
   let clientInfo = (
     <div className={style.clientPage}>
       {/* CLIENT HEADER SECTION */}

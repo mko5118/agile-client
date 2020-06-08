@@ -14,76 +14,84 @@
       display: flex;
       flex-direction: row;
       align-items: center;
+      margin-bottom: 0.25rem;
 
       .logType {
-        width: 25%;
+        color: $strong-blue;
         font-size: 1.6rem;
         margin-right: 2rem;
       }
+    }
 
-      // BUTTON CONTAINER
-      .buttonContainer {
-        width: 75%;
+    .logText {
+      // color: darken($dark-grey, 20%);
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .logDateText {
+      color: $dark-grey;
+      font-size: 1.4rem;
+      font-style: italic;
+      margin-bottom: 0.25rem;
+    }
+
+    // BUTTON CONTAINER
+    .buttonContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+
+      .editIconContainer {
+        cursor: pointer;
         display: flex;
         flex-direction: row;
         align-items: center;
+        margin-right: 3rem;
 
-        .editIconContainer {
-          cursor: pointer;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          margin-right: 2rem;
-
-          .editIcon {
-            color: darken($stoplight-yellow, 7.5%);
-            font-size: 2rem;
-            margin-right: 0.5rem;
-          }
-
-          .editText {
-            font-size: 1.3rem;
-            color: $dark-grey;
-            text-transform: uppercase;
-
-            &:hover {
-              color: $black;
-            }
-          }
+        .editIcon {
+          color: darken($stoplight-yellow, 7.5%);
+          font-size: 2rem;
+          margin-right: 0.5rem;
         }
 
-        .deleteIconContainer {
-          cursor: pointer;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          margin-right: 2rem;
+        .editText {
+          font-size: 1.2rem;
+          color: $dark-grey;
+          text-transform: uppercase;
 
-          .deleteIcon {
-            color: $stoplight-red;
-            font-size: 2rem;
-            margin-right: 0.5rem;
-          }
-
-          .deleteText {
-            font-size: 1.3rem;
-            color: $dark-grey;
-            text-transform: uppercase;
-
-            &:hover {
-              color: $black;
-            }
+          &:hover {
+            color: $black;
           }
         }
       }
 
+      .deleteIconContainer {
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        // margin-right: 3rem;
+
+        .deleteIcon {
+          color: $stoplight-red;
+          font-size: 2rem;
+          margin-right: 0.5rem;
+        }
+
+        .deleteText {
+          font-size: 1.2rem;
+          color: $dark-grey;
+          text-transform: uppercase;
+
+          &:hover {
+            color: $black;
+          }
+        }
+      }
     }
 
-    .logText {
-      color: darken($dark-grey, 20%);
-      font-size: 1.6rem;
-      margin-bottom: 0.25rem;
-    }
   }
 
   // ADD LOG CONTAINER

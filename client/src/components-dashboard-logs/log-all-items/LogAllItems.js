@@ -1,12 +1,14 @@
 import React, { } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MdEdit, MdDeleteForever, MdKeyboardReturn } from 'react-icons/md';
+import moment from 'moment';
+import { MdEdit, MdDeleteForever } from 'react-icons/md';
 
 import { getLog, deleteLog } from '../../redux/log/log.actions';
 import { toggleEditLog, resetLogState } from '../../redux/dashboard/dashboard.actions';
 
 import LogCreate from '../log-create/LogCreate';
+import ReturnContainer from '../../components/return-container/ReturnContainer';
 
 import style from './log-all-items.module.scss';
 
@@ -25,20 +27,21 @@ const LogAllItems = ({ clientLogs, getLog, deleteLog, toggleEditLog, resetLogSta
       <div className={style.clientLogItem} key={clientLog.id}>
           <div className={style.headerContainer}>
             <h4 className={style.logType}>{clientLog.type}</h4>
-            <div className={style.buttonContainer}>
-              <div className={style.editIconContainer} onClick={() => navigateToEditLog(clientLog.id)}>
-                <MdEdit className={style.editIcon} aria-label='Edit Log' />
-                <span className={style.editText}>Edit</span>
-              </div>
-              <div className={style.deleteIconContainer} onClick={() => deleteLog(clientLog.id)}>
-                <MdDeleteForever className={style.deleteIcon} aria-label='Delete Log' />
-                <span className={style.deleteText}>Delete</span>
-              </div>
-            </div>
           </div>
           <p className={style.logText}>{clientLog.details}</p>
-          <p className={style.logText}>{clientLog.log_date}</p>
+          {/* <p className={style.logDateText}>{clientLog.log_date}</p> */}
+          <p className={style.logDateText}>{moment(clientLog.log_date).format('MMMM Do YYYY')}</p>
           {/* <p className={style.logText}>{log.associated_client}</p> */}
+          <div className={style.buttonContainer}>
+            <div className={style.editIconContainer} onClick={() => navigateToEditLog(clientLog.id)}>
+              <MdEdit className={style.editIcon} aria-label='Edit Log' />
+              <span className={style.editText}>Edit</span>
+            </div>
+            <div className={style.deleteIconContainer} onClick={() => deleteLog(clientLog.id)}>
+              <MdDeleteForever className={style.deleteIcon} aria-label='Delete Log' />
+              <span className={style.deleteText}>Delete</span>
+            </div>
+          </div>
       </div>
     ))
   );
@@ -53,10 +56,7 @@ const LogAllItems = ({ clientLogs, getLog, deleteLog, toggleEditLog, resetLogSta
         { clientLogsContainer }
       </div>
 
-      <div className={style.returnContainer} onClick={() => resetLogState()}>
-        <MdKeyboardReturn className={style.returnIcon} aria-label='Return to Client' />
-        <p className={style.returnText}>Return to Client</p>
-      </div>
+      <ReturnContainer returnToClient onClick={() => resetLogState()} />
 
     </div>
   )

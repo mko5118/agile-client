@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MdPerson, MdEmail, MdPhoneInTalk, MdKeyboardReturn } from 'react-icons/md'
+import { MdPerson, MdEmail, MdPhoneInTalk } from 'react-icons/md'
 import { FaUserTie } from 'react-icons/fa';
 
 import { getAClient, updateClient } from '../../redux/clients/clients.actions';
@@ -9,6 +9,7 @@ import { toggleEditClient } from '../../redux/dashboard/dashboard.actions';
 
 import FormInput from '../../components/form-input/FormInput';
 import Button from '../../components/button/Button';
+import ReturnContainer from '../../components/return-container/ReturnContainer';
 
 import style from './client-edit.module.scss';
 
@@ -136,10 +137,7 @@ const ClientEdit = ({ client, loading, getAClient, updateClient, toggleEditClien
         <Button type='submit' clientButton>Update</Button>
       </form>
 
-      <div className={style.returnContainer} onClick={() => toggleEditClient()}>
-        <MdKeyboardReturn className={style.returnIcon} aria-label='Return to Client' />
-        <p className={style.returnText}>Return to Client</p>
-      </div>
+      <ReturnContainer returnToClient onClick={() => toggleEditClient()} />
 
     </div>
   );

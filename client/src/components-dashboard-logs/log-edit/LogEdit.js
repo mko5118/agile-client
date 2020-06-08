@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MdInfoOutline, MdKeyboardReturn } from 'react-icons/md';
+import { MdInfoOutline } from 'react-icons/md';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 
 import { getLog, updateLog } from '../../redux/log/log.actions';
@@ -9,6 +9,7 @@ import { resetLogState } from '../../redux/dashboard/dashboard.actions';
 
 import Button from '../../components/button/Button';
 import FormInput from '../../components/form-input/FormInput';
+import ReturnContainer from '../../components/return-container/ReturnContainer';
 
 import style from './log-edit.module.scss';
 
@@ -87,12 +88,9 @@ const LogEdit = ({ currentLog, loading, getLog, updateLog, resetLogState }) => {
         <Button type='submit' clientButton>Update</Button>
       </form>
 
-      <div className={style.returnContainer} onClick={() => resetLogState()}>
-        <MdKeyboardReturn className={style.returnIcon} aria-label='Return to Client' />
-        <p className={style.returnText}>Return to Client</p>
-      </div>
+      <ReturnContainer returnToClient onClick={() => resetLogState()} />
     </div>
-  )
+  );
 
   return (
     (currentLog === {} || loading)

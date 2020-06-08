@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MdPerson, MdWeb, MdPhoneInTalk, MdPlace, MdKeyboardReturn } from 'react-icons/md';
+import { MdPerson, MdWeb, MdPhoneInTalk, MdPlace } from 'react-icons/md';
 
 import { getCompany, updateCompany } from '../../redux/company/company.actions';
 import { resetCompanyState } from '../../redux/dashboard/dashboard.actions';
 
 import Button from '../../components/button/Button';
 import FormInput from '../../components/form-input/FormInput';
+import ReturnContainer from '../../components/return-container/ReturnContainer';
 
 import style from './company-edit.module.scss';
 
@@ -118,10 +119,7 @@ const CompanyEdit = ({ client, currentCompany, loading, getCompany, updateCompan
         <Button type='submit' clientButton>Update</Button>
       </form>
 
-      <div className={style.returnContainer} onClick={() => resetCompanyState()}>
-        <MdKeyboardReturn className={style.returnIcon} aria-label='Return to Client' />
-        <p className={style.returnText}>Return to Client</p>
-      </div>
+      <ReturnContainer returnToClient onClick={() => resetCompanyState()} />
 
     </div>
   );

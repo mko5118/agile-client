@@ -55,35 +55,6 @@
     }
   }
 
-  // RETURN CONTAINER
-  .returnContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-    margin-left: auto;
-    max-width: 16rem;
-    cursor: pointer;
-
-    .returnIcon {
-      margin-right: 0.5rem;
-      font-size: 2rem;
-      color: $stoplight-red;
-    }
-
-    .returnText {
-      color: $stoplight-red;
-      text-transform: uppercase;
-      font-size: 1.4rem;
-      font-weight: 400;
-
-      &:hover {
-        color: lighten($stoplight-red, 15%);
-      }
-    }
-  }
 }
 
 // ************* MEDIA QUERIES ************* //

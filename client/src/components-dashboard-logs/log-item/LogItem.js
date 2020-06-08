@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { MdEdit, MdDeleteForever } from 'react-icons/md';
 import { FaPlusCircle } from 'react-icons/fa';
 
@@ -34,20 +35,21 @@ const LogItem = ({ client, loading, clientLogs, getLog, getClientLogs, deleteLog
         <div key={log.id} className={style.logContainer}>
           <div className={style.headerContainer}>
             <h4 className={style.logType}>{log.type}</h4>
-            <div className={style.buttonContainer}>
-              <div className={style.editIconContainer} onClick={() => navigateToEditLog(log.id)}>
-                <MdEdit className={style.editIcon} aria-label='Edit Log' />
-                <span className={style.editText}>Edit</span>
-              </div>
-              <div className={style.deleteIconContainer} onClick={() => deleteLog(log.id)}>
-                <MdDeleteForever className={style.deleteIcon} aria-label='Delete Log' />
-                <span className={style.deleteText}>Delete</span>
-              </div>
-            </div>
           </div>
           <p className={style.logText}>{log.details}</p>
-          <p className={style.logText}>{log.log_date}</p>
+          <p className={style.logDateText}>{moment(log.log_date).format('MMMM Do YYYY')}</p>
+          {/* <p className={style.logText}>{log.log_date}</p> */}
           {/* <p className={style.logText}>{log.associated_client}</p> */}
+          <div className={style.buttonContainer}>
+            <div className={style.editIconContainer} onClick={() => navigateToEditLog(log.id)}>
+              <MdEdit className={style.editIcon} aria-label='Edit Log' />
+              <span className={style.editText}>Edit</span>
+            </div>
+            <div className={style.deleteIconContainer} onClick={() => deleteLog(log.id)}>
+              <MdDeleteForever className={style.deleteIcon} aria-label='Delete Log' />
+              <span className={style.deleteText}>Delete</span>
+            </div>
+          </div>
         </div>
       ))
     );
