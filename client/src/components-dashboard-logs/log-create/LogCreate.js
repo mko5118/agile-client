@@ -13,7 +13,8 @@ import FormInput from '../../components/form-input/FormInput';
 import style from './log-create.module.scss';
 
 // *************************** LOG CREATE COMPONENT *************************** //
-const LogCreate = ({ client, createLog, resetLogState }) => {
+const LogCreate = ({ removeReturnContainer, client, createLog, resetLogState }) => {
+  // 'removeReturnContainer' passed as prop from 'LogAllItems.js' component to remove duplicate return container div
   const [ formData, setFormData ] = useState({
     type: '',
     details: '',
@@ -89,10 +90,16 @@ const LogCreate = ({ client, createLog, resetLogState }) => {
         <Button type='submit' clientButton>Create</Button>
       </form>
 
-      <div className={style.returnContainer} onClick={() => resetLogState()}>
-        <MdKeyboardReturn className={style.returnIcon} aria-label='Return to Client' />
-        <p className={style.returnText}>Return to Client</p>
-      </div>
+      {/* If 'removeReturnContainer' passed as prop, div does not display to remove duplicates */}
+      {
+        removeReturnContainer
+          ? ''
+          :
+            <div className={style.returnContainer} onClick={() => resetLogState()}>
+              <MdKeyboardReturn className={style.returnIcon} aria-label='Return to Client' />
+              <p className={style.returnText}>Return to Client</p>
+            </div>
+      }
 
     </div>
   )

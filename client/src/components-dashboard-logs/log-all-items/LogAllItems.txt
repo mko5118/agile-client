@@ -1,0 +1,61 @@
+import React, { } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { MdKeyboardReturn } from 'react-icons/md';
+
+import { resetLogState } from '../../redux/dashboard/dashboard.actions';
+
+import LogCreate from '../log-create/LogCreate';
+
+import style from './log-all-items.module.scss';
+
+// *************************** LOG ALL ITEMS COMPONENT *************************** //
+const LogAllItems = ({ clientLogs, resetLogState }) => {
+
+  const clientLogsContainer = (
+    clientLogs.map(clientLog => (
+      <div className={style.clientLogItem} key={clientLog.id}>
+        <p>{clientLog.id}</p>
+        <p>{clientLog.type}</p>
+        <p>{clientLog.details}</p>
+        <p>{clientLog.log_date}</p>
+        <p>{clientLog.associated_client}</p>
+      </div>
+    ))
+  );
+
+  return (
+    <div className={style.logAllItems}>
+
+      <LogCreate removeReturnContainer />
+
+      <div className={style.clientLogsContainer}>
+        <h2 className={style.header}>All Logs</h2>
+        { clientLogsContainer }
+      </div>
+
+      <div className={style.returnContainer} onClick={() => resetLogState()}>
+        <MdKeyboardReturn className={style.returnIcon} aria-label='Return to Client' />
+        <p className={style.returnText}>Return to Client</p>
+      </div>
+
+    </div>
+  )
+};
+
+// PROP TYPES
+LogAllItems.propTypes = {
+  clientLogs: PropTypes.array,
+  resetLogState: PropTypes.func.isRequired,
+};
+
+// REDUX
+const mapStateToProps = (state) => ({
+  clientLogs: state.log.clientLogs,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  resetLogState: () => dispatch(resetLogState()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogAllItems);

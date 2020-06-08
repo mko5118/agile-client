@@ -13,6 +13,7 @@ import CompanyEdit from '../../components-dashboard-company/company-edit/Company
 import LogItem from '../../components-dashboard-logs/log-item/LogItem';
 import LogCreate from '../../components-dashboard-logs/log-create/LogCreate';
 import LogEdit from '../../components-dashboard-logs/log-edit/LogEdit';
+import LogAllItems from '../../components-dashboard-logs/log-all-items/LogAllItems';
 
 import style from './client-page.module.scss';
 
@@ -99,11 +100,11 @@ const ClientPage = ({ client, companies, clientLogs, companyMenu, logMenu, editi
         {
           (clientLogs.length > 0)
             ?
-              <div className={style.titleHeader} onClick={() => toggleAllLogs()}>
+              <div className={style.titleHeader}>
                 <h3 className={style.sectionTitle}>Recent Logs</h3>
-                <div className={style.viewAllIconContainer}>
+                <div className={style.viewAllIconContainer} onClick={() => toggleAllLogs()}>
                   <MdRemoveRedEye className={style.viewAllIcon} />
-                  <span className={style.viewAllText}>View All Logs</span>
+                  <span className={style.viewAllText}>View / Add Logs</span>
                 </div>
               </div>
             : <h3 className={style.sectionTitle}>Recent Logs</h3>
@@ -158,7 +159,7 @@ const ClientPage = ({ client, companies, clientLogs, companyMenu, logMenu, editi
     clientInfo = (
       <div className={style.clientPage}>
         { clientHeader }
-        ALL LOGS COMPONENT
+        <LogAllItems />
       </div>
     )
   };

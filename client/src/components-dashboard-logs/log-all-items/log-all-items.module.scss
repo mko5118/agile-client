@@ -1,0 +1,149 @@
+@import '../../styles/global.styles';
+
+// ************* LOG ALL ITEMS COMPONENT STYLES ************* //
+.logAllItems {
+
+  // CLIENT LOGS CONTAINER
+  .clientLogsContainer {
+    margin-top: 4rem;
+
+    .header {
+      color: $strong-blue;
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+    }
+
+    .clientLogItem {
+      margin-bottom: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid $grey;
+  
+      // HEADER CONTAINER
+      .headerContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+  
+        .logType {
+          width: 25%;
+          font-size: 1.6rem;
+          margin-right: 2rem;
+        }
+  
+        // BUTTON CONTAINER
+        .buttonContainer {
+          width: 75%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+  
+          .editIconContainer {
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-right: 2rem;
+  
+            .editIcon {
+              color: darken($stoplight-yellow, 7.5%);
+              font-size: 2rem;
+              margin-right: 0.5rem;
+            }
+  
+            .editText {
+              font-size: 1.3rem;
+              color: $dark-grey;
+              text-transform: uppercase;
+  
+              &:hover {
+                color: $black;
+              }
+            }
+          }
+  
+          .deleteIconContainer {
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-right: 2rem;
+  
+            .deleteIcon {
+              color: $stoplight-red;
+              font-size: 2rem;
+              margin-right: 0.5rem;
+            }
+  
+            .deleteText {
+              font-size: 1.3rem;
+              color: $dark-grey;
+              text-transform: uppercase;
+  
+              &:hover {
+                color: $black;
+              }
+            }
+          }
+        }
+  
+      }
+  
+      .logText {
+        color: darken($dark-grey, 20%);
+        font-size: 1.6rem;
+        margin-bottom: 0.25rem;
+      }
+    }
+  }
+
+  // RETURN CONTAINER
+  .returnContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    margin-left: auto;
+    max-width: 16rem;
+    cursor: pointer;
+
+    .returnIcon {
+      margin-right: 0.5rem;
+      font-size: 2rem;
+      color: $stoplight-red;
+    }
+
+    .returnText {
+      color: $stoplight-red;
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      font-weight: 400;
+
+      &:hover {
+        color: lighten($stoplight-red, 15%);
+      }
+    }
+  }
+}
+
+// ************* MEDIA QUERIES ************* //
+@media screen and (min-width: 500px) {
+  .logAllItems{ 
+    
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .logAllItems{ 
+
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .logAllItems{ 
+
+  }
+}
