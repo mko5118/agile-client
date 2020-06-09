@@ -20,11 +20,25 @@
     border-bottom: 1px solid $grey;
   }
 
-  // SECTION TITLE
-  .sectionTitle {
-    color: $black;
-    font-size: 2.2rem;
-    padding-bottom: 1.5rem;
+  // PENDING TODO CONTAINER
+  .pendingTodoContainer {
+
+    .sectionTitle {
+      color: $black;
+      font-size: 2.2rem;
+      padding-bottom: 1.5rem;
+    }
+  }
+
+  // COMPLETED TODO CONTAINER
+  .completedTodoContainer {
+    margin-top: 6rem;
+
+    .sectionTitle {
+      color: $black;
+      font-size: 2.2rem;
+      padding-bottom: 1.5rem;
+    }
   }
 
 }

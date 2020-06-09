@@ -23,14 +23,17 @@
     flex-direction: column;
 
     .formLabel {
-      font-size: 1.4rem;
-      font-weight: 400;
+      // font-size: 1.4rem;
+      // font-weight: 400;
+      font-size: 1.5rem;
+      font-weight: 500;
       margin-bottom: 0.5rem;
       color: $black;
 
       .requiredText {
         color: $dark-grey;
-        font-size: 1.3rem;
+        // font-size: 1.3rem;
+        font-size: 1.4rem;
       }
     }
 
