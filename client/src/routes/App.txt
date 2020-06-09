@@ -8,7 +8,6 @@ import { store } from '../redux/store';
 import Navbar from '../pages/navbar/Navbar';
 import Footer from '../pages/footer/Footer';
 import PrivateRoute from '../components/private-route/PrivateRoute';
-import Alert from '../components/alert/Alert';
 
 // NOT AUTHENTICATED PAGES
 import HomePage from '../pages/home-page/HomePage';
@@ -38,7 +37,6 @@ const App = () => {
         <BrowserRouter>
 
           <div className={style.content}>
-            <Alert />
             <Navbar />
             <Switch>
               <Route exact path='/' component={HomePage} />

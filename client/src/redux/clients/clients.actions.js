@@ -6,6 +6,12 @@ import {
 
 const API_URL = 'http://localhost:8000';
 
+const deployOnError = (err, dispatch) => {
+  const errors = err.response.statusText;
+  errors && dispatch(setAlert(errors, 'danger', 2000));
+  dispatch({ type: CLIENT_ERROR });
+};
+
 // *************************** GET ALL CLIENTS *************************** //
 export const getAllClients = () => async (dispatch) => {
   try {
@@ -29,11 +35,10 @@ export const getAllClients = () => async (dispatch) => {
       payload: sortedClientsByLastName,
     });
   } catch (err) {
-    const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 2000));
-    dispatch({ type: CLIENT_ERROR });
+    deployOnError(err, dispatch);
   }
 };
+
 
 // *************************** GET A CLIENT *************************** //
 export const getAClient = (id) => async (dispatch) => {
@@ -51,11 +56,10 @@ export const getAClient = (id) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 2000));
-    dispatch({ type: CLIENT_ERROR });
+    deployOnError(err, dispatch);
   }
 };
+
 
 // *************************** CREATE CLIENT *************************** //
 export const createClient = ({ first_name, last_name, email, phone_number, job_title, notes }) => async (dispatch) => {
@@ -74,12 +78,12 @@ export const createClient = ({ first_name, last_name, email, phone_number, job_t
       type: CREATE_CLIENT,
       payload: res.data,
     });
+    dispatch(setAlert('New Client Added', 'success', 2000));
   } catch (err) {
-    const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 2000));
-    dispatch({ type: CLIENT_ERROR });
+    deployOnError(err, dispatch);
   }
 };
+
 
 // *************************** DELETE CLIENT *************************** //
 export const deleteClient = (id) => async (dispatch) => {
@@ -97,13 +101,13 @@ export const deleteClient = (id) => async (dispatch) => {
         type: DELETE_CLIENT,
         payload: id
       });
+      dispatch(setAlert('Client Deleted Successfully', 'success', 2000));
     } catch (err) {
-      const errors = err.response.statusText;
-      errors && dispatch(setAlert(errors, 'danger', 2000));
-      dispatch({ type: CLIENT_ERROR });
+      deployOnError(err, dispatch);
     }
   }
 };
+
 
 // *************************** UPDATE CLIENT *************************** //
 export const updateClient = (id, formData) => async (dispatch) => {
@@ -121,12 +125,12 @@ export const updateClient = (id, formData) => async (dispatch) => {
       type: UPDATE_CLIENT,
       payload: res.data,
     });
+    dispatch(setAlert('Client Updated', 'success', 2000));
   } catch (err) {
     const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 2000));
-    dispatch({ type: CLIENT_ERROR });
   }
 };
+
 
 // *************************** RESET CLIENT *************************** //
 export const resetClient = () => (dispatch) => {

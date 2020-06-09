@@ -1,0 +1,52 @@
+@import '../../styles/global.styles';
+
+// ************* ALERT COMPONENT STYLES ************* //
+.alert {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  background: $black;
+  color: $white;
+  padding: 0.5rem 0;
+  margin-bottom: 0.25rem;
+
+  font-size: 1.3rem;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  &.alertSuccess {
+    background: $success;
+  }
+
+  &.alertDanger {
+    background: $danger;
+  }
+
+  &.alertWarning {
+    background: $warning;
+  }
+}
+
+// ************* MEDIA QUERIES ************* //
+@media screen and (min-width: 500px) {
+  .alert {
+    background: $black;
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .alert {
+    background: $black;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .alert {
+
+  }
+}

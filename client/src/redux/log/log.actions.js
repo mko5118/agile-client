@@ -33,6 +33,7 @@ export const getAllLogs = () => async (dispatch) => {
   }
 };
 
+
 // *************************** GET CLIENT LOGS *************************** //
 export const getClientLogs = (clientId) => async (dispatch) => {
   try {
@@ -60,6 +61,7 @@ export const getClientLogs = (clientId) => async (dispatch) => {
   }
 };
 
+
 // *************************** GET LOG *************************** //
 export const getLog = (logId) => async (dispatch) => {
   try {
@@ -80,6 +82,7 @@ export const getLog = (logId) => async (dispatch) => {
   }
 };
 
+
 // *************************** CREATE LOG *************************** //
 export const createLog = ({ type, details, associated_client }) => async (dispatch) => {
   try {
@@ -97,10 +100,12 @@ export const createLog = ({ type, details, associated_client }) => async (dispat
       type: CREATE_LOG,
       payload: res.data,
     });
+    dispatch(setAlert('New Log Added', 'success', 2000));
   } catch (err) {
     deployOnError(err, dispatch);
   }
 };
+
 
 // *************************** DELETE LOG *************************** //
 export const deleteLog = (logId) => async (dispatch) => {
@@ -118,11 +123,13 @@ export const deleteLog = (logId) => async (dispatch) => {
         type: DELETE_LOG,
         payload: logId,
       });
+      dispatch(setAlert('Log Deleted Successfully', 'success', 2000));
     } catch (err) {
       deployOnError(err, dispatch);
     }
   }
 };
+
 
 // *************************** UPDATE LOG *************************** //
 export const updateLog = (logId, formData) => async (dispatch) => {
@@ -140,6 +147,7 @@ export const updateLog = (logId, formData) => async (dispatch) => {
       type: UPDATE_LOG,
       payload: res.data,
     });
+    dispatch(setAlert('Log Updated', 'success', 2000));
   } catch (err) {
     deployOnError(err, dispatch);
   }

@@ -6,6 +6,12 @@ import {
 
 const API_URL = 'http://localhost:8000';
 
+const deployOnError = (err, dispatch) => {
+  const errors = err.response.statusText;
+  errors && dispatch(setAlert(errors, 'danger', 2000));
+  dispatch({ type: TASK_ERROR });
+};
+
 // *************************** GET ALL TASKS *************************** //
 export const getAllTasks = () => async (dispatch) => {
   try {
@@ -22,10 +28,7 @@ export const getAllTasks = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    // const errors = err.response.data.errors;
-    const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 2000));
-    dispatch({ type: TASK_ERROR });
+    deployOnError(err, dispatch);
   }
 };
 
@@ -47,9 +50,7 @@ export const getTask = (id) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 2000));
-    dispatch({ type: TASK_ERROR });
+    deployOnError(err, dispatch);
   }
 }
 
@@ -73,10 +74,9 @@ export const createTask = (title, body) => async (dispatch) => {
       type: CREATE_TASK,
       payload: res.data,
     });
+    dispatch(setAlert('New Task Added', 'success', 2000));
   } catch (err) {
-    const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 20000));
-    dispatch({ type: TASK_ERROR });
+    deployOnError(err, dispatch);
   }
 }
 
@@ -97,10 +97,9 @@ export const updateTask = (id, formData) => async (dispatch) => {
       type: UPDATE_TASK,
       payload: res.data,
     });
+    dispatch(setAlert('Task Updated', 'success', 2000));
   } catch (err) {
-    const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 2000));
-    dispatch({ type: TASK_ERROR });
+    deployOnError(err, dispatch);
   }
 };
 
@@ -121,10 +120,9 @@ export const deleteTask = (id) => async (dispatch) => {
         type: DELETE_TASK,
         payload: id,
       });
+      dispatch(setAlert('Task Deleted Successfully', 'success', 2000));
     } catch (err) {
-      const errors = err.response.statusText;
-      errors && dispatch(setAlert(errors, 'danger', 2000));
-      dispatch({ type: TASK_ERROR });
+      deployOnError(err, dispatch);
     }
   }
 };

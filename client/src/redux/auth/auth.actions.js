@@ -8,6 +8,13 @@ import {
 
 const API_URL = 'http://localhost:8000';
 
+const deployOnError = (err, dispatch) => {
+  const errors = err.response.statusText;
+  errors && dispatch(setAlert(errors, 'danger', 2000));
+  dispatch({ type: REGISTRATION_FAIL });
+};
+
+
 // *************************** SET AUTH TOKEN *************************** //
 export const setAuthToken = (token) => {
   if (token) {
@@ -63,16 +70,9 @@ export const registerUser = ({ email, password, name }) => async (dispatch) => {
       payload: res.data
     });
     dispatch(loginUser(email, password));
+    dispatch(setAlert('Registration Successful', 'success', 2000));
   } catch (err) {
-    const errors = err.response.data.errors;
-    if (errors) {
-      errors.forEach(error => dispatch(
-        setAlert(error.msg, 'danger')
-      ));
-    };
-    dispatch({
-      type: REGISTRATION_FAIL,
-    });
+    deployOnError(err, dispatch);
   }
 };
 
@@ -93,16 +93,9 @@ export const loginUser = (email, password) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(loadUser());
+    dispatch(setAlert('Login Successful', 'success', 2000));
   } catch (err) {
-    const errors = err.response.data.errors;
-    if (errors) {
-      errors.forEach(error => dispatch(
-        setAlert(error.msg, 'danger', 2000)
-      ))
-    };
-    dispatch({
-      type: LOGIN_FAIL,
-    });
+    deployOnError(err, dispatch);
   }
 };
 

@@ -6,6 +6,12 @@ import {
 
 const API_URL = 'http://localhost:8000';
 
+const deployOnError = (err, dispatch) => {
+  const errors = err.response.statusText;
+  errors && dispatch(setAlert(errors, 'danger', 2000));
+  dispatch({ type: COMPANY_ERROR });
+};
+
 // *************************** GET ALL COMPANIES *************************** //
 export const getAllCompanies = () => async (dispatch) => {
   try {
@@ -21,11 +27,10 @@ export const getAllCompanies = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 2000));
-    dispatch({ type: COMPANY_ERROR });
+    deployOnError(err, dispatch);
   }
 };
+
 
 // *************************** GET COMPANY *************************** //
 export const getCompany = (companyId) => async (dispatch) => {
@@ -43,11 +48,10 @@ export const getCompany = (companyId) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 2000));
-    dispatch({ type: COMPANY_ERROR });
+    deployOnError(err, dispatch);
   }
 };
+
 
 // *************************** CREATE COMPANY *************************** //
 export const createCompany = ({ company_name, website, company_number, address, company_notes, associated_client }) => async (dispatch) => {
@@ -67,12 +71,12 @@ export const createCompany = ({ company_name, website, company_number, address, 
       type: CREATE_COMPANY,
       payload: res.data,
     });
+    dispatch(setAlert('New Company Added', 'success', 2000));
   } catch (err) {
-    const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 2000));
-    dispatch({ type: COMPANY_ERROR });
+    deployOnError(err, dispatch);
   }
 };
+
 
 // *************************** DELETE COMPANY *************************** //
 export const deleteCompany = (companyId) => async (dispatch) => {
@@ -88,13 +92,13 @@ export const deleteCompany = (companyId) => async (dispatch) => {
         type: DELETE_COMPANY,
         payload: companyId,
       });
+      dispatch(setAlert('Company Deleted Successfully', 'success', 2000));
     } catch (err) {
-      const errors = err.response.statusText;
-      errors && dispatch(setAlert(errors, 'danger', 2000));
-      dispatch({ type: COMPANY_ERROR });
+      deployOnError(err, dispatch);
     }
   }
 };
+
 
 // *************************** UPDATE COMPANY *************************** //
 export const updateCompany = (companyId, formData) => async (dispatch) => {
@@ -112,9 +116,8 @@ export const updateCompany = (companyId, formData) => async (dispatch) => {
       type: UPDATE_COMPANY,
       payload: res.data,
     });
+    dispatch(setAlert('Company Updated', 'success', 2000));
   } catch (err) {
-    const errors = err.response.statusText;
-    errors && dispatch(setAlert(errors, 'danger', 2000));
-    dispatch({ type: COMPANY_ERROR });
+    deployOnError(err, dispatch);
   }
 };
