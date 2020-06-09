@@ -9,6 +9,7 @@ import { resetLogState } from '../../redux/dashboard/dashboard.actions';
 
 import Button from '../../components/button/Button';
 import FormInput from '../../components/form-input/FormInput';
+import FormTextArea from '../../components/form-text-area/FormTextArea';
 import ReturnContainer from '../../components/return-container/ReturnContainer';
 
 import style from './log-edit.module.scss';
@@ -75,14 +76,14 @@ const LogEdit = ({ currentLog, loading, getLog, updateLog, resetLogState }) => {
         </div>
 
         <label className={style.formLabel}>Details</label>
-        <textarea 
+        <FormTextArea 
           type='textarea'
           name='details'
           placeholder='Details'
           autoComplete='off'
           value={formData.details}
           onChange={onChange}
-          className={style.textArea}
+          clientTextArea
         />
 
         <Button type='submit' clientButton>Update</Button>

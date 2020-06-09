@@ -7,8 +7,9 @@ import { FaUserTie } from 'react-icons/fa';
 import { getAClient, updateClient, deleteClient, resetClient } from '../../redux/clients/clients.actions';
 import { toggleEditClient } from '../../redux/dashboard/dashboard.actions';
 
-import FormInput from '../../components/form-input/FormInput';
 import Button from '../../components/button/Button';
+import FormInput from '../../components/form-input/FormInput';
+import FormTextArea from '../../components/form-text-area/FormTextArea';
 import ReturnContainer from '../../components/return-container/ReturnContainer';
 
 import style from './client-edit.module.scss';
@@ -135,14 +136,14 @@ const ClientEdit = ({ client, loading, getAClient, updateClient, deleteClient, r
         </div>
 
         <label className={style.formLabel}>Notes</label>
-        <textarea 
+        <FormTextArea 
           type='textarea'
           name='notes'
           placeholder='Notes'
           autoComplete='off'
           value={formData.notes}
           onChange={onChange}
-          className={style.textArea}
+          clientTextArea
         />
 
         <Button type='submit' clientButton>Update</Button>

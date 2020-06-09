@@ -1,0 +1,131 @@
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { MdTitle } from 'react-icons/md';
+
+import { getAllTasks, updateTask } from '../../redux/task/task.actions';
+import { resetEditTask } from '../../redux/dashboard/dashboard.actions';
+
+import Button from '../../components/button/Button';
+import FormInput from '../../components/form-input/FormInput';
+import FormTextArea from '../../components/form-text-area/FormTextArea';
+import ReturnContainer from '../../components/return-container/ReturnContainer';
+
+import style from './task-edit.module.scss';
+
+// *************************** TASK EDIT COMPONENT *************************** //
+const TaskEdit = ({ task, getAllTasks, updateTask, resetEditTask }) => {
+  const [ formData, setFormData ] = useState({
+    title: task.title ? task.title : '',
+    body: task.body ? task.body : '',
+    date_created: task.date_created,
+    is_complete: task.is_complete,
+  });
+
+  const onChangeIsComplete = async () => {
+    const isChecked = formData.is_complete = !formData.is_complete;
+    setFormData({
+      ...formData,
+      is_complete: isChecked,
+    });
+  };
+
+  const onChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    await updateTask(task.id, formData);
+    getAllTasks();
+  };
+
+  return (
+    <div className={style.taskEdit}>
+      
+      <h2 className={style.header}>Update Todo</h2>
+
+      <form className={style.form} onSubmit={onSubmit}>
+        <label className={style.formLabel}>
+          Title <span className={style.requiredText}>(required)</span>
+        </label>
+        <div className={style.inputContainer}>
+          <MdTitle className={style.inputIcon} />
+          <FormInput 
+            type='text'
+            name='title'
+            placeholder='Title'
+            autoComplete='off'
+            value={formData.title}
+            onChange={onChange}
+            required
+            clientInput
+          />
+        </div>
+
+        <label className={style.formLabel}>Details</label>
+        <FormTextArea 
+          type='textarea'
+          name='body'
+          placeholder='Body'
+          autoComplete='off'
+          value={formData.body}
+          onChange={onChange}
+          clientTextArea
+        />
+
+        <label className={style.formLabel}>Date</label>
+        <div className={style.inputContainer}>
+          <MdTitle className={style.inputIcon} />
+          <FormInput 
+            type='date'
+            name='date_created'
+            placeholder='Date Created'
+            autoComplete='off'
+            value={formData.date_created}
+            onChange={onChange}
+          />
+        </div>
+
+        <div className={style.isCompleteContainer}>
+          <input 
+            type='checkbox'
+            name='is_complete'
+            checked={formData.is_complete}
+            onChange={onChangeIsComplete}
+            className={style.checkbox}
+          />
+          <label className={style.isCompleteText}>Completed</label>
+        </div>
+
+        <Button type='submit' todoButton>Update</Button>
+      </form>
+
+      <ReturnContainer returnToClient onClick={() => resetEditTask()} />
+    </div>
+  )
+};
+
+// PROP TYPES
+TaskEdit.propTypes = {
+  task: PropTypes.object,
+  getAllTasks: PropTypes.func.isRequired,
+  updateTask: PropTypes.func.isRequired,
+  resetEditTask: PropTypes.func.isRequired,
+};
+
+// REDUX
+const mapStateToProps = (state) => ({
+  task: state.task.task,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getAllTasks: () => dispatch(getAllTasks()),
+  updateTask: (taskId, formData) => dispatch(updateTask(taskId, formData)),
+  resetEditTask: () => dispatch(resetEditTask()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskEdit);

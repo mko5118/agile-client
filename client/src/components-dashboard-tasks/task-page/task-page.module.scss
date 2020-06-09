@@ -2,6 +2,30 @@
 
 // ************* TASK PAGE COMPONENT STYLES ************* //
 .taskPage {
+  padding: 0 2rem;
+  height: 100%;
+  overflow: auto;
+
+  // HEADER SECTION
+  .header {
+    color: $dark-teal;
+    // font-size: 3rem;
+    font-size: 4.4rem;
+    font-weight: 800;
+    // margin-bottom: 2rem;
+    text-transform: uppercase;
+
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $grey;
+  }
+
+  // SECTION TITLE
+  .sectionTitle {
+    color: $black;
+    font-size: 2.2rem;
+    padding-bottom: 1.5rem;
+  }
 
 }
 

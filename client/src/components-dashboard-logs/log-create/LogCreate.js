@@ -9,6 +9,7 @@ import { resetLogState } from '../../redux/dashboard/dashboard.actions';
 
 import Button from '../../components/button/Button';
 import FormInput from '../../components/form-input/FormInput';
+import FormTextArea from '../../components/form-text-area/FormTextArea';
 
 import style from './log-create.module.scss';
 
@@ -77,14 +78,14 @@ const LogCreate = ({ removeReturnContainer, client, createLog, resetLogState }) 
         </div>
 
         <label className={style.formLabel}>Details</label>
-        <textarea 
+        <FormTextArea 
           type='textarea'
           name='details'
           placeholder='Details'
           autoComplete='off'
           value={formData.details}
           onChange={onChange}
-          className={style.textArea}
+          clientTextArea
         />
 
         <Button type='submit' clientButton>Create</Button>

@@ -104,6 +104,26 @@
     }
   }
 
+  // TODO BUTTON
+  &.todoButton {
+    width: 15rem;
+    height: 4rem;
+    border: 1px solid $white;
+    border-radius: 2rem;
+
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    background: $dark-teal;
+    color: $white;
+
+    &:hover {
+      background: lighten($dark-teal, 7.5%);
+    }
+  }
+
 }
 
 // ************* MEDIA QUERIES ************* //

@@ -1,5 +1,5 @@
 import { 
-  TOGGLE_HOME_MENU, TOGGLE_CLIENTS_MENU, TOGGLE_TASKS_MENU, TOGGLE_CALENDAR_MENU, TOGGLE_CREATE_COMPANY, TOGGLE_EDIT_COMPANY, RESET_COMPANY_STATE, TOGGLE_ALL_LOGS, TOGGLE_CREATE_LOG, TOGGLE_EDIT_LOG, RESET_LOG_STATE, TOGGLE_EDIT_CLIENT, RESET_EDIT_CLIENT,
+  TOGGLE_HOME_MENU, TOGGLE_CLIENTS_MENU, TOGGLE_TASKS_MENU, TOGGLE_CALENDAR_MENU, TOGGLE_CREATE_COMPANY, TOGGLE_EDIT_COMPANY, RESET_COMPANY_STATE, TOGGLE_ALL_LOGS, TOGGLE_CREATE_LOG, TOGGLE_EDIT_LOG, RESET_LOG_STATE, TOGGLE_EDIT_CLIENT, RESET_EDIT_CLIENT, TOGGLE_EDIT_TASK, RESET_EDIT_TASK,
 } from './dashboard.types';
 
 // *************************** TOGGLE HOME MENU *************************** //
@@ -90,6 +90,20 @@ export const toggleEditClient = () => (dispatch) => {
 export const resetEditClient = () => (dispatch) => {
   dispatch({
     type: RESET_EDIT_CLIENT,
+  });
+};
+
+// *************************** TOGGLE EDIT TASK *************************** //
+export const toggleEditTask = () => (dispatch) => {
+  dispatch({
+    type: TOGGLE_EDIT_TASK,
+  });
+};
+
+// *************************** RESET EDIT TASK *************************** //
+export const resetEditTask = () => (dispatch) => {
+  dispatch({
+    type: RESET_EDIT_TASK,
   });
 };
 

@@ -1,15 +1,20 @@
 @import '../../styles/global.styles';
 
-// ************* COMPANY CREATE COMPONENT STYLES ************* //
-.companyCreate {
+// ************* TASK CREATE COMPONENT STYLES ************* //
+.taskCreate {
 
   // HEADER SECTION
   .header {
-    color: $strong-blue;
-    font-size: 2.4rem;
-    font-weight: 800;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
+
+    .title {
+      // color: $strong-blue;
+      color: $dark-teal;
+      font-size: 2rem;
+      // font-size: 3rem;
+      // font-weight: 800;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+    }
   }
 
   // FORM SECTION
@@ -38,7 +43,8 @@
       border-radius: 1rem;
 
       .inputIcon {
-        color: $strong-blue;
+        // color: $strong-blue;
+        color: $dark-teal;
         font-size: 1.8rem;
         margin: 0 0.5rem;
       }
@@ -49,19 +55,19 @@
 
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: 500px) {
-  .companyCreate {
+  .taskCreate {
     
   }
 }
 
 @media screen and (min-width: 800px) {
-  .companyCreate {
+  .taskCreate {
 
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .companyCreate {
+  .taskCreate {
 
   }
 }

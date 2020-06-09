@@ -8,6 +8,7 @@ import { resetCompanyState } from '../../redux/dashboard/dashboard.actions';
 
 import Button from '../../components/button/Button';
 import FormInput from '../../components/form-input/FormInput';
+import FormTextArea from '../../components/form-text-area/FormTextArea';
 import ReturnContainer from '../../components/return-container/ReturnContainer';
 
 import style from './company-edit.module.scss';
@@ -117,14 +118,14 @@ const CompanyEdit = ({ client, currentCompany, loading, getCompany, updateCompan
         </div>
 
         <label className={style.formLabel}>Company Notes</label>
-        <textarea 
+        <FormTextArea 
           type='textarea'
           name='company_notes'
           placeholder='Company Notes'
           autoComplete='off'
           value={formData.company_notes}
           onChange={onChange}
-          className={style.textArea}
+          clientTextArea
         />
 
         <Button type='submit' clientButton>Update</Button>

@@ -1,11 +1,11 @@
 @import '../../styles/global.styles';
 
-// ************* COMPANY EDIT COMPONENT STYLES ************* //
-.companyEdit {
-  
+// ************* TASK EDIT COMPONENT STYLES ************* //
+.taskEdit {
+
   // HEADER SECTION
   .header {
-    color: $strong-blue;
+    color: $dark-teal;
     font-size: 2.4rem;
     font-weight: 800;
     margin-bottom: 2rem;
@@ -38,20 +38,27 @@
       border-radius: 1rem;
 
       .inputIcon {
-        color: $strong-blue;
+        color: $dark-teal;
         font-size: 1.8rem;
         margin: 0 0.5rem;
       }
     }
 
-    .textArea {
-      color: $black;
-      padding: 1rem;
-      border: 1px solid lighten($dark-grey, 10%);
-      border-radius: 1rem;
+    .isCompleteContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       margin-bottom: 1rem;
-      font-size: 1.3rem;
-      height: 10rem;
+
+      .checkbox {
+        margin-right: 0.75rem;
+      }
+
+      .isCompleteText {
+        color: $black;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+      }
     }
   }
 
@@ -59,19 +66,19 @@
 
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: 500px) {
-  .companyEdit {
+  .taskEdit {
     
   }
 }
 
 @media screen and (min-width: 800px) {
-  .companyEdit {
+  .taskEdit {
 
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .companyEdit {
+  .taskEdit {
 
   }
 }

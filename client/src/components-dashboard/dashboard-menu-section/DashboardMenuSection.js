@@ -5,33 +5,37 @@ import { FaHome, FaTasks, FaRegCalendarAlt } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
 import { 
-  toggleHomeMenu, toggleClientsMenu, toggleTasksMenu, toggleCalendarMenu 
+  toggleHomeMenu, toggleClientsMenu, toggleTasksMenu, toggleCalendarMenu, resetEditTask, 
 } from '../../redux/dashboard/dashboard.actions';
 import { resetClient } from '../../redux/clients/clients.actions';
 
 import style from './dashboard-menu-section.module.scss';
 
 // *************************** DASHBOARD MENU SECTION COMPONENT *************************** //
-const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, toggleHomeMenu, toggleClientsMenu, toggleTasksMenu, toggleCalendarMenu, resetClient }) =>  {
+const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, toggleHomeMenu, toggleClientsMenu, toggleTasksMenu, toggleCalendarMenu, resetEditTask, resetClient, }) =>  {
 
   const setHomeMenu = () => {
     toggleHomeMenu();
     resetClient();
+    resetEditTask();
   };
 
   const setClientsMenu = () => {
     toggleClientsMenu();
     resetClient();
+    resetEditTask();
   };
 
   const setTasksMenu = () => {
     toggleTasksMenu();
     resetClient();
+    resetEditTask();
   };
 
   const setCalendarMenu = () => {
     toggleCalendarMenu();
     resetClient();
+    resetEditTask();
   };
 
   return (
@@ -79,6 +83,7 @@ DashboardMenuSection.propTypes = {
   toggleClientsMenu: PropTypes.func.isRequired,
   toggleTasksMenu: PropTypes.func.isRequired,
   toggleCalendarMenu: PropTypes.func.isRequired,
+  resetEditTask: PropTypes.func.isRequired,
   resetClient: PropTypes.func.isRequired,
 };
 
@@ -95,6 +100,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleClientsMenu: () => dispatch(toggleClientsMenu()),
   toggleTasksMenu: () => dispatch(toggleTasksMenu()),
   toggleCalendarMenu: () => dispatch(toggleCalendarMenu()),
+  resetEditTask: () => dispatch(resetEditTask()),
   resetClient: () => dispatch(resetClient()),
 });
 

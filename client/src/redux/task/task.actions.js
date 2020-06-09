@@ -23,9 +23,16 @@ export const getAllTasks = () => async (dispatch) => {
 
     const res = await axios.get(`${API_URL}/api/task/tasks/`, config);
 
+    // Sort 'tasks' by DATE_CREATED with most recent logs last
+    const sortedTasksByDate = res.data.sort((a, b) => {
+      if (a.date_created < b.date_created) { return -1 }
+      if (a.date_created > b.date_created) { return 1}
+      return 0
+    });
+
     dispatch({
       type: GET_ALL_TASKS,
-      payload: res.data,
+      payload: sortedTasksByDate,
     });
   } catch (err) {
     deployOnError(err, dispatch);
@@ -56,7 +63,7 @@ export const getTask = (id) => async (dispatch) => {
 
 
 // *************************** CREATE TASK *************************** //
-export const createTask = (title, body) => async (dispatch) => {
+export const createTask = (title, body, is_complete) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -66,7 +73,7 @@ export const createTask = (title, body) => async (dispatch) => {
     };
 
     // renamed 'task.body' to 'content' due to sharing namespace with 'body'
-    const bodyJSON = JSON.stringify({title, body});
+    const bodyJSON = JSON.stringify({title, body, is_complete});
 
     const res = await axios.post(`${API_URL}/api/task/tasks/`, bodyJSON, config);
     console.log(res);

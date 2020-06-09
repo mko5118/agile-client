@@ -3,6 +3,122 @@
 // ************* TASK ITEM COMPONENT STYLES ************* //
 .taskItem {
 
+  // TASK CONTAINER
+  .taskContainer {
+    margin-bottom: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid $grey;
+
+    // HEADER CONTAINER
+    .headerContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 0.25rem;
+
+      .taskType {
+        color: $dark-teal;
+        font-size: 1.6rem;
+        margin-right: 2rem;
+      }
+    }
+
+    .taskText {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .taskDateText {
+      color: $dark-grey;
+      font-size: 1.4rem;
+      font-style: italic;
+      // margin-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    // BUTTON CONTAINER
+    .buttonContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      // margin-bottom: 0.25rem;
+
+      .isCompleteContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .checkbox {
+          margin-right: 0.75rem;
+        }
+
+        .isCompleteText {
+          color: $black;
+          font-size: 1.2rem;
+          text-transform: uppercase;
+        }
+      }
+
+      .iconsContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .editIconContainer {
+          cursor: pointer;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin-right: 3rem;
+  
+          .editIcon {
+            color: darken($stoplight-yellow, 7.5%);
+            font-size: 2rem;
+            margin-right: 0.5rem;
+          }
+  
+          .editText {
+            font-size: 1.2rem;
+            // color: $dark-grey;
+            color: $black;
+            text-transform: uppercase;
+  
+            &:hover {
+              // color: $black;
+              color: $dark-grey;
+            }
+          }
+        }
+  
+        .deleteIconContainer {
+          cursor: pointer;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+  
+          .deleteIcon {
+            color: $stoplight-red;
+            font-size: 2rem;
+            margin-right: 0.5rem;
+          }
+  
+          .deleteText {
+            font-size: 1.2rem;
+            // color: $dark-grey;
+            color: $black;
+            text-transform: uppercase;
+  
+            &:hover {
+              // color: $black;
+              color: $dark-grey;
+            }
+          }
+        }
+      }
+    }
+
+  }
 }
 
 // ************* MEDIA QUERIES ************* //

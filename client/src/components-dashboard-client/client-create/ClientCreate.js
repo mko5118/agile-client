@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MdPerson, MdEmail, MdPhoneInTalk } from 'react-icons/md'
+import { MdPerson, MdEmail, MdPhoneInTalk } from 'react-icons/md';
 import { FaUserTie } from 'react-icons/fa';
 
 import { createClient } from '../../redux/clients/clients.actions';
 
 import FormInput from '../../components/form-input/FormInput';
 import Button from '../../components/button/Button';
+import FormTextArea from '../../components/form-text-area/FormTextArea';
 
 import style from './client-create.module.scss';
 
@@ -125,14 +126,14 @@ const ClientCreate = ({ createClient }) => {
         </div>
 
         <label className={style.formLabel}>Notes</label>
-        <textarea 
+        <FormTextArea 
           type='textarea'
           name='notes'
           placeholder='Notes'
           autoComplete='off'
           value={formData.notes}
           onChange={onChange}
-          className={style.textArea}
+          clientTextArea
         />
 
         <Button type='submit' clientButton>Add Client</Button>

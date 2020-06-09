@@ -69,11 +69,13 @@
 
           .editText {
             font-size: 1.2rem;
-            color: $dark-grey;
+            // color: $dark-grey;
+            color: $black;
             text-transform: uppercase;
 
             &:hover {
-              color: $black;
+              // color: $black;
+              color: $dark-grey;
             }
           }
         }
@@ -93,11 +95,13 @@
 
           .deleteText {
             font-size: 1.2rem;
-            color: $dark-grey;
+            // color: $dark-grey;
+            color: $black;
             text-transform: uppercase;
 
             &:hover {
-              color: $black;
+              // color: $black;
+              color: $dark-grey;
             }
           }
         }

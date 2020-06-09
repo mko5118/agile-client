@@ -6,8 +6,9 @@ import { MdPerson, MdWeb, MdPhoneInTalk, MdPlace } from 'react-icons/md';
 import { createCompany } from '../../redux/company/company.actions';
 import { resetCompanyState } from '../../redux/dashboard/dashboard.actions';
 
-import FormInput from '../../components/form-input/FormInput';
 import Button from '../../components/button/Button';
+import FormInput from '../../components/form-input/FormInput';
+import FormTextArea from '../../components/form-text-area/FormTextArea';
 import ReturnContainer from '../../components/return-container/ReturnContainer';
 
 import style from './company-create.module.scss';
@@ -112,14 +113,14 @@ const CompanyCreate = ({ client, createCompany, resetCompanyState }) => {
         </div>
 
         <label className={style.formLabel}>Company Notes</label>
-        <textarea 
+        <FormTextArea 
           type='textarea'
           name='company_notes'
           placeholder='Company Notes'
           autoComplete='off'
           value={createCompany.company_notes}
           onChange={onChange}
-          className={style.textArea}
+          clientTextArea
         />
         
         <Button type='submit' clientButton>Create</Button>

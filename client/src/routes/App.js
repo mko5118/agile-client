@@ -18,14 +18,14 @@ import SignupPage from '../pages/signup-page/SignupPage';
 
 // AUTHENTICATED PAGES
 import DashboardPage from '../pages/dashboard-page/DashboardPage';
-import ClientsPage from '../components-dashboard-client/clients-page/ClientsPage';
+// import ClientsPage from '../components-dashboard-client/clients-page/ClientsPage';
 // import ClientEdit from '../components-dashboard-client/client-edit/ClientEdit';
 // import CompanyCreate from '../components-dashboard-company/company-create/CompanyCreate';
 // import CompanyEdit from '../components-dashboard-company/company-edit/CompanyEdit';
 // import LogCreate from '../components-dashboard-logs/log-create/LogCreate';
 // import LogEdit from '../components-dashboard-logs/log-edit/LogEdit';
-import TaskPage from '../components-dashboard-tasks/task-page/TaskPage';
-import TaskItem from '../components-dashboard-tasks/task-item/TaskItem';
+// import TaskPage from '../components-dashboard-tasks/task-page/TaskPage';
+// import TaskItem from '../components-dashboard-tasks/task-item/TaskItem';
 
 import style from './app.modules.scss';
 
@@ -48,7 +48,7 @@ const App = () => {
               {/* PRIVATE ROUTES */}
               <Route exact path='/dashboard' component={DashboardPage} />
 
-              <Route exact path='/dashboard/clients' component={ClientsPage} />
+              {/* <Route exact path='/dashboard/clients' component={ClientsPage} /> */}
               {/* <Route exact path='/dashboard/clients/:client_id' component={ClientEdit} /> */}
 
               {/* <Route exact path='/dashboard/clients/company-create/:client_id' component={CompanyCreate} />
@@ -57,8 +57,8 @@ const App = () => {
               {/* <Route exact path='/dashboard/clients/log-create/:client_id' component={LogCreate} /> */}
               {/* <Route exact path='/dashboard/clients/log/:log_id' component={LogEdit} /> */}
 
-              <Route exact path='/dashboard/tasks' component={TaskPage} />
-              <Route exact path='/dashboard/tasks/:id' component={TaskItem} />
+              {/* <Route exact path='/dashboard/tasks' component={TaskPage} /> */}
+              {/* <Route exact path='/dashboard/tasks/:id' component={TaskItem} /> */}
             </Switch>
           </div>
 
