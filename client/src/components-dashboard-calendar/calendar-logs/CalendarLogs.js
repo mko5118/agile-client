@@ -29,6 +29,7 @@ const CalendarLogs = ({ logs, getAllLogs, addCalendarDateLog, resetCalendarDateL
       details: log.details,
       date: moment(log.log_date).format('YYYY-MM-DD'),
       associated_client: log.associated_client,
+      // backgroundColor: '#3082E2',
     })
   ));
 
@@ -66,33 +67,16 @@ const CalendarLogs = ({ logs, getAllLogs, addCalendarDateLog, resetCalendarDateL
         weekends={true}
         events={formData.length > 0 ? formData : []}
         dateClick={onDateClick}
+        height={'auto'}
+        buttonText={{
+          today: 'Today',
+        }}
+        eventOrder={'start'}
+        eventColor={'#3082E2'}
+        // themeSystem={'standard'}
       />
 
-      {/* WILL BE MOVING TO THE DASHBOARD_SMALL_SECTION ? */}
-      <div className={style.recentLogsContainer}>
-        <div className={style.headerContainer}>
-          <h2 className={style.header}>Recent Logs</h2>
-        </div>
-        {/* 
-            * GOALS
-            ** DISPLAY ALL RECENT LOGS FOR ALL CLIENTS SEPARATED BY LOG_DATE
-            ** WILL NEED TO CREATE A NEW SET OF ARRAYS SEPARATED BY LOG_DATE
-              -- IF LOG_DATES ARE SIMILAR, PUSH INTO THE SAME ARRAY
-              -- WILL HAVE TO FIGURE OUT HOW TO DO THIS WITHOUT CREATING A MILLION ARRAYS
-            ** DISPLAY THE 10 MOST RECENT LOGS (LOG_DATE)
-         */}
-        {
-          logs.length > 0
-            && logs.slice(0, 5).map(log => (
-              <div key={log.id} className={style.recentLogs}>
-                <h3>{log.type}</h3>
-                <p>{log.details}</p>
-                <p>{log.log_date}</p>
-                <p>Associated Client: {log.associated_client}</p>
-              </div>
-            ))
-        }
-      </div>
+      {/* RECENT LOGS - WILL BE MOVING TO THE DASHBOARD_SMALL_SECTION ? */}
 
     </div>
   )

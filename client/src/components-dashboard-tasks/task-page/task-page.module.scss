@@ -61,3 +61,14 @@
 
   }
 }
+
+@media screen and (min-width: 1800px) {
+  .taskPage {
+    padding: 0 4rem;
+  }
+}
+
+@media screen and (min-width: 2400px) {
+  .taskPage {
+  }
+}

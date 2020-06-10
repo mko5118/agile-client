@@ -8,31 +8,26 @@ import { getCalendarDateLogs } from '../../redux/calendar/calendar.actions';
 import style from './calendar-date-info.module.scss';
 
 // *************************** CALENDAR DATE INFO COMPONENT *************************** //
-const CalendarDateInfo = ({ calendarDateLogs, calendarDate, loading, clients, getCalendarDateLogs, }) => {
+const CalendarDateInfo = ({ calendarDateLogs, calendarDate, loading, getCalendarDateLogs, }) => {
   useEffect(() => {
     getCalendarDateLogs();
   }, [getCalendarDateLogs]);
 
   let date = moment(calendarDate).format('MMMM Do YYYY');
 
-  // Render 'calendarDateInfo' for each Event object
   let calendarDateInfo = (
     calendarDateLogs.length > 0
       ?
         calendarDateLogs.map(log => (
           <div key={log.id} className={style.calendarDateInfoContainer}>
-            {/* Map through 'clients' to render 'log.associated_client' first_name + last_name */}
-            {
-              clients.map(client => (
-                client.id === log.associated_client
-                  && <p className={style.logClient}>{client.first_name} {client.last_name}</p>
-              ))
-            }
+            <p className={style.logClient}>Associated Client: {log.associated_client}</p>
             <p className={style.logType}>{log.title}</p>
             <p className={style.logText}>{log.details}</p>
+            {/* <p>{log.id}</p> */}
+            {/* <p>{log.date}</p> */}
           </div>
         ))
-      : <p className={style.loadingText}>No logs currently...</p>
+      : <p>No logs currently...</p>
   );
 
   return (
@@ -43,7 +38,7 @@ const CalendarDateInfo = ({ calendarDateLogs, calendarDate, loading, clients, ge
       </h2>
       { 
         loading
-          ? <p className={style.loadingText}>Loading...</p>
+          ? <p>Loading...</p>
           : (calendarDateInfo)
       }
     </div>
@@ -55,7 +50,6 @@ CalendarDateInfo.propTypes = {
   calendarDateLogs: PropTypes.array.isRequired,
   calendarDate: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  clients: PropTypes.array,
   getCalendarDateLogs: PropTypes.func.isRequired,
 };
 
@@ -64,7 +58,6 @@ const mapStateToProps = (state) => ({
   calendarDateLogs: state.calendar.calendarDateLogs,
   calendarDate: state.calendar.calendarDate,
   loading: state.calendar.loading,
-  clients: state.clients.clients,
 });
 
 const mapDispatchToProps = (dispatch) => ({

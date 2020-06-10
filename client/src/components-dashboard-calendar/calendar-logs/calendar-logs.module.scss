@@ -3,13 +3,13 @@
 // ************* CALENDAR LOGS COMPONENT STYLES ************* //
 .calendarLogs {
   height: 95%;
-  // padding: 0 4rem;
+  padding: 0 2rem;
   overflow: scroll;
-
+  
   // HEADER SECTION
   .headerContainer {
     margin-bottom: 4rem;
-
+    
     .header {
       // color: $soft-orange;
       color: $strong-blue;
@@ -29,12 +29,23 @@
 
 @media screen and (min-width: 800px) {
   .calendarLogs {
-
+    
   }
 }
 
 @media screen and (min-width: 1200px) {
   .calendarLogs {
 
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .calendarLogs {
+    padding: 0 4rem;
+  }
+}
+
+@media screen and (min-width: 2400px) {
+  .calendarLogs {
   }
 }
