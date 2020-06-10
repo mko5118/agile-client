@@ -50,22 +50,22 @@ const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, 
         <h1 className={style.navigationTitle}>MENU</h1>
 
         <div className={style.navigationMenu}>
-
+          {/* HOME SECTION */}
           <div className={style.iconContainer} id={homeMenu.isActive ? style.isActiveContainer : ''} onClick={setHomeMenu}>
             <FaHome className={style.icon} id={homeMenu.isActive ? style.isActiveIcon : ''} />
             <span className={style.iconText} id={homeMenu.isActive ? style.isActiveText : ''}>Home</span>
           </div>
-
+          {/* CLIENTS SECTION */}
           <div className={style.iconContainer} id={clientsMenu.isActive ? style.isActiveContainer : ''} onClick={setClientsMenu}>
             <IoIosContacts className={style.icon} id={clientsMenu.isActive ? style.isActiveIcon : ''} />
             <span className={style.iconText} id={clientsMenu.isActive ? style.isActiveText : ''}>Clients</span>
           </div>
-
+          {/* TASKS SECTION */}
           <div className={style.iconContainer} id={tasksMenu.isActive ? style.isActiveContainer : ''} onClick={setTasksMenu}>
             <FaTasks className={style.icon} id={tasksMenu.isActive ? style.isActiveIcon : ''} />
             <span className={style.iconText} id={tasksMenu.isActive ? style.isActiveText : ''}>Todos</span>
           </div>
-
+          {/* CALENDAR SECTION */}
           <div className={style.iconContainer} id={calendarMenu.isActive ? style.isActiveContainer : ''} onClick={setCalendarMenu}>
             <FaRegCalendarAlt className={style.icon} id={calendarMenu.isActive ? style.isActiveIcon : ''} />
             <span className={style.iconText} id={calendarMenu.isActive ? style.isActiveText : ''}>Calendar</span>

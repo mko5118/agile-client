@@ -73,7 +73,6 @@ const CalendarLogs = ({ logs, getAllLogs, addCalendarDateLog, resetCalendarDateL
         }}
         eventOrder={'start'}
         eventColor={'#3082E2'}
-        // themeSystem={'standard'}
       />
 
       {/* RECENT LOGS - WILL BE MOVING TO THE DASHBOARD_SMALL_SECTION ? */}

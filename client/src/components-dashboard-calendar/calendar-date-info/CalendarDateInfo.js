@@ -15,25 +15,40 @@ const CalendarDateInfo = ({ calendarDateLogs, calendarDate, loading, clients, ge
 
   let date = moment(calendarDate).format('MMMM Do YYYY');
 
+  let calendarDateInfo;
+
+  // Render when Calendar first displays to User
+  if (calendarDateLogs.length === 0 && calendarDate === '') {
+    calendarDateInfo = (
+      <p className={style.loadingText}>Pick a date from the calendar.</p>
+    );
+  };
+
+  // Render if no 'calendarDateLog' object for selected 'date'
+  if (calendarDateLogs.length === 0 && calendarDate !== '') {
+    calendarDateInfo = (
+      <p className={style.loadingText}>No logs for {date}.</p>
+    );
+  };
+
   // Render 'calendarDateInfo' for each Event object
-  let calendarDateInfo = (
-    calendarDateLogs.length > 0
-      ?
-        calendarDateLogs.map(log => (
-          <div key={log.id} className={style.calendarDateInfoContainer}>
-            {/* Map through 'clients' to render 'log.associated_client' first_name + last_name */}
-            {
-              clients.map(client => (
-                client.id === log.associated_client
-                  && <p className={style.logClient}>{client.first_name} {client.last_name}</p>
-              ))
-            }
-            <p className={style.logType}>{log.title}</p>
-            <p className={style.logText}>{log.details}</p>
-          </div>
-        ))
-      : <p className={style.loadingText}>No logs currently...</p>
-  );
+  if (calendarDateLogs.length > 0 && calendarDate !== '') {
+    calendarDateInfo = (
+      calendarDateLogs.map(log => (
+        <div key={log.id} className={style.calendarDateInfoContainer}>
+          {/* Map through 'clients' to render 'log.associated_client' first_name + last_name */}
+          {
+            clients.map(client => (
+              client.id === log.associated_client
+                && <p className={style.logClient}>{client.first_name} {client.last_name}</p>
+            ))
+          }
+          <p className={style.logType}>{log.title}</p>
+          <p className={style.logText}>{log.details}</p>
+        </div>
+      ))
+    );
+  };
 
   return (
     <div className={style.calendarDateInfo}>
@@ -44,7 +59,7 @@ const CalendarDateInfo = ({ calendarDateLogs, calendarDate, loading, clients, ge
       { 
         loading
           ? <p className={style.loadingText}>Loading...</p>
-          : (calendarDateInfo)
+          : calendarDateInfo
       }
     </div>
   )
