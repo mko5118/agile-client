@@ -53,13 +53,16 @@ const Navbar = ({ auth, logoutUser }) => {
   return (
     <nav className={style.navbar}>
 
-      <div className={style.logoContainer}>
-        <NavLink to='/' className={style.logo}>AgileClient</NavLink>
+      <div className={style.innerNavbarContainer}>
+        <div className={style.logoContainer}>
+          <NavLink to='/' className={style.logo}>AgileClient</NavLink>
+        </div>
+
+        {
+          isAuthenticated ? authLinks : notAuthLinks
+        }
       </div>
 
-      {
-        isAuthenticated ? authLinks : notAuthLinks
-      }
     </nav>
   )
 };

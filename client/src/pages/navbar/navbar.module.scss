@@ -2,71 +2,83 @@
 
 // ************* NAVBAR COMPONENT STYLES ************* //
 .navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 0;
-
-  // LOGO CONTAINER
-  .logoContainer {
-
-    .logo {
-      color: $black;
-      font-size: 2.8rem;
-      font-weight: 900;
-      text-decoration: none;
-    }
-  }
-
-  // NOT AUTH LINKS
-  .notAuthLinks {
+  // background: $light-blue;
+  background: $off-blue;
+  
+  // INNER NAVBAR CONTAINER
+  .innerNavbarContainer {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    // padding: 2rem 0;
+    padding: 2rem;
+    
+    // LOGO CONTAINER
+    .logoContainer {
 
-    .notAuthLink {
-      color: lighten($dark-grey, 10%);
+      .logo {
+        // color: $black;
+        color: $white;
+        font-size: 2.8rem;
+        font-weight: 900;
+        text-decoration: none;
+      }
+    }
+
+    // NOT AUTH LINKS
+    .notAuthLinks {
+      display: flex;
+      flex-direction: row;
+
+      .notAuthLink {
+        // color: lighten($dark-grey, 10%);
+        // color: $black;
+        color: $white;
+        font-size: 1.7rem;
+        font-weight: 700;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        text-decoration: none;
+
+        &:hover {
+          color: $strong-blue;
+        }
+      }
+    }
+
+    // AUTH LINKS
+    .authLinks {
+      display: flex;
+      flex-direction: row;
+
+      .authLink {
+        // color: lighten($dark-grey, 10%);
+        // color: $black;
+        color: $white;
+        font-size: 1.7rem;
+        font-weight: 700;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        text-decoration: none;
+
+        &:hover {
+          color: $strong-blue;
+        }
+      }
+    }
+
+    // LOGOUT BUTTON
+    .logoutButton {
+      cursor: pointer;
       font-size: 1.7rem;
       font-weight: 700;
       margin-left: 2rem;
       margin-right: 2rem;
-      text-decoration: none;
 
       &:hover {
         color: $strong-blue;
       }
-    }
-  }
-
-  // AUTH LINKS
-  .authLinks {
-    display: flex;
-    flex-direction: row;
-
-    .authLink {
-      color: lighten($dark-grey, 10%);
-      font-size: 1.7rem;
-      font-weight: 700;
-      margin-left: 2rem;
-      margin-right: 2rem;
-      text-decoration: none;
-
-      &:hover {
-        color: $strong-blue;
-      }
-    }
-  }
-
-  // LOGOUT BUTTON
-  .logoutButton {
-    cursor: pointer;
-    font-size: 1.7rem;
-    font-weight: 700;
-    margin-left: 2rem;
-    margin-right: 2rem;
-
-    &:hover {
-      color: $strong-blue;
     }
   }
 }
@@ -74,7 +86,11 @@
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: 500px) {
   .navbar {
-    margin: 0 10rem;
+    
+    // INNER NAVBAR CONTAINER
+    .innerNavbarContainer {
+      margin: 0 10rem;
+    }
   }
 }
 
@@ -86,8 +102,12 @@
 
 @media screen and (min-width: 1200px) {
   .navbar {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+    
+    // INNER NAVBAR CONTAINER
+    .innerNavbarContainer {
+      max-width: 1500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
