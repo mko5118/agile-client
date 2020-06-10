@@ -1,2 +1,6 @@
 @import './global.styles';
 @import './resets.styles';
+
+// STYLES FOR REACT CALENDAR
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';

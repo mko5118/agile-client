@@ -8,39 +8,34 @@ import {
   toggleHomeMenu, toggleClientsMenu, toggleTasksMenu, toggleCalendarMenu, resetEditTask, 
 } from '../../redux/dashboard/dashboard.actions';
 import { resetClient } from '../../redux/clients/clients.actions';
-import { resetCalendarDateLogs } from '../../redux/calendar/calendar.actions';
 
 import style from './dashboard-menu-section.module.scss';
 
 // *************************** DASHBOARD MENU SECTION COMPONENT *************************** //
-const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, toggleHomeMenu, toggleClientsMenu, toggleTasksMenu, toggleCalendarMenu, resetEditTask, resetClient, resetCalendarDateLogs, }) =>  {
+const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, toggleHomeMenu, toggleClientsMenu, toggleTasksMenu, toggleCalendarMenu, resetEditTask, resetClient, }) =>  {
 
   const setHomeMenu = () => {
     toggleHomeMenu();
     resetClient();
     resetEditTask();
-    resetCalendarDateLogs();
   };
 
   const setClientsMenu = () => {
     toggleClientsMenu();
     resetClient();
     resetEditTask();
-    resetCalendarDateLogs();
   };
 
   const setTasksMenu = () => {
     toggleTasksMenu();
     resetClient();
     resetEditTask();
-    resetCalendarDateLogs();
   };
 
   const setCalendarMenu = () => {
     toggleCalendarMenu();
     resetClient();
     resetEditTask();
-    resetCalendarDateLogs();
   };
 
   return (
@@ -90,7 +85,6 @@ DashboardMenuSection.propTypes = {
   toggleCalendarMenu: PropTypes.func.isRequired,
   resetEditTask: PropTypes.func.isRequired,
   resetClient: PropTypes.func.isRequired,
-  resetCalendarDateLogs: PropTypes.func.isRequired,
 };
 
 // REDUX
@@ -108,7 +102,6 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCalendarMenu: () => dispatch(toggleCalendarMenu()),
   resetEditTask: () => dispatch(resetEditTask()),
   resetClient: () => dispatch(resetClient()),
-  resetCalendarDateLogs: () => dispatch(resetCalendarDateLogs()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardMenuSection);

@@ -1,0 +1,40 @@
+@import '../../styles/global.styles';
+
+// ************* CALENDAR LOGS COMPONENT STYLES ************* //
+.calendarLogs {
+  height: 95%;
+  // padding: 0 4rem;
+  overflow: scroll;
+
+  // HEADER SECTION
+  .headerContainer {
+    margin-bottom: 4rem;
+
+    .header {
+      // color: $soft-orange;
+      color: $strong-blue;
+      font-size: 4.4rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+  }
+}
+
+// ************* MEDIA QUERIES ************* //
+@media screen and (min-width: 500px) {
+  .calendarLogs {
+    
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .calendarLogs {
+
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .calendarLogs {
+
+  }
+}
