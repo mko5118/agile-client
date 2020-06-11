@@ -14,6 +14,7 @@
     
     .headerDate {
       color: $black;
+      font-size: 1.8rem;
     }
   }
 
@@ -34,7 +35,8 @@
       font-weight: 700;
       color: $strong-blue;
       text-transform: uppercase;
-      margin-bottom: 1rem;
+      // margin-bottom: 1rem;
+      margin-bottom: 0.25rem;
     }
 
     .logType {

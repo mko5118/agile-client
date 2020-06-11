@@ -34,7 +34,9 @@
       }
 
       .titleTwo {
-        color: $black;
+        // color: $black;
+        color: $dark-teal;
+        // color: $strong-blue;
         font-size: 4rem;
         margin-top: -2rem;
         margin-right: auto;
@@ -43,7 +45,7 @@
       .subtitle {
         color: $black;
         font-size: 2rem;
-        font-weight: 400;
+        font-weight: 500;
         font-size: 1.3rem;
         text-transform: uppercase;
       }
@@ -55,8 +57,8 @@
           cursor: pointer;
           border: none;
           border-radius: 5rem;
-          background-color: $strong-blue;
-          // background-color: $off-blue;
+          // background-color: $strong-blue;
+          background-color: $off-blue;
           color: $white;
           margin: 0 2rem 1rem 0;
           height: 4rem;
@@ -75,7 +77,8 @@
           }
 
           &:hover {
-            background-color: lighten($strong-blue, 5%);
+            // background-color: lighten($strong-blue, 5%);
+            background-color: lighten($off-blue, 10%);
           }
         }
       }
@@ -83,11 +86,12 @@
 
     // IMAGE CONTAINER
     .imageContainer {
-      background-image: url('../../assets/clients-1.svg');
+      background-image: url('../../assets/clients-2-dark-teal.svg');
       background-size: cover;
       background-position: center;
       height: 100%;
-      margin-top: 1rem;
+      // margin-top: 1rem;
+      margin-top: 2rem;
       // height: 50%;
       // margin-top: auto;
       // margin-bottom: auto;

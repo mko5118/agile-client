@@ -2,6 +2,7 @@ import React, { } from 'react';
 import { connect } from 'react-redux';
 import { IoIosContacts } from 'react-icons/io';
 import { FaHome, FaTasks, FaRegCalendarAlt } from 'react-icons/fa';
+import { MdPermContactCalendar } from 'react-icons/md';
 import PropTypes from 'prop-types';
 
 import { 
@@ -57,7 +58,7 @@ const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, 
           </div>
           {/* CLIENTS SECTION */}
           <div className={style.iconContainer} id={clientsMenu.isActive ? style.isActiveContainer : ''} onClick={setClientsMenu}>
-            <IoIosContacts className={style.icon} id={clientsMenu.isActive ? style.isActiveIcon : ''} />
+            <MdPermContactCalendar className={style.icon} id={clientsMenu.isActive ? style.isActiveIcon : ''} />
             <span className={style.iconText} id={clientsMenu.isActive ? style.isActiveText : ''}>Clients</span>
           </div>
           {/* TASKS SECTION */}
