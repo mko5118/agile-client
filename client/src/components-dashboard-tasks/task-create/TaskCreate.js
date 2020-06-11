@@ -78,7 +78,8 @@ const TaskCreate = ({ createTask }) => {
           clientTextArea
         />
 
-        <Button type='submit' todoButton>Add Task</Button>
+        {/* <Button type='submit' todoButton>Add Task</Button> */}
+        <Button type='submit' clientButton>Add Task</Button>
       </form>
 
     </div>

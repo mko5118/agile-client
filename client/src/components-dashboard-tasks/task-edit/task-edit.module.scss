@@ -5,7 +5,8 @@
 
   // HEADER SECTION
   .header {
-    color: $dark-teal;
+    // color: $dark-teal;
+    color: $strong-blue;
     font-size: 2.4rem;
     font-weight: 800;
     margin-bottom: 2rem;
@@ -38,7 +39,8 @@
       border-radius: 1rem;
 
       .inputIcon {
-        color: $dark-teal;
+        // color: $dark-teal;
+        color: $strong-blue;
         font-size: 1.8rem;
         margin: 0 0.5rem;
       }

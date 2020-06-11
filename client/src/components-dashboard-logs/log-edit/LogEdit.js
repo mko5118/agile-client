@@ -62,7 +62,7 @@ const LogEdit = ({ currentLog, loading, getLog, updateLog, resetLogState }) => {
           />
         </div>
 
-        <label className={style.formLabel}>Date</label>
+        {/* <label className={style.formLabel}>Date</label>
         <div className={style.inputContainer}>
           <FaRegCalendarAlt className={style.inputIcon} />
           <FormInput 
@@ -73,7 +73,7 @@ const LogEdit = ({ currentLog, loading, getLog, updateLog, resetLogState }) => {
             value={formData.log_date}
             onChange={onChange}
           />
-        </div>
+        </div> */}
 
         <label className={style.formLabel}>Details</label>
         <FormTextArea 

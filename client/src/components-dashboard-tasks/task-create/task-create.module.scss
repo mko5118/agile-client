@@ -7,11 +7,9 @@
   .header {
 
     .title {
-      // color: $strong-blue;
-      color: $dark-teal;
+      // color: $dark-teal;
+      color: $strong-blue;
       font-size: 2rem;
-      // font-size: 3rem;
-      // font-weight: 800;
       margin-bottom: 2rem;
       text-transform: uppercase;
     }
@@ -23,8 +21,6 @@
     flex-direction: column;
 
     .formLabel {
-      // font-size: 1.4rem;
-      // font-weight: 400;
       font-size: 1.5rem;
       font-weight: 500;
       margin-bottom: 0.5rem;
@@ -32,7 +28,6 @@
 
       .requiredText {
         color: $dark-grey;
-        // font-size: 1.3rem;
         font-size: 1.4rem;
       }
     }
@@ -46,8 +41,8 @@
       border-radius: 1rem;
 
       .inputIcon {
-        // color: $strong-blue;
-        color: $dark-teal;
+        // color: $dark-teal;
+        color: $strong-blue;
         font-size: 1.8rem;
         margin: 0 0.5rem;
       }

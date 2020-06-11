@@ -24,10 +24,11 @@ const SigninPage = ({ isAuthenticated, loginUser }) => {
     });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    loginUser(formData.email, formData.password);
+    await loginUser(formData.email, formData.password);
     setFormData({ email: '', password: ''});
+    history.push('/dashboard');
   };
 
   return (

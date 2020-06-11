@@ -40,7 +40,7 @@ const CalendarDateInfo = ({ calendarDateLogs, calendarDate, loading, clients, ge
           {
             clients.map(client => (
               client.id === log.associated_client
-                && <p className={style.logClient}>{client.first_name} {client.last_name}</p>
+                && <p key={client.id} className={style.logClient}>{client.first_name} {client.last_name}</p>
             ))
           }
           <p className={style.logType}>{log.title}</p>

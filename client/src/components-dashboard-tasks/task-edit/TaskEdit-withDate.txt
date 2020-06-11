@@ -77,7 +77,7 @@ const TaskEdit = ({ task, getAllTasks, updateTask, resetEditTask }) => {
           clientTextArea
         />
 
-        {/* <label className={style.formLabel}>Date</label>
+        <label className={style.formLabel}>Date</label>
         <div className={style.inputContainer}>
           <MdTitle className={style.inputIcon} />
           <FormInput 
@@ -88,7 +88,7 @@ const TaskEdit = ({ task, getAllTasks, updateTask, resetEditTask }) => {
             value={formData.date_created}
             onChange={onChange}
           />
-        </div> */}
+        </div>
 
         <div className={style.isCompleteContainer}>
           <input 

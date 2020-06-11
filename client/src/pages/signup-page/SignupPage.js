@@ -45,7 +45,7 @@ const SignupPage = ({ registerUser }) => {
       
       {/* FORM SECTION */}
       <div className={style.formContainer}>
-        <h2 className={style.formHeader}>Sign up to Agile Client</h2>
+        <h2 className={style.formHeader}>Sign up for Agile Client</h2>
         <form className={style.form} onSubmit={onSubmit}>
           <div className={style.inputContainer}>
             <label className={style.inputLabel}>

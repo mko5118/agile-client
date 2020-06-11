@@ -22,7 +22,7 @@ const TaskPage = ({ taskState, editingTask, getAllTasks }) => {
       <div className={style.pendingTodoContainer}>
         { tasks.length > 0 
           ? <h3 className={style.sectionTitle}>Current Todos</h3>
-          : <h3 className={style.sectionTitle}>Todo List currently empty...</h3>
+          : <h3 className={style.emptyTitle}>Todo List currently empty.</h3>
         }
         {/* ONLY SHOW TASKS WHICH HAVE NOT BEEN COMPLETED */}
         {
