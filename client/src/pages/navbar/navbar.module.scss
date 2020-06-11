@@ -73,13 +73,15 @@
     // LOGOUT BUTTON
     .logoutButton {
       cursor: pointer;
+      color: $white;
       font-size: 1.7rem;
       font-weight: 700;
       margin-left: 2rem;
       margin-right: 2rem;
 
       &:hover {
-        color: $strong-blue;
+        // color: $strong-blue;
+        color: $dark-teal;
       }
     }
   }

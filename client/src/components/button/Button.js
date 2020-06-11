@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import style from './button.module.scss';
 
 // *************************** BUTTON COMPONENT *************************** //
-const Button = ({ landingPage, addButton, deleteButton, addCompany, deleteCompany, clientButton, todoButton, children, onClick, ...otherProps }) => {
+const Button = ({ landingPage, signinPage, signupPage, addButton, deleteButton, addCompany, deleteCompany, clientButton, todoButton, children, onClick, ...otherProps }) => {
   return (
     <button
       className={`
         ${landingPage ? style.landingPage : ''}
+        ${signinPage ? style.signinPage : ''}
+        ${signupPage ? style.signupPage : ''}
         ${addButton ? style.addButton : ''}
         ${deleteButton ? style.deleteButton : ''}
         ${addCompany ? style.addCompany : ''}

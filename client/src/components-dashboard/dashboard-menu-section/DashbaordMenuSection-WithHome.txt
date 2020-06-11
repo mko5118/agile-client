@@ -51,6 +51,11 @@ const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, 
         <h1 className={style.navigationTitle}>MENU</h1>
 
         <div className={style.navigationMenu}>
+          {/* HOME SECTION */}
+          <div className={style.iconContainer} id={homeMenu.isActive ? style.isActiveContainer : ''} onClick={setHomeMenu}>
+            <FaHome className={style.icon} id={homeMenu.isActive ? style.isActiveIcon : ''} />
+            <span className={style.iconText} id={homeMenu.isActive ? style.isActiveText : ''}>Home</span>
+          </div>
           {/* CLIENTS SECTION */}
           <div className={style.iconContainer} id={clientsMenu.isActive ? style.isActiveContainer : ''} onClick={setClientsMenu}>
             <MdPermContactCalendar className={style.icon} id={clientsMenu.isActive ? style.isActiveIcon : ''} />

@@ -1,18 +1,245 @@
 @import '../../styles/global.styles';
 
-// ************* SIGNIN PAGE COMPONENT STYLES ************* //
+// ************* SIGN UP PAGE COMPONENT STYLES ************* //
 .signinPage {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
 
-  .form {
-    display: flex;
-    flex-direction: column;
-    width: 25%;
+  // SIGN IN LANDING SECTION
+  .signinLandingSection {
+    width: 40%;
+    background: $light-blue;
+    padding: 8rem 0 8rem 0;
+
+    .imageContainer {
+      background-image: url('../../assets/signin-image-3.svg');
+      background-size: cover;
+      background-position: left;
+      height: 100%;
+    }
   }
+
+  // FORM CONTAINER SECTION
+  .formContainer {
+    width: 60%;
+    padding: 4rem;
+    height: 100rem;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    .formHeader {
+      color: $dark-teal;
+      font-size: 3.6rem;
+      font-weight: 800;
+      // text-transform: uppercase;
+      margin-bottom: 4rem;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+
+      .inputContainer {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 4rem;
+
+        .inputLabel {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          font-size: 1.8rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+
+          .requiredText {
+            color: $dark-grey;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-left: 0.75rem;
+          }
+        }
+      }
+
+      .termsAndConditionsContainer {
+        margin-bottom: 2em;
+        
+        .termsAndConditionsText {
+          color: $dark-grey;
+          font-size: 1.3rem;
+        }
+      }
+
+      .haveAccountText {
+        margin-top: 2rem;
+        font-size: 1.5rem;
+        text-align: right;
+
+        .signinText {
+          cursor: pointer;
+          color: $strong-blue;
+          margin-left: 0.75rem;
+        }
+      }
+    }
+  }
+
 }
 
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: 500px) {
   .signinPage {
-    
+
   }
+}
+
+@media screen and (min-width: 800px) {
+  .signinPage {
+
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .signinPage {
+
+  
+    // SIGN IN LANDING SECTION
+    .signinLandingSection {
+      // padding: 16rem 0;
+    }
+  
+    // FORM CONTAINER SECTION
+    .formContainer {
+      padding: 4rem 12rem;
+
+      .formHeader {
+
+      }
+
+      .form {
+
+        .inputContainer {
+
+          .inputLabel {
+
+            .requiredText {
+
+            }
+          }
+        }
+
+        .termsAndConditionsContainer {
+
+          .termsAndConditionsText {
+            
+          }
+        }
+
+        .haveAccountText {
+
+          .signinText {
+
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media screen and (min-width: 1800px) {
+  .signinPage {
+
+  
+    // SIGN IN LANDING SECTION
+    .signinLandingSection {
+
+    }
+  
+    // FORM CONTAINER SECTION
+    .formContainer {
+      padding: 4rem 20rem;
+
+      .formHeader {
+
+      }
+
+      .form {
+
+        .inputContainer {
+
+          .inputLabel {
+
+            .requiredText {
+
+            }
+          }
+        }
+
+        .termsAndConditionsContainer {
+
+          .termsAndConditionsText {
+            
+          }
+        }
+
+        .haveAccountText {
+
+          .signinText {
+            
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media screen and (min-width: 2400px) {
+  .signinPage {
+
+  
+    // SIGN IN LANDING SECTION
+    .signinLandingSection {
+
+    }
+  
+    // FORM CONTAINER SECTION
+    .formContainer {
+      padding: 4rem 36rem;
+
+      .formHeader {
+
+      }
+
+      .form {
+
+        .inputContainer {
+
+          .inputLabel {
+
+            .requiredText {
+
+            }
+          }
+        }
+
+        .termsAndConditionsContainer {
+
+          .termsAndConditionsText {
+            
+          }
+        }
+
+        .haveAccountText {
+
+          .signinText {
+            
+          }
+        }
+      }
+    }
+  }
+
 }

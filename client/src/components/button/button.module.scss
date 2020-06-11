@@ -4,6 +4,32 @@
 .button {
   cursor: pointer;
 
+  // SIGN IN PAGE (SigninPage.js)
+  &.signinPage {
+    
+  }
+
+  // SIGN UP PAGE (SignupPage.js)
+  &.signupPage {
+    min-width: 15rem;
+    max-width: 25rem;
+    height: 4rem;
+    border: 1px solid $white;
+    border-radius: 2rem;
+
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    background: $dark-teal;
+    color: $white;
+
+    &:hover {
+      background: lighten($dark-teal, 7.5%);
+    }
+  }
+
   // ADD BUTTON
   &.addButton {
     width: 15rem;
