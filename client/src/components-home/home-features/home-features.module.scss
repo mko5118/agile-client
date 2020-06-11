@@ -2,27 +2,170 @@
 
 // ************* HOME SUMMARY COMPONENT STYLES (HOME PAGE) ************* //
 .homeFeatures {
-  // border: 1px solid $black;
   height: 55rem;
   padding: 8rem 0;
+
+  // HEADER CONTAINER SECTION
+  .headerOuterContainer {
+      margin-bottom: 8rem;
+
+    .headerContainer {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 2rem;
+  
+      .header {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+  
+      .subHeader {
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: $dark-teal;
+        text-align: center;
+      }
+    }
+  }
+
+  // FEATURES CONTAINER SECTION
+  .featuresOuterContainer {
+    margin-bottom: 12rem;
+
+    .featuresContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 2rem;
+  
+      .feature {
+        border: 1px solid $grey;
+        border-radius: 1rem;
+        // box-shadow: 2.5px 2.5px 8px 1px $grey;
+        // box-shadow: 3.5px 5px 8px -5px $off-blue;
+        box-shadow: 2.5px 5px 8px -5px $off-blue;
+        padding: 2rem 4rem;
+        margin-bottom: 2rem;
+
+        .iconContainer {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 1rem;
+
+          .icon {
+            font-size: 2.6rem;
+            // color: $strong-blue;
+            color: $dark-teal;
+          }
+        }
+  
+        .featureHeader {
+          font-size: 2rem;
+          font-weight: 800;
+          text-align: center;
+          margin-bottom: 1rem;
+          // color: $off-blue;
+        }
+  
+        .featureText {
+          color: $dark-grey;
+          font-size: 1.5rem;
+          font-weight: 400;
+          text-align: justify;
+        }
+      }
+    }
+  }
 }
 
 // ************* MEDIA QUERIES ************* //
-@media screen and (min-width: 500px) {
+@media screen and (min-width: $bp-sm) {
   .homeFeatures {
+    margin-top: 4rem;
     
+    // HEADER CONTAINER SECTION
+    .headerOuterContainer {
+      margin-bottom: 12rem;
+
+      .headerContainer {
+        .header {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    // FEATURES CONTAINER SECTION
+    .featuresOuterContainer {
+      margin-bottom: 12rem;
+
+      .featuresContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding: 0;
+
+        .feature {
+          width: 30%;
+          padding: 4rem;
+          margin-bottom: 0;
+  
+          .iconContainer {
+            margin-bottom: 2rem;
+
+            .icon {
+              font-size: 3rem;
+            }
+          }
+    
+          .featureHeader {
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
+          }
+    
+          .featureText {
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: $bp-md) {
   .homeFeatures {
 
+    // HEADER CONTAINER SECTION
+    .headerOuterContainer {
+
+      .headerContainer {
+        padding: 0 2rem;
+
+        .header {
+          font-size: 3.6rem;
+        }
+    
+        .subHeader {
+          font-size: 2rem;
+          font-weight: 500;
+        }
+      }
+    }
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: $bp-lg) {
   .homeFeatures {
-    // max-width: 1200px;
     margin-top: 4rem;
 
     // HEADER CONTAINER SECTION
@@ -33,47 +176,16 @@
         max-width: 1200px;
         margin-left: auto;
         margin-right: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-  
-        .header {
-          font-size: 3.6rem;
-          font-weight: 800;
-        }
-  
-        .subHeader {
-          font-size: 2rem;
-          font-weight: 500;
-          color: $dark-teal;
-        }
       }
     }
 
     // FEATURES CONTAINER SECTION
     .featuresOuterContainer {
-      margin-bottom: 12rem;
 
       .featuresContainer {
-        // max-width: 1500px;
-        max-width: 1200px;
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
   
         .feature {
-          border: 1px solid $grey;
-          border-radius: 1rem;
-          // box-shadow: 2.5px 2.5px 8px 1px $grey;
-          // box-shadow: 3.5px 5px 8px -5px $off-blue;
-          box-shadow: 2.5px 5px 8px -5px $off-blue;
-
           width: 30%;
-          // height: 25rem;
-
-          // padding: 4rem 2rem;
           padding: 4rem;
 
           .iconContainer {
@@ -82,27 +194,14 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 2rem;
-
-            .icon {
-              font-size: 3rem;
-              // color: $strong-blue;
-              color: $dark-teal;
-            }
           }
   
           .featureHeader {
             font-size: 2.4rem;
-            font-weight: 800;
-            text-align: center;
             margin-bottom: 2rem;
-
-            // color: $off-blue;
           }
   
           .featureText {
-            color: $dark-grey;
-            font-size: 1.6rem;
-            font-weight: 400;
             text-align: justify;
           }
         }

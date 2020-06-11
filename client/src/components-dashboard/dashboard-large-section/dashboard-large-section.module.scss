@@ -18,32 +18,32 @@
 }
 
 // ************* MEDIA QUERIES ************* //
-@media screen and (min-width: 500px) {
+@media screen and (min-width: $bp-sm) {
   .dashboardLargeSection {
   
   }  
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: $bp-md) {
   .dashboardLargeSection {
   
   }  
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: $bp-lg) {
   .dashboardLargeSection {
   
   }  
 }
 
-@media screen and (min-width: 1800px) {
+@media screen and (min-width: $bp-xl) {
   // 'dashbboardMenuSection' = width: 15% || 'dashboardSmallSection' = width: 25%
   .dashboardLargeSection {
     width: 60%;
   }  
 }
 
-@media screen and (min-width: 2400px) {
+@media screen and (min-width: $bp-xxl) {
   // 'dashbboardMenuSection' = width: 10% || 'dashboardSmallSection' = width: 20% 
   .dashboardLargeSection {
     width: 70%;

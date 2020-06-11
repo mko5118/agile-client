@@ -52,19 +52,19 @@
 }
 
 // ************* MEDIA QUERIES ************* //
-@media screen and (min-width: 500px) {
+@media screen and (min-width: $bp-sm) {
   .taskCreate {
     
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: $bp-md) {
   .taskCreate {
 
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: $bp-lg) {
   .taskCreate {
 
   }

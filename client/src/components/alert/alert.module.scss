@@ -30,22 +30,33 @@
 }
 
 // ************* MEDIA QUERIES ************* //
-@media screen and (min-width: 500px) {
+@media screen and (min-width: $bp-sm) {
   .alert {
     background: $black;
     font-size: 1.4rem;
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: $bp-md) {
   .alert {
     background: $black;
-    // margin-bottom: 0.25rem;
     font-size: 1.5rem;
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: $bp-lg) {
+  .alert {
+
+  }
+}
+
+@media screen and (min-width: $bp-xl) {
+  .alert {
+
+  }
+}
+
+@media screen and (min-width: $bp-xxl) {
   .alert {
 
   }

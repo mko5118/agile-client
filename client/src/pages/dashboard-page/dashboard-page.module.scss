@@ -7,31 +7,31 @@
 }
 
 // ************* MEDIA QUERIES ************* //
-@media screen and (min-width: 500px) {
+@media screen and (min-width: $bp-sm) {
   .dashboardPage {
 
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: $bp-md) {
   .dashboardPage {
 
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: $bp-lg) {
   .dashboardPage {
 
   }
 }
 
-@media screen and (min-width: 1800px) {
+@media screen and (min-width: $bp-xl) {
   .dashboardPage {
 
   }
 }
 
-@media screen and (min-width: 2400px) {
+@media screen and (min-width: $bp-xxl) {
   .dashboardPage {
 
   }

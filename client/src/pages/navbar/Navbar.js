@@ -17,29 +17,27 @@ const Navbar = ({ isAuthenticated, user, logoutUser }) => {
   };
 
   const notAuthLinks = (
-    <ul className={style.notAuthLinks}>
+    <ul className={style.links}>
+      {/* REMOVE DASHBOARD LINK FOR PRODUCTION */}
       <li>
-        <NavLink to='/dashboard' className={style.notAuthLink}>Dashboard</NavLink>
+        <NavLink to='/dashboard' className={style.link}>Dashboard</NavLink>
       </li>
       <li>
-        <NavLink to='/' className={style.notAuthLink}>Features</NavLink>
+        <NavLink to='/' className={style.link}>Features</NavLink>
       </li>
       <li>
-        <NavLink to='/signup' className={style.notAuthLink}>Sign Up</NavLink>
+        <NavLink to='/signup' className={style.link}>Sign Up</NavLink>
       </li>
       <li>
-        <NavLink to='/signin' className={style.notAuthLink}>Sign In</NavLink>
+        <NavLink to='/signin' className={style.link}>Sign In</NavLink>
       </li>
     </ul>
   );
 
   const authLinks = (
-    <ul className={style.authLinks}>
+    <ul className={style.links}>
       <li>
-        <NavLink to='/dashboard' className={style.authLink}>Dashboard</NavLink>
-      </li>
-      <li>
-        <NavLink to='/dashboard/tasks' className={style.authLink}>Tasks</NavLink>
+        <NavLink to='/dashboard' className={style.link}>Dashboard</NavLink>
       </li>
       <li>
         <span className={style.logoutButton} onClick={onLogout}>Logout</span>

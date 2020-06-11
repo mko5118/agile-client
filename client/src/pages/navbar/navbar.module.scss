@@ -8,57 +8,31 @@
   // INNER NAVBAR CONTAINER
   .innerNavbarContainer {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    // padding: 2rem 0;
+    justify-content: space-evenly;
     padding: 2rem;
     
-    // LOGO CONTAINER
     .logoContainer {
+      margin-bottom: 0.5rem;
 
       .logo {
-        // color: $black;
         color: $white;
-        font-size: 2.8rem;
+        font-size: 2.4rem;
         font-weight: 900;
         text-decoration: none;
       }
     }
 
-    // NOT AUTH LINKS
-    .notAuthLinks {
+    // LINKS SECTION
+    .links {
       display: flex;
       flex-direction: row;
 
-      .notAuthLink {
-        // color: lighten($dark-grey, 10%);
-        // color: $black;
+      .link {
         color: $white;
-        font-size: 1.7rem;
-        font-weight: 700;
-        margin-left: 2rem;
-        margin-right: 2rem;
-        text-decoration: none;
-
-        &:hover {
-          // color: $strong-blue;
-          color: $dark-teal;
-        }
-      }
-    }
-
-    // AUTH LINKS
-    .authLinks {
-      display: flex;
-      flex-direction: row;
-
-      .authLink {
-        // color: lighten($dark-grey, 10%);
-        // color: $black;
-        color: $white;
-        font-size: 1.7rem;
-        font-weight: 700;
+        font-size: 1.5rem;
+        font-weight: 600;
         margin-left: 2rem;
         margin-right: 2rem;
         text-decoration: none;
@@ -88,23 +62,59 @@
 }
 
 // ************* MEDIA QUERIES ************* //
-@media screen and (min-width: 500px) {
+@media screen and (min-width: $bp-sm) {
   .navbar {
     
     // INNER NAVBAR CONTAINER
     .innerNavbarContainer {
-      margin: 0 10rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 2rem;
+
+      .logoContainer {
+        margin-bottom: 0;
+
+        .logo {
+          font-size: 2.8rem;
+          font-weight: 900;
+        }
+      }
+
+      // LINKS SECTION
+      .links {
+        display: flex;
+        flex-direction: row;
+
+        .link {
+          color: $white;
+          font-size: 1.7rem;
+          font-weight: 700;
+        }
+      }
     }
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: $bp-md) {
   .navbar {
+        
+    // INNER NAVBAR CONTAINER
+    .innerNavbarContainer {
+      margin: 0 10rem;
 
+      .logoContainer {
+
+        .logo {
+          
+        }
+      }
+    }
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: $bp-lg) {
   .navbar {
     
     // INNER NAVBAR CONTAINER
@@ -112,6 +122,13 @@
       max-width: 1500px;
       margin-left: auto;
       margin-right: auto;
+
+      .logoContainer {
+
+        .logo {
+          
+        }
+      }
     }
   }
 }

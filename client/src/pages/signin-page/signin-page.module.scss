@@ -1,42 +1,36 @@
 @import '../../styles/global.styles';
 
-// ************* SIGN UP PAGE COMPONENT STYLES ************* //
+// ************* SIGN IN PAGE COMPONENT STYLES ************* //
 .signinPage {
   display: flex;
   flex-direction: row;
   min-height: 100vh;
 
-  // SIGN IN LANDING SECTION
-  .signinLandingSection {
-    width: 40%;
-    background: $light-blue;
-    padding: 8rem 0 8rem 0;
-
-    .imageContainer {
-      background-image: url('../../assets/signin-image-3.svg');
-      background-size: cover;
-      background-position: left;
-      height: 100%;
-    }
-  }
+  background-color: $light-blue;
+  background-image: url('../../assets/signin-image-3.svg');
+  background-size: cover;
+  background-position: center;
+  height: 100%;
 
   // FORM CONTAINER SECTION
   .formContainer {
-    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
     padding: 4rem;
-    height: 100rem;
-    margin-top: auto;
-    margin-bottom: auto;
 
     .formHeader {
       color: $dark-teal;
-      font-size: 3.6rem;
+      font-size: 3rem;
       font-weight: 800;
-      // text-transform: uppercase;
-      margin-bottom: 4rem;
+      text-align: center;
+      margin-bottom: 2rem;
     }
 
     .form {
+      background: $white;
+      padding: 6rem 2rem;
       display: flex;
       flex-direction: column;
 
@@ -49,7 +43,7 @@
           display: flex;
           flex-direction: row;
           align-items: center;
-          font-size: 1.8rem;
+          font-size: 1.5rem;
           font-weight: 700;
           margin-bottom: 0.5rem;
 
@@ -62,18 +56,9 @@
         }
       }
 
-      .termsAndConditionsContainer {
-        margin-bottom: 2em;
-        
-        .termsAndConditionsText {
-          color: $dark-grey;
-          font-size: 1.3rem;
-        }
-      }
-
       .haveAccountText {
-        margin-top: 2rem;
-        font-size: 1.5rem;
+        margin-top: 4rem;
+        font-size: 1.3rem;
         text-align: right;
 
         .signinText {
@@ -88,25 +73,70 @@
 }
 
 // ************* MEDIA QUERIES ************* //
-@media screen and (min-width: 500px) {
+@media screen and (min-width: $bp-sm) {
+  .signinPage {
+    background-color: $white;
+    background-image: none;
+    background-size: none;
+    background-position: none;
+    height: 0;
+  
+    // FORM CONTAINER SECTION
+    .formContainer {
+      width: 60%;
+  
+      .formHeader {
+        font-size: 3.6rem;
+        margin-bottom: 0;
+      }
+  
+      .form {
+        background: none;
+        padding: 4rem 0;
+
+        .inputContainer {
+
+          .inputLabel {
+            font-size: 1.8rem;
+          }
+        }
+
+        .haveAccountText {
+          margin-top: 2rem;
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    // SIGN IN LANDING SECTION
+    .signinLandingSection {
+      width: 40%;
+      background: $light-blue;
+      padding: 4rem 0;
+  
+      .imageContainer {
+        background-image: url('../../assets/signin-image-3.svg');
+        background-size: cover;
+        background-position: center;
+        height: 100%;
+      }
+    }
+  } 
+}
+
+@media screen and (min-width: $bp-md) {
   .signinPage {
 
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: $bp-lg) {
   .signinPage {
-
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .signinPage {
-
+    background-color: $white;
   
     // SIGN IN LANDING SECTION
     .signinLandingSection {
-      // padding: 16rem 0;
+      padding: 16rem 0;
     }
   
     // FORM CONTAINER SECTION
@@ -114,41 +144,19 @@
       padding: 4rem 12rem;
 
       .formHeader {
-
+        margin-bottom: 2rem;
+        text-align: justify;
       }
 
       .form {
-
-        .inputContainer {
-
-          .inputLabel {
-
-            .requiredText {
-
-            }
-          }
-        }
-
-        .termsAndConditionsContainer {
-
-          .termsAndConditionsText {
-            
-          }
-        }
-
-        .haveAccountText {
-
-          .signinText {
-
-          }
-        }
+        padding: 2rem 0;
       }
     }
   }
 
 }
 
-@media screen and (min-width: 1800px) {
+@media screen and (min-width: $bp-xl) {
   .signinPage {
 
   
@@ -160,43 +168,12 @@
     // FORM CONTAINER SECTION
     .formContainer {
       padding: 4rem 20rem;
-
-      .formHeader {
-
-      }
-
-      .form {
-
-        .inputContainer {
-
-          .inputLabel {
-
-            .requiredText {
-
-            }
-          }
-        }
-
-        .termsAndConditionsContainer {
-
-          .termsAndConditionsText {
-            
-          }
-        }
-
-        .haveAccountText {
-
-          .signinText {
-            
-          }
-        }
-      }
     }
   }
 
 }
 
-@media screen and (min-width: 2400px) {
+@media screen and (min-width: $bp-xxl) {
   .signinPage {
 
   
@@ -208,37 +185,6 @@
     // FORM CONTAINER SECTION
     .formContainer {
       padding: 4rem 36rem;
-
-      .formHeader {
-
-      }
-
-      .form {
-
-        .inputContainer {
-
-          .inputLabel {
-
-            .requiredText {
-
-            }
-          }
-        }
-
-        .termsAndConditionsContainer {
-
-          .termsAndConditionsText {
-            
-          }
-        }
-
-        .haveAccountText {
-
-          .signinText {
-            
-          }
-        }
-      }
     }
   }
 

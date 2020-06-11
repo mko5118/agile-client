@@ -50,31 +50,31 @@
 }
 
 // ************* MEDIA QUERIES ************* //
-@media screen and (min-width: 500px) {
+@media screen and (min-width: $bp-sm) {
   .taskPage {
 
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: $bp-md) {
   .taskPage {
 
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: $bp-lg) {
   .taskPage {
 
   }
 }
 
-@media screen and (min-width: 1800px) {
+@media screen and (min-width: $bp-xl) {
   .taskPage {
     padding: 0 4rem;
   }
 }
 
-@media screen and (min-width: 2400px) {
+@media screen and (min-width: $bp-xxl) {
   .taskPage {
   }
 }

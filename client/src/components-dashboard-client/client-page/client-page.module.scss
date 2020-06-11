@@ -140,31 +140,31 @@
 }
 
 // ************* MEDIA QUERIES ************* //
-@media screen and (min-width: 500px) {
+@media screen and (min-width: $bp-sm) {
   .clientPage {
     
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: $bp-md) {
   .clientPage {
 
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: $bp-lg) {
   .clientPage {
 
   }
 }
 
-@media screen and (min-width: 1800px) {
+@media screen and (min-width: $bp-xl) {
   .clientPage {
     padding: 0 4rem;
   }
 }
 
-@media screen and (min-width: 2400px) {
+@media screen and (min-width: $bp-xxl) {
   .clientPage {
 
   }

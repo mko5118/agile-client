@@ -3,11 +3,6 @@ $primary-font: 'Inter', sans-serif;
 $secondary-font: 'Roboto', sans-serif;
 $tertiary-font: 'Nunito', sans-serif;
 
-// $primary-font: 'Nunito', sans-serif;
-// $secondary-font: 'Roboto', sans-serif;
-// $tertiary-font: 'Inter', sans-serif;
-
-
 // *************************** COLOR VARIABLES *************************** //
 
 $white:               #FFFFFF;
@@ -40,6 +35,14 @@ $soft-orange:         #F8715F;
 $light-orange:        #FB5A14;
 
 $flamingo-pink:       #FAB3BE;
+
+// *************************** MEDIA QUERY VARIABLES *************************** //
+
+$bp-sm: 500px;
+$bp-md: 800px;
+$bp-lg: 1200px;
+$bp-xl: 1800px;
+$bp-xxl: 2400px;
 
 
 // *************************** GLOBAL SETTINGS *************************** //
