@@ -1,11 +1,16 @@
 RESPONSIVE DESIGN / MEDIA QUERIES
 
 1. Pages Folder
-	a. navbar                   -- DONE
-	b. signin-page              -- DONE
-  c. signup-page              -- DONE
-  d. dashboard-page
+	a. navbar                   		-- DONE
+	b. signin-page              		-- DONE
+  c. signup-page              		-- DONE
+  d. dashboard-page								-- PENDING (MAY NOT NEED ANYTHING)
 
-2. Components-Home Folder     -- DONE
-	a. home-landing             -- DONE
-	b. home-features            -- DONE
+2. Components-Home Folder     		-- DONE
+	a. home-landing             		-- DONE
+	b. home-features            		-- DONE
+
+3. Components-Dashbaord Folder
+	a. dashboard-large-section			-- 
+	b. dashboard-menu-section				-- PENDING
+	c. dashboard-small-section			-- 
