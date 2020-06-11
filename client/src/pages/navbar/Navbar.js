@@ -1,18 +1,18 @@
 import React, { } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { logoutUser } from '../../redux/auth/auth.actions';
 
 import style from './navbar.module.scss';
 
 // *************************** NAVBAR PAGE COMPONENT *************************** //
-const Navbar = ({ auth, logoutUser }) => {
-  const { isAuthenticated, user } = auth;
+const Navbar = ({ isAuthenticated, user, logoutUser }) => {
   const history = useHistory()
 
-  const onLogout = () => {
-    logoutUser();
+  const onLogout = async () => {
+    await logoutUser();
     history.push('/');
   };
 
@@ -23,9 +23,6 @@ const Navbar = ({ auth, logoutUser }) => {
       </li>
       <li>
         <NavLink to='/' className={style.notAuthLink}>Features</NavLink>
-      </li>
-      <li>
-        <NavLink to='/developers' className={style.notAuthLink}>Developers</NavLink>
       </li>
       <li>
         <NavLink to='/signup' className={style.notAuthLink}>Sign Up</NavLink>
@@ -57,7 +54,6 @@ const Navbar = ({ auth, logoutUser }) => {
         <div className={style.logoContainer}>
           <NavLink to='/' className={style.logo}>AgileClient</NavLink>
         </div>
-
         {
           isAuthenticated ? authLinks : notAuthLinks
         }
@@ -67,9 +63,17 @@ const Navbar = ({ auth, logoutUser }) => {
   )
 };
 
+// PROP TYPES
+Navbar.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  user: PropTypes.object,
+  logoutUser: PropTypes.func.isRequired,
+};
+
 // REDUX
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({

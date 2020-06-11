@@ -46,7 +46,7 @@ const TaskEdit = ({ task, getAllTasks, updateTask, resetEditTask }) => {
   return (
     <div className={style.taskEdit}>
       
-      <h2 className={style.header}>Update Todo</h2>
+      <h2 className={style.header}>Update Task</h2>
 
       <form className={style.form} onSubmit={onSubmit}>
         <label className={style.formLabel}>

@@ -12,7 +12,6 @@ import Alert from '../components/alert/Alert';
 
 // NOT AUTHENTICATED PAGES
 import HomePage from '../pages/home-page/HomePage';
-import DeveloperPage from '../pages/developer-page/DeveloperPage';
 import SigninPage from '../pages/signin-page/SigninPage';
 import SignupPage from '../pages/signup-page/SignupPage';
 
@@ -30,11 +29,10 @@ const App = () => {
         <BrowserRouter>
 
           <div className={style.content}>
-            <Alert />
+            {/* <Alert /> */}
             <Navbar />
             <Switch>
               <Route exact path='/' component={HomePage} />
-              <Route exact path='/developers' component={DeveloperPage} />
               <Route exact path='/signin' component={SigninPage} />
               <Route exact path='/signup' component={SignupPage} />
 

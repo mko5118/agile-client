@@ -36,7 +36,7 @@ const SigninPage = ({ isAuthenticated, loginUser }) => {
       
       {/* FORM SECTION */}
       <div className={style.formContainer}>
-        <h2 className={style.formHeader}>Sign In to Agile Client</h2>
+        <h2 className={style.formHeader}>Sign in to Agile Client</h2>
         <form className={style.form} onSubmit={onSubmit}>
           <div className={style.inputContainer}>
             <label className={style.inputLabel}>

@@ -16,12 +16,12 @@ import style from './dashboard-menu-section.module.scss';
 // *************************** DASHBOARD MENU SECTION COMPONENT *************************** //
 const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, toggleHomeMenu, toggleClientsMenu, toggleTasksMenu, toggleCalendarMenu, resetEditTask, resetClient, resetCalendarDateLogs, }) =>  {
 
-  const setHomeMenu = () => {
-    toggleHomeMenu();
-    resetClient();
-    resetEditTask();
-    resetCalendarDateLogs();
-  };
+  // const setHomeMenu = () => {
+  //   toggleHomeMenu();
+  //   resetClient();
+  //   resetEditTask();
+  //   resetCalendarDateLogs();
+  // };
 
   const setClientsMenu = () => {
     toggleClientsMenu();
@@ -64,7 +64,7 @@ const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, 
           {/* TASKS SECTION */}
           <div className={style.iconContainer} id={tasksMenu.isActive ? style.isActiveContainer : ''} onClick={setTasksMenu}>
             <FaTasks className={style.icon} id={tasksMenu.isActive ? style.isActiveIcon : ''} />
-            <span className={style.iconText} id={tasksMenu.isActive ? style.isActiveText : ''}>Todos</span>
+            <span className={style.iconText} id={tasksMenu.isActive ? style.isActiveText : ''}>Tasks</span>
           </div>
 
         </div>

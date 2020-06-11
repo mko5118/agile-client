@@ -44,7 +44,7 @@ const TaskCreate = ({ createTask }) => {
       
       {/* HEADER SECTION */}
       <div className={style.header}>
-        <h2 className={style.title}>Create Todo</h2>
+        <h2 className={style.title}>Create Task</h2>
       </div>
 
       {/* CREATE TASK FORM */}

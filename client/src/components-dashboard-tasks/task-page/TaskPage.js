@@ -21,8 +21,8 @@ const TaskPage = ({ taskState, editingTask, getAllTasks }) => {
     <>
       <div className={style.pendingTodoContainer}>
         { tasks.length > 0 
-          ? <h3 className={style.sectionTitle}>Current Todos</h3>
-          : <h3 className={style.emptyTitle}>Todo List currently empty.</h3>
+          ? <h3 className={style.sectionTitle}>Current Tasks</h3>
+          : <h3 className={style.emptyTitle}>Task List currently empty.</h3>
         }
         {/* ONLY SHOW TASKS WHICH HAVE NOT BEEN COMPLETED */}
         {
@@ -35,7 +35,7 @@ const TaskPage = ({ taskState, editingTask, getAllTasks }) => {
       {
         tasks.length > 0 &&
         <div className={style.completedTodoContainer}>
-          <h3 className={style.sectionTitle}>Recently Completed Todos</h3>
+          <h3 className={style.sectionTitle}>Recently Completed Tasks</h3>
           {/* ONLY SHOW TASKS WHICH HAVE BEEN COMPLETED */}
           { tasks.map(task => (
             task.is_complete && <TaskItem key={task.id} task={task} />
@@ -51,7 +51,7 @@ const TaskPage = ({ taskState, editingTask, getAllTasks }) => {
 
   return (
     <div className={style.taskPage}>
-      <h2 className={style.header}>To Do List</h2>
+      <h2 className={style.header}>Task List</h2>
       { loading ? <p>Loading...</p> : renderTaskToPage }
     </div>
   )
