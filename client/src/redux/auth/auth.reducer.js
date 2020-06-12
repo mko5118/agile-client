@@ -42,6 +42,7 @@ export const authReducer = (state=INITIAL_STATE, action) => {
         token: null,
         isAuthenticated: false,
         loading: false,
+        user: null,
       };
     default:
       return state;

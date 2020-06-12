@@ -19,18 +19,9 @@ const DashboardPage = ({ clients, client, loading, getAllClients }) => {
   return (
     <div className={style.dashboardPage}>
 
-      {/* DASHBOARD MENU SECTION */}
-      <div className={style.dashboardMenuContainer}>
-        <DashboardMenuSection />
-      </div>
-      {/* DASHBOARD SMALL SECTION */}
-      <div className={style.dashboardSmallContainer}>
-        <DashboardSmallSection clients={clients} />
-      </div>
-      {/* DASHBOARD LARGE SECTION */}
-      <div className={style.dashboardLargeContainer}>
-        <DashboardLargeSection client={client} />
-      </div>
+      <DashboardMenuSection />
+      <DashboardSmallSection clients={clients} />
+      <DashboardLargeSection client={client} />
 
     </div>
   )

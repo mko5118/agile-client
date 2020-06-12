@@ -8,19 +8,17 @@
 
   // DASHBOARD MENU CONTAINER
   .dashboardMenuContainer {
-    width: 100%;
+    width: 20%;
   }
 
   // DASHBOARD SMALL CONTAINER
   .dashboardSmallContainer {
-    width: 100%;
-    padding: 0 1rem;
+    width: 30%;
   }
 
   // DASHBOARD LARGE CONTAINER 
   .dashboardLargeContainer {
-    width: 100%;
-    padding: 0 1rem;
+    width: 50%;
   }
 
 }
@@ -36,23 +34,6 @@
   .dashboardPage {
     display: flex;
     flex-direction: row;
-
-    // DASHBOARD MENU CONTAINER
-    .dashboardMenuContainer {
-      width: 20%;
-    }
-  
-    // DASHBOARD SMALL CONTAINER
-    .dashboardSmallContainer {
-      width: 30%;
-      padding: 0;
-    }
-  
-    // DASHBOARD LARGE CONTAINER 
-    .dashboardLargeContainer {
-      width: 50%;
-      padding: 0;
-    }
   }
 }
 

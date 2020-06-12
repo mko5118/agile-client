@@ -40,6 +40,7 @@ const ClientPage = ({ client, companies, clientLogs, companyMenu, logMenu, editi
   });
 
   // ClientPage header (doesnt change as other Client items are being rendered)
+  // Displays 'Client' => first_name + last_name + job_title
   const clientHeader = (
     <div className={style.clientHeader}>
       <div className={style.nameContainer}>

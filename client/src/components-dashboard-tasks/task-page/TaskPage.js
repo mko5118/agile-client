@@ -22,7 +22,9 @@ const TaskPage = ({ taskState, editingTask, getAllTasks }) => {
       <div className={style.pendingTodoContainer}>
         { tasks.length > 0 
           ? <h3 className={style.sectionTitle}>Current Tasks</h3>
-          : <h3 className={style.emptyTitle}>Task List currently empty.</h3>
+          : <h3 className={style.emptyTitle}>
+              No tasks currently. Use 'Create Task' form to add a new task.
+            </h3>
         }
         {/* ONLY SHOW TASKS WHICH HAVE NOT BEEN COMPLETED */}
         {
@@ -35,7 +37,7 @@ const TaskPage = ({ taskState, editingTask, getAllTasks }) => {
       {
         tasks.length > 0 &&
         <div className={style.completedTodoContainer}>
-          <h3 className={style.sectionTitle}>Recently Completed Tasks</h3>
+          <h3 className={style.sectionTitle}>Recently Completed</h3>
           {/* ONLY SHOW TASKS WHICH HAVE BEEN COMPLETED */}
           { tasks.map(task => (
             task.is_complete && <TaskItem key={task.id} task={task} />

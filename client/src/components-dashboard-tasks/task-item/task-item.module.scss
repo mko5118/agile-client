@@ -19,19 +19,19 @@
       .taskType {
         // color: $dark-teal;
         color: $strong-blue;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         margin-right: 2rem;
       }
     }
 
     .taskText {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       margin-bottom: 0.25rem;
     }
 
     .taskDateText {
       color: $dark-grey;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-style: italic;
       margin-bottom: 0.5rem;
     }
@@ -118,12 +118,32 @@
     }
 
   }
+  
 }
 
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: $bp-sm) {
   .taskItem {
-    
+
+    // TASK CONTAINER
+    .taskContainer {
+  
+      // HEADER CONTAINER
+      .headerContainer {
+        
+        .taskType {
+          font-size: 1.6rem;
+        }
+      }
+  
+      .taskText {
+        font-size: 1.5rem;
+      }
+  
+      .taskDateText {
+        font-size: 1.4rem;
+      }
+    }
   }
 }
 

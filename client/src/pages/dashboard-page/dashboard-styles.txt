@@ -1,0 +1,38 @@
+@import '../../styles/global.styles';
+
+// ************* DASHBOARD PAGE COMPONENT STYLES ************* //
+.dashboardPage {
+  display: flex;
+  height: 100vh;
+}
+
+// ************* MEDIA QUERIES ************* //
+@media screen and (min-width: $bp-sm) {
+  .dashboardPage {
+
+  }
+}
+
+@media screen and (min-width: $bp-md) {
+  .dashboardPage {
+
+  }
+}
+
+@media screen and (min-width: $bp-lg) {
+  .dashboardPage {
+
+  }
+}
+
+@media screen and (min-width: $bp-xl) {
+  .dashboardPage {
+
+  }
+}
+
+@media screen and (min-width: $bp-xxl) {
+  .dashboardPage {
+
+  }
+}

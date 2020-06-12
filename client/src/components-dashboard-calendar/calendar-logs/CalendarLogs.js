@@ -40,16 +40,6 @@ const CalendarLogs = ({ logs, getAllLogs, addCalendarDateLog, resetCalendarDateL
       log.date === arg.dateStr
         && addCalendarDateLog(log)
     ));
-    /*
-      --- IDEA ON CLICK => CLICK ON A DATE and in DASHBOARD_SMALL_SECTION
-          1. PRINT OUT THE DATE AT THE TOP OF THE CONTAINER
-          2. LOOP THROUGH LOGS AND MATCH LOG.ID TO PRINT TO SCREEN
-          3. IF MATCH, PRINT ALL THE DETAILS OF THE LOG
-          4. SMALL_SECTION WILL SHOW
-            a. LOG_DATE -- as header
-            b. LOG DETAILS (type, details, associated_client) -- as body
-            c. MAYBE ALLOW LINKS TO THE SPECIFIC LOG DETAILS (EDIT PAGE)
-    */
   };
 
   return (
@@ -74,8 +64,6 @@ const CalendarLogs = ({ logs, getAllLogs, addCalendarDateLog, resetCalendarDateL
         eventOrder={'start'}
         eventColor={'#3082E2'}
       />
-
-      {/* RECENT LOGS - WILL BE MOVING TO THE DASHBOARD_SMALL_SECTION ? */}
 
     </div>
   )

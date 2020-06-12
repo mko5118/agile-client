@@ -1,8 +1,9 @@
 import React, { } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { IoIosContacts } from 'react-icons/io';
-import { FaHome, FaTasks, FaRegCalendarAlt } from 'react-icons/fa';
+import { FaTasks, FaRegCalendarAlt } from 'react-icons/fa';
 import { MdPermContactCalendar } from 'react-icons/md';
+import { RiLogoutBoxRLine } from 'react-icons/ri';
 import PropTypes from 'prop-types';
 
 import { 
@@ -10,11 +11,13 @@ import {
 } from '../../redux/dashboard/dashboard.actions';
 import { resetClient } from '../../redux/clients/clients.actions';
 import { resetCalendarDateLogs } from '../../redux/calendar/calendar.actions';
+import { logoutUser } from '../../redux/auth/auth.actions';
 
 import style from './dashboard-menu-section.module.scss';
 
 // *************************** DASHBOARD MENU SECTION COMPONENT *************************** //
-const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, toggleHomeMenu, toggleClientsMenu, toggleTasksMenu, toggleCalendarMenu, resetEditTask, resetClient, resetCalendarDateLogs, }) =>  {
+const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, toggleHomeMenu, toggleClientsMenu, toggleTasksMenu, toggleCalendarMenu, resetEditTask, resetClient, resetCalendarDateLogs, logoutUser }) =>  {
+  const history = useHistory();
 
   // const setHomeMenu = () => {
   //   toggleHomeMenu();
@@ -44,6 +47,11 @@ const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, 
     resetCalendarDateLogs();
   };
 
+  const onLogout = async () => {
+    await logoutUser();
+    history.push('/');
+  };
+
   return (
     <div className={style.dashboardMenuSection}>
 
@@ -51,22 +59,31 @@ const DashboardMenuSection = ({ homeMenu, clientsMenu, tasksMenu, calendarMenu, 
         <h1 className={style.navigationTitle}>MENU</h1>
 
         <div className={style.navigationMenu}>
-          {/* CLIENTS SECTION */}
-          <div className={style.iconContainer} id={clientsMenu.isActive ? style.isActiveContainer : ''} onClick={setClientsMenu}>
-            <MdPermContactCalendar className={style.icon} id={clientsMenu.isActive ? style.isActiveIcon : ''} />
-            <span className={style.iconText} id={clientsMenu.isActive ? style.isActiveText : ''}>Clients</span>
-          </div>
-          {/* CALENDAR SECTION */}
-          <div className={style.iconContainer} id={calendarMenu.isActive ? style.isActiveContainer : ''} onClick={setCalendarMenu}>
-            <FaRegCalendarAlt className={style.icon} id={calendarMenu.isActive ? style.isActiveIcon : ''} />
-            <span className={style.iconText} id={calendarMenu.isActive ? style.isActiveText : ''}>Calendar</span>
-          </div>
-          {/* TASKS SECTION */}
-          <div className={style.iconContainer} id={tasksMenu.isActive ? style.isActiveContainer : ''} onClick={setTasksMenu}>
-            <FaTasks className={style.icon} id={tasksMenu.isActive ? style.isActiveIcon : ''} />
-            <span className={style.iconText} id={tasksMenu.isActive ? style.isActiveText : ''}>Tasks</span>
+          <div className={style.menuContainer}>
+            {/* CLIENTS SECTION */}
+            <div className={style.iconContainer} id={clientsMenu.isActive ? style.isActiveContainer : ''} onClick={setClientsMenu}>
+              <MdPermContactCalendar className={style.icon} id={clientsMenu.isActive ? style.isActiveIcon : ''} />
+              <span className={style.iconText} id={clientsMenu.isActive ? style.isActiveText : ''}>Clients</span>
+            </div>
+            {/* CALENDAR SECTION */}
+            <div className={style.iconContainer} id={calendarMenu.isActive ? style.isActiveContainer : ''} onClick={setCalendarMenu}>
+              <FaRegCalendarAlt className={style.icon} id={calendarMenu.isActive ? style.isActiveIcon : ''} />
+              <span className={style.iconText} id={calendarMenu.isActive ? style.isActiveText : ''}>Calendar</span>
+            </div>
+            {/* TASKS SECTION */}
+            <div className={style.iconContainer} id={tasksMenu.isActive ? style.isActiveContainer : ''} onClick={setTasksMenu}>
+              <FaTasks className={style.icon} id={tasksMenu.isActive ? style.isActiveIcon : ''} />
+              <span className={style.iconText} id={tasksMenu.isActive ? style.isActiveText : ''}>Tasks</span>
+            </div>
           </div>
 
+          {/* LOGOUT SECTION */}
+          <div className={style.logoutContainer}>
+            <div className={style.logoutIconContainer} onClick={onLogout}>
+              <RiLogoutBoxRLine className={style.icon} />
+              <span className={style.iconText} id={tasksMenu.isActive ? style.isActiveText : ''}>Logout</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -87,6 +104,7 @@ DashboardMenuSection.propTypes = {
   resetEditTask: PropTypes.func.isRequired,
   resetClient: PropTypes.func.isRequired,
   resetCalendarDateLogs: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired,
 };
 
 // REDUX
@@ -105,6 +123,7 @@ const mapDispatchToProps = (dispatch) => ({
   resetEditTask: () => dispatch(resetEditTask()),
   resetClient: () => dispatch(resetClient()),
   resetCalendarDateLogs: () => dispatch(resetCalendarDateLogs()),
+  logoutUser: () => dispatch(logoutUser()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardMenuSection);

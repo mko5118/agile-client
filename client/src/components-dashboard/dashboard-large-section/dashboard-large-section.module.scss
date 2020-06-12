@@ -3,7 +3,7 @@
 // ************* DASHBOARD LARGE SECTION COMPONENT STYLES ************* //
 .dashboardLargeSection {
   // 'dashbboardMenuSection' = width: 20% || 'dashboardSmallSection' = width: 30%
-  width: 50%;
+  // width: 50%;
   height: 100%;
   // overflow: auto;
 
@@ -39,13 +39,13 @@
 @media screen and (min-width: $bp-xl) {
   // 'dashbboardMenuSection' = width: 15% || 'dashboardSmallSection' = width: 25%
   .dashboardLargeSection {
-    width: 60%;
+    // width: 60%;
   }  
 }
 
 @media screen and (min-width: $bp-xxl) {
   // 'dashbboardMenuSection' = width: 10% || 'dashboardSmallSection' = width: 20% 
   .dashboardLargeSection {
-    width: 70%;
+    // width: 70%;
   }  
 }

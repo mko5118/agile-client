@@ -81,10 +81,10 @@ const ClientList = ({ clients, getAClient, resetClient, resetCompanyState, reset
     }
   };
 
-  // Render sorted 'clients' to page
+  // Render sorted 'clients' to ClientList.js page
   const clientsOrderedByLastName = sortedByLastName.map(name => (
     name.sortedClients.length > 0 
-      ?
+      &&
         <div key={uuid()} className={style.clientListItem}>
           <h3 className={style.letter}>{name.letter}</h3>
           {name.sortedClients.map(client => (
@@ -97,8 +97,17 @@ const ClientList = ({ clients, getAClient, resetClient, resetCompanyState, reset
             </p>
           ))}
         </div>
-      : ''
+
   ));
+
+  // Final Render (if clients exist, render 'clientsOrderedByLastName' : 'noClientText')
+  const renderClientList = (
+    clients.length > 0
+      ? clientsOrderedByLastName
+      : <p className={style.noClientText}>
+          No clients currently. Use 'Add New Client' form to add a new client. Click the green plus sign to open the 'Add New Client' form again.
+        </p>
+  )
 
   return (
     <div className={style.clientList}>
@@ -120,7 +129,7 @@ const ClientList = ({ clients, getAClient, resetClient, resetCompanyState, reset
       </div>
 
       {/* CLIENT LIST SECTION */}
-      { clients.loading ? <p>Loading...</p> : clientsOrderedByLastName }
+      { clients.loading ? <p>Loading...</p> : renderClientList }
 
     </div>
   )

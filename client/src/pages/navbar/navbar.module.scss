@@ -48,8 +48,8 @@
     .logoutButton {
       cursor: pointer;
       color: $white;
-      font-size: 1.7rem;
-      font-weight: 700;
+      font-size: 1.5rem;
+      font-weight: 600;
       margin-left: 2rem;
       margin-right: 2rem;
 
@@ -92,6 +92,13 @@
           font-size: 1.7rem;
           font-weight: 700;
         }
+      }
+      // LOGOUT BUTTON
+      .logoutButton {
+        cursor: pointer;
+        color: $white;
+        font-size: 1.7rem;
+        font-weight: 700;
       }
     }
   }

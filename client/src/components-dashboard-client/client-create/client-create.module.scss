@@ -2,7 +2,7 @@
 
 // ************* CLIENT CREATE COMPONENT STYLES ************* //
 .clientCreate {
-  padding: 0 4rem;
+  // padding: 0 4rem;
 
   // HEADER SECTION
   .header {
@@ -20,7 +20,7 @@
 
     .formLabel {
       font-size: 1.4rem;
-      font-weight: 400;
+      font-weight: 600;
       margin-bottom: 0.5rem;
       color: $black;
 
@@ -50,13 +50,12 @@
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: $bp-sm) {
   .clientCreate {
-    
+    padding: 0 4rem;
   }
 }
 
 @media screen and (min-width: $bp-md) {
   .clientCreate {
-
   }
 }
 

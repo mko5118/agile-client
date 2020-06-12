@@ -80,12 +80,25 @@
   .clientListItem:last-child {
     border-bottom: none;
   }
+
+  // NO CLIENT TEXT SECTION
+  .noClientText {
+    color: $dark-grey;
+    margin-top: 4rem;
+    padding: 0 1rem;
+    font-size: 1.3rem;
+  }
+
 }
 
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: $bp-sm) {
   .clientList {
-    
+
+    // NO CLIENT TEXT SECTION
+    .noClientText {
+      font-size: 1.4rem;
+    }
   }
 }
 

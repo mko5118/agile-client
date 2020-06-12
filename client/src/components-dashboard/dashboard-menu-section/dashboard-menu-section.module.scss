@@ -2,9 +2,8 @@
 
 // ************* DASHBOARD MENU SECTION COMPONENT STYLES ************* //
 .dashboardMenuSection {
-  // 'dashbboardSmallSection' = width: 30% || 'dashboardLargeSection' = width: 50%
-  width: 20%;
   height: 100%;
+  display: none;
   
   .navigationInnerContainer {
     margin: 2rem;
@@ -23,45 +22,81 @@
     .navigationMenu {
       padding-top: 2rem;
       padding-left: 2rem;
+      height: 100%;
 
-      .iconContainer {
-        cursor: pointer;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 1rem 0;
-        margin-bottom: 1rem;
-        // border-bottom: 1px solid $grey;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
-        .icon {
-          color: $dark-grey;
-          font-size: 1.6rem;
-          margin-right: 1.5rem;
+      // MENU CONTAINER
+      .menuContainer {
+        .iconContainer {
+          cursor: pointer;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 1rem 0;
+          margin-bottom: 1rem;
+          // border-bottom: 1px solid $grey;
+  
+          .icon {
+            color: $dark-grey;
+            font-size: 1.6rem;
+            margin-right: 1.5rem;
+          }
+  
+          .iconText {
+            color: $dark-grey;
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: auto;
+          }
         }
-
-        .iconText {
-          color: $dark-grey;
-          font-size: 1.4rem;
-          font-weight: 500;
-          letter-spacing: 0.5px;
-          text-transform: uppercase;
-          margin-top: auto;
+  
+        // isActive 'id' if menu option is currently active
+        #isActiveContainer {
+          background: $light-blue;
+          box-shadow: 2px 2px 5px lighten($strong-blue, 25%);
+          padding-left: 1rem;
+  
+          #isActiveIcon {
+            color: $strong-blue;
+          }
+  
+          #isActiveText {
+            color: $strong-blue;
+            font-weight: 800;
+          }
         }
       }
 
-      // isActive 'id' if menu option is currently active
-      #isActiveContainer {
-        background: $light-blue;
-        box-shadow: 2px 2px 5px lighten($strong-blue, 25%);
-        padding-left: 1rem;
+      // LOGOUT CONTAINER
+      .logoutContainer {
 
-        #isActiveIcon {
-          color: $strong-blue;
-        }
-
-        #isActiveText {
-          color: $strong-blue;
-          font-weight: 800;
+        .logoutIconContainer {
+          cursor: pointer;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 1rem 0;
+          margin-bottom: 5rem;
+  
+          .icon {
+            color: $strong-blue;
+            font-size: 1.6rem;
+            margin-right: 1.5rem;
+          }
+          
+          .iconText {
+            color: $strong-blue;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: auto;
+          }
         }
       }
     }
@@ -71,13 +106,13 @@
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: $bp-sm) {
   .dashboardMenuSection {
-    
+  
   }
 }
 
 @media screen and (min-width: $bp-md) {
   .dashboardMenuSection {
-
+    display: inherit;
   }
 }
 
@@ -89,14 +124,12 @@
 
 @media screen and (min-width: $bp-xl) {
   .dashboardMenuSection {
-    // 'dashbboardSmallSection' = width: 25% || 'dashboardLargeSection' = width: 60%
-    width: 15%;
+
   }
 }
 
 @media screen and (min-width: $bp-xxl) {
   .dashboardMenuSection {
-    // 'dashbboardSmallSection' = width: 20% || 'dashboardLargeSection' = width: 70%
-    width: 10%;
+
   }
 }

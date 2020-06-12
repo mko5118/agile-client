@@ -8,13 +8,13 @@
     display: flex;
     flex-direction: column;
     color: $strong-blue;
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 2rem;
     text-transform: uppercase;
     
     .headerDate {
       color: $black;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
   }
 
@@ -22,36 +22,32 @@
   .calendarDateInfoContainer {
     border-radius: 1rem;
     margin-bottom: 2rem;
-    // padding: 1rem 2rem;
-    // padding: 1.5rem 2rem;
     padding: 2rem;
     
-    // background: $light-blue;
     border: 1px solid $grey;
     box-shadow: 2.5px 2.5px 8px 1px $grey;
 
     .logClient {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: $strong-blue;
       text-transform: uppercase;
-      // margin-bottom: 1rem;
       margin-bottom: 0.25rem;
     }
 
     .logType {
+      font-size: 1.4rem;
       font-weight: 600;
-      // margin-bottom: 0.25rem;
     }
 
     .logText {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
     }
   }
 
   // LOADING TEXT
   .loadingText {
-    color: $black;
+    color: $dark-grey;
   }
 
 }
@@ -59,7 +55,30 @@
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: $bp-sm) {
   .calendarDateInfo {
-    
+
+    // HEADER SECTION
+    .header {
+      font-size: 2rem;
+      
+      .headerDate {
+        font-size: 1.8rem;
+      }
+    }
+
+    // CALENDAR DATE INFO CONTAINER SECTION
+    .calendarDateInfoContainer {
+      .logClient {
+        font-size: 1.8rem;
+      }
+
+      .logType {
+        font-size: 1.5rem;
+      }
+
+      .logText {
+        font-size: 1.5rem;
+      }
+    }
   }
 }
 

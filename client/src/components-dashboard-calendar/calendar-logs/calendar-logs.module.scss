@@ -3,17 +3,15 @@
 // ************* CALENDAR LOGS COMPONENT STYLES ************* //
 .calendarLogs {
   height: 95%;
-  padding: 0 2rem;
-  overflow: scroll;
+  // overflow: scroll;
   
   // HEADER SECTION
   .headerContainer {
     margin-bottom: 4rem;
     
     .header {
-      // color: $soft-orange;
       color: $strong-blue;
-      font-size: 4.4rem;
+      font-size: 2.4rem;
       font-weight: 800;
       text-transform: uppercase;
     }
@@ -23,13 +21,31 @@
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: $bp-sm) {
   .calendarLogs {
-    
+    padding: 0 2rem;
+    // overflow: scroll;
+
+    // HEADER SECTION
+    .headerContainer {
+      margin-bottom: 4rem;
+      
+      .header {
+        font-size: 3.6rem;
+      }
+    }
   }
 }
 
 @media screen and (min-width: $bp-md) {
   .calendarLogs {
     
+    // HEADER SECTION
+    .headerContainer {
+      margin-bottom: 4rem;
+      
+      .header {
+        font-size: 4.4rem;
+      }
+    }
   }
 }
 

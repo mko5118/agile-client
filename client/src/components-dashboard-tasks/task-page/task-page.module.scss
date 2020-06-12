@@ -2,19 +2,18 @@
 
 // ************* TASK PAGE COMPONENT STYLES ************* //
 .taskPage {
-  padding: 0 2rem;
   height: 100%;
-  overflow: auto;
+  // overflow: auto;
 
   // HEADER SECTION
   .header {
     // color: $dark-teal;
     color: $strong-blue;
-    font-size: 4.4rem;
+    font-size: 3rem;
     font-weight: 800;
     text-transform: uppercase;
 
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid $grey;
   }
@@ -24,14 +23,16 @@
 
     .sectionTitle {
       color: $black;
-      font-size: 2.2rem;
+      font-size: 2rem;
       padding-bottom: 1.5rem;
     }
 
     .emptyTitle {
-      color: $black;
-      font-size: 1.8rem;
-      font-weight: 500;
+      // color: $black;
+      // font-weight: 500;
+      color: $dark-grey;
+      font-size: 1.6rem;
+      font-weight: 400;
       padding-bottom: 1.5rem;
     }
   }
@@ -42,7 +43,7 @@
 
     .sectionTitle {
       color: $black;
-      font-size: 2.2rem;
+      font-size: 2rem;
       padding-bottom: 1.5rem;
     }
   }
@@ -52,13 +53,45 @@
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: $bp-sm) {
   .taskPage {
-
+    padding: 0 2rem;
+    overflow: auto;
+  
+    // HEADER SECTION
+    .header {
+      font-size: 3.6rem;
+      margin-bottom: 4rem;
+    }
+  
+    // PENDING TODO CONTAINER
+    .pendingTodoContainer {
+  
+      .sectionTitle {
+        font-size: 2.2rem;
+      }
+  
+      .emptyTitle {
+        font-size: 1.8rem;
+      }
+    }
+  
+    // COMPLETED TODO CONTAINER
+    .completedTodoContainer {
+      margin-top: 6rem;
+  
+      .sectionTitle {
+        font-size: 2.2rem;
+      }
+    }
   }
 }
 
 @media screen and (min-width: $bp-md) {
   .taskPage {
 
+    // HEADER SECTION
+    .header {
+      font-size: 4.4rem;
+    }
   }
 }
 

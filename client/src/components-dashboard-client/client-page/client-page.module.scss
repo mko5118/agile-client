@@ -2,7 +2,6 @@
 
 // ************* CLIENT PAGE COMPONENT STYLES ************* //
 .clientPage {
-  padding: 0 2rem;
   height: 100%;
   overflow: auto;
 
@@ -15,7 +14,7 @@
     .nameContainer {
       .clientName {
         color: $strong-blue;
-        font-size: 4.4rem;
+        font-size: 3rem;
         font-weight: 800;
         text-transform: uppercase;
       }
@@ -29,7 +28,7 @@
         
         .jobTitle {
           color: $black;
-          font-size: 2.4rem;
+          font-size: 2rem;
           font-weight: 700;
         }
 
@@ -67,7 +66,7 @@
 
     .sectionTitle {
       color: $black;
-      font-size: 2.2rem;
+      font-size: 2rem;
       padding-bottom: 1.5rem;
 
       // padding-top: 1.5rem;
@@ -89,21 +88,20 @@
 
       .infoText {
         color: darken($dark-grey, 20%);
-        font-size: 1.6rem;
+        font-size: 1.5rem;
       }
     }
 
     .noteText {
       color: darken($dark-grey, 20%);
-      font-size: 1.6rem;
+      font-size: 1.5rem;
     }
 
     // TITLE HEADER SECTION
     .titleHeader {
       display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      // align-items: center;
 
       .sectionTitle {
         color: $black;
@@ -142,7 +140,60 @@
 // ************* MEDIA QUERIES ************* //
 @media screen and (min-width: $bp-sm) {
   .clientPage {
-    
+    padding: 0 2rem;
+
+    // CLIENT HEADER SECTION
+    .clientHeader {
+
+      .nameContainer {
+        .clientName {
+          font-size: 4.4rem;
+        }
+  
+        .jobTitleContainer {
+
+          .jobTitle {
+            font-size: 2.4rem;
+          }
+  
+          .iconContainer {
+  
+            .editText {
+              font-size: 1.3rem;
+            }
+          }
+        }
+      }
+    }
+
+    // SECTION CONTAINER SECTION
+    .sectionContainer {
+      .sectionTitle {
+        font-size: 2.2rem;
+        padding-bottom: 1.5rem;
+      }
+  
+      .infoContainer {
+        .icon {
+          font-size: 2rem;
+        }
+  
+        .infoText {
+          font-size: 1.6rem;
+        }
+      }
+  
+      .noteText {
+        font-size: 1.6rem;
+      }
+
+      .titleHeader {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
   }
 }
 
