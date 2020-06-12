@@ -1,0 +1,56 @@
+@import '../../styles/global.styles';
+
+// ************* PAGE NOT FOUND COMPONENT STYLES ************* //
+.pageNotFound {
+  min-height: 100vh;
+  background-color: $light-blue;
+
+  display: flex;
+  flex-direction: row;
+
+  // TEXT CONTAINER
+  .textContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .textItems {
+      padding: 0 4rem;
+      margin-bottom: 2rem;
+
+      .header {
+        color: $black;
+        font-size: 3rem;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+  
+      .text {
+        color: $dark-grey;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+// ************* MEDIA QUERIES ************* //
+@media screen and (min-width: $bp-sm) {
+  .pageNotFound {
+
+  }
+}
+
+@media screen and (min-width: $bp-md) {
+  .pageNotFound {
+
+  }
+}
+
+@media screen and (min-width: $bp-lg) {
+  .pageNotFound {
+
+  }
+}

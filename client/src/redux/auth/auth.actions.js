@@ -8,10 +8,10 @@ import {
 
 const API_URL = 'http://localhost:8000';
 
-const deployOnError = (err, dispatch) => {
+const deployOnError = (err, dispatch, msg) => {
   const errors = err.response.statusText;
-  errors && dispatch(setAlert(errors, 'danger', 2000));
-  dispatch({ type: REGISTRATION_FAIL });
+  errors && dispatch(setAlert(msg || errors, 'danger', 2000));
+  dispatch({ type: REGISTRATION_FAIL, payload: errors });
 };
 
 
@@ -72,7 +72,7 @@ export const registerUser = ({ email, password, name }) => async (dispatch) => {
     dispatch(loginUser(email, password));
     dispatch(setAlert('Registration Successful', 'success', 2000));
   } catch (err) {
-    deployOnError(err, dispatch);
+    deployOnError(err, dispatch, 'Registration Unsuccessful');
   }
 };
 
@@ -95,7 +95,7 @@ export const loginUser = (email, password) => async (dispatch) => {
     dispatch(loadUser());
     dispatch(setAlert('Login Successful', 'success', 2000));
   } catch (err) {
-    deployOnError(err, dispatch);
+    deployOnError(err, dispatch, 'Login Unsuccessful');
   }
 };
 

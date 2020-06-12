@@ -88,9 +88,6 @@ const NavbarMobile = ({ isAuthenticated, toggleClientsMenu, toggleTasksMenu, tog
 
 // PROP TYPES
 NavbarMobile.propTypes = {
-  clientsMenu: PropTypes.object.isRequired,
-  tasksMenu: PropTypes.object.isRequired,
-  calendarMenu: PropTypes.object.isRequired,
   toggleHomeMenu: PropTypes.func.isRequired,
   toggleClientsMenu: PropTypes.func.isRequired,
   toggleTasksMenu: PropTypes.func.isRequired,

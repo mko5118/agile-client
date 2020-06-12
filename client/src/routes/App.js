@@ -15,6 +15,7 @@ import Alert from '../components/alert/Alert';
 import HomePage from '../pages/home-page/HomePage';
 import SigninPage from '../pages/signin-page/SigninPage';
 import SignupPage from '../pages/signup-page/SignupPage';
+import PageNotFound from '../pages/404-page/PageNotFound';
 
 // AUTHENTICATED PAGES
 import DashboardPage from '../pages/dashboard-page/DashboardPage';
@@ -30,7 +31,7 @@ const App = () => {
         <BrowserRouter>
 
           <div className={style.content}>
-            {/* <Alert /> */}
+            <Alert />
             <Navbar />
             <Switch>
               <Route exact path='/' component={HomePage} />
@@ -38,7 +39,10 @@ const App = () => {
               <Route exact path='/signup' component={SignupPage} />
 
               {/* PRIVATE ROUTES */}
-              <Route exact path='/dashboard' component={DashboardPage} />
+              <PrivateRoute exact path='/dashboard' component={DashboardPage} />
+
+              {/* 404 PAGE */}
+              <Route component={PageNotFound} />
 
             </Switch>
           </div>

@@ -18,10 +18,6 @@ const Navbar = ({ isAuthenticated, user, logoutUser }) => {
 
   const notAuthLinks = (
     <ul className={style.links}>
-      {/* REMOVE DASHBOARD LINK FOR PRODUCTION */}
-      <li>
-        <NavLink to='/dashboard' className={style.link}>Dashboard</NavLink>
-      </li>
       <li>
         <NavLink to='/' className={style.link}>Features</NavLink>
       </li>
