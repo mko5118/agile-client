@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   calendarDateLogs: [],
   calendarDate: '',
   loading: true,
-  errors: {},
+  error: {},
 };
 
 // *************************** CALENDAR REDUCER *************************** //
@@ -41,7 +41,8 @@ export const calendarReducer = (state=INITIAL_STATE, action) => {
     case CALENDAR_ERROR:
       return {
         ...state,
-        errors: action.payload,
+        loading: false,
+        error: action.payload,
       };
     default:
       return state;

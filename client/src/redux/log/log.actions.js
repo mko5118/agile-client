@@ -7,10 +7,10 @@ import {
 
 const API_URL = 'http://localhost:8000';
 
-const deployOnError = (err, dispatch) => {
+const deployOnError = (err, dispatch, msg) => {
   const errors = err.response.statusText;
-  errors && dispatch(setAlert(errors, 'danger', 2000));
-  dispatch({ type: LOG_ERROR });
+  errors && dispatch(setAlert(msg || errors, 'danger', 2000));
+  dispatch({ type: LOG_ERROR, payload: errors });
 };
 
 // *************************** GET ALL LOGS *************************** //
