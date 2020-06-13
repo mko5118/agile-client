@@ -29,7 +29,7 @@ const HomeFeatures = () => {
             </div>
             <h3 className={style.featureHeader}>Client List</h3>
             <p className={style.featureText}>
-              An all-in-one client list. Keep track of client details, information on their company and keep a log of any past meetings or meetups!
+              An all-in-one client list. Keep track of client details, information on their company and keep a log of any past meetings.
             </p>
           </div>
           {/* FEATURE - CALENDAR INTEGRATION */}

@@ -3,7 +3,7 @@
 // ************* CALENDAR LOGS COMPONENT STYLES ************* //
 .calendarLogs {
   height: 95%;
-  // overflow: scroll;
+  overflow: scroll;
   
   // HEADER SECTION
   .headerContainer {
@@ -37,6 +37,7 @@
 
 @media screen and (min-width: $bp-md) {
   .calendarLogs {
+    overflow: scroll;
     
     // HEADER SECTION
     .headerContainer {

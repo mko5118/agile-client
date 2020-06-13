@@ -53,7 +53,6 @@ const NavbarMobile = ({ isAuthenticated, toggleClientsMenu, toggleTasksMenu, tog
       :
         <nav className={style.navbarMobile}>
 
-          {/* MOBILE MENU */}
           <div className={style.content}>   
 
             {/* CLIENTS */}
