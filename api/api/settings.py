@@ -138,6 +138,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# REACT STATIC FILES (agile-client/client/build/static => CSS, JS, MEDIA files)
+STATICFILES_DIR = [
+    os.path.join(BASE_DIR, '../client/build/static'),
+]
+
 # AUTH USER MODEL
 AUTH_USER_MODEL = 'core.User'
 
