@@ -5,8 +5,8 @@ import {
   USER_LOADED, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_USER, AUTH_ERROR, 
 } from './auth.types';
 
-
 const API_URL = 'http://localhost:8000';
+// const API_URL = 'http://45.55.46.165:8000';
 
 const deployOnError = (err, dispatch, msg) => {
   const errors = err.response.statusText;
