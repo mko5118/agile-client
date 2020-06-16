@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/agile-client/static/css/main.3dd999fe.chunk.css",
+    "main.js": "/agile-client/static/js/main.3b8e9140.chunk.js",
+    "main.js.map": "/agile-client/static/js/main.3b8e9140.chunk.js.map",
+    "runtime-main.js": "/agile-client/static/js/runtime-main.acd4d2a2.js",
+    "runtime-main.js.map": "/agile-client/static/js/runtime-main.acd4d2a2.js.map",
+    "static/css/2.77b22cec.chunk.css": "/agile-client/static/css/2.77b22cec.chunk.css",
+    "static/js/2.78c8bed5.chunk.js": "/agile-client/static/js/2.78c8bed5.chunk.js",
+    "static/js/2.78c8bed5.chunk.js.map": "/agile-client/static/js/2.78c8bed5.chunk.js.map",
+    "index.html": "/agile-client/index.html",
+    "precache-manifest.dc39d61dbf2e6364ada96c5e8ff59311.js": "/agile-client/precache-manifest.dc39d61dbf2e6364ada96c5e8ff59311.js",
+    "service-worker.js": "/agile-client/service-worker.js",
+    "static/css/2.77b22cec.chunk.css.map": "/agile-client/static/css/2.77b22cec.chunk.css.map",
+    "static/css/main.3dd999fe.chunk.css.map": "/agile-client/static/css/main.3dd999fe.chunk.css.map",
+    "static/js/2.78c8bed5.chunk.js.LICENSE.txt": "/agile-client/static/js/2.78c8bed5.chunk.js.LICENSE.txt",
+    "static/media/home-landing.module.scss": "/agile-client/static/media/clients-2-dark-teal.70a0e43f.svg",
+    "static/media/signin-page.module.scss": "/agile-client/static/media/signin-image-3.aab4b42f.svg",
+    "static/media/signup-page.module.scss": "/agile-client/static/media/signup-image-1.062200e7.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.acd4d2a2.js",
+    "static/css/2.77b22cec.chunk.css",
+    "static/js/2.78c8bed5.chunk.js",
+    "static/css/main.3dd999fe.chunk.css",
+    "static/js/main.3b8e9140.chunk.js"
+  ]
+}
