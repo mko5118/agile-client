@@ -28,7 +28,7 @@ const App = () => {
     <Provider store={store}>
 
       <div className={style.app}>
-        <BrowserRouter basename='/agile-client'>
+        <BrowserRouter>
 
           <div className={style.content}>
             <Alert />
