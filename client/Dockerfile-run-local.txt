@@ -1,0 +1,15 @@
+## RUN LOCAL DEVELOPMENT SERVER
+
+docker run \
+    -itd \
+    --rm \
+    -v ${PWD}:/client \
+    -v /client/node_modules \
+    -p 3000:3000 \
+    -e CHOKIDAR_USEPOLLING=true \
+    agile-client:dev
+
+
+## RUN PRODUCTION CONTAINER
+
+docker-compose -f docker-compose.prod.yml up -d --build

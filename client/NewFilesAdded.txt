@@ -1,0 +1,9 @@
+Files ADDED
+
+1. Dockerfile
+2. .dockerignore
+3. docker-compose.yml
+4. boot.sh
+5. nginx folder
+6. docker-compose.prod.yml
+7. Dockerfile.prod
