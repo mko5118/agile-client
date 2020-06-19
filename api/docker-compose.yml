@@ -41,7 +41,7 @@ services:
       - 8001:80
     environment:
       - PORT=80
-      - REACT_APP_API=http://localhost:8000
+      - REACT_APP_API=https://agile-client-api.herokuapp.com
     depends_on:
       - api
 
