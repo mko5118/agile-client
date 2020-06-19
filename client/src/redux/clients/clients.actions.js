@@ -4,8 +4,7 @@ import {
   GET_ALL_CLIENTS, GET_A_CLIENT, RESET_CLIENT, CLIENT_ERROR, DELETE_CLIENT, UPDATE_CLIENT, CREATE_CLIENT
 } from './clients.types';
 
-const API_URL = 'http://localhost:8000';
-// const API_URL = 'http://45.55.46.165:8000';
+const API_URL = process.env.REACT_APP_API;
 
 const deployOnError = (err, dispatch, msg) => {
   const errors = err.response.statusText;

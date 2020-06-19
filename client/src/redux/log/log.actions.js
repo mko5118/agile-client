@@ -4,8 +4,7 @@ import {
   GET_ALL_LOGS, GET_CLIENT_LOGS, GET_LOG, CREATE_LOG, DELETE_LOG, UPDATE_LOG, LOG_ERROR
 } from './log.types';
 
-const API_URL = 'http://localhost:8000';
-// const API_URL = 'http://45.55.46.165:8000';
+const API_URL = process.env.REACT_APP_API;
 
 const deployOnError = (err, dispatch, msg) => {
   const errors = err.response.statusText;

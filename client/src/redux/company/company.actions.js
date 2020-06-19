@@ -4,8 +4,7 @@ import {
   GET_ALL_COMPANIES, GET_COMPANY, CREATE_COMPANY, UPDATE_COMPANY, DELETE_COMPANY, COMPANY_ERROR 
 } from './company.types';
 
-const API_URL = 'http://localhost:8000';
-// const API_URL = 'http://45.55.46.165:8000';
+const API_URL = process.env.REACT_APP_API;
 
 const deployOnError = (err, dispatch, msg) => {
   const errors = err.response.statusText;

@@ -4,8 +4,7 @@ import {
   GET_ALL_TASKS, GET_A_TASK, CREATE_TASK, UPDATE_TASK, DELETE_TASK, TASK_ERROR 
 } from './task.types';
 
-const API_URL = 'http://localhost:8000';
-// const API_URL = 'http://45.55.46.165:8000';
+const API_URL = process.env.REACT_APP_API;
 
 const deployOnError = (err, dispatch, msg) => {
   const errors = err.response.statusText;
