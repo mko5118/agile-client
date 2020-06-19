@@ -23,7 +23,7 @@ services:
       - SECRET_KEY=hushush
       - DATABASE_URL=postgresql://postgres:password@api:5432/agile_client
       - ALLOWED_HOSTS=*
-      - CORS_ORIGIN_WHITELIST=http://localhost:8080,http://localhost:8000,http://localhost:8001,http://agile-client.herokuapp.com,https://agile-client.herokuapp.com/
+      - CORS_ORIGIN_WHITELIST=http://localhost:8080,http://localhost:8000,http://localhost:8001,http://agile-client.herokuapp.com,https://agile-client.herokuapp.com
     ports:
       - 8000:80
     depends_on:
