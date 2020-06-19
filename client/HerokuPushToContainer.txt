@@ -1,0 +1,8 @@
+# HEROKU CLI COMMANDS
+
+heroku container:login
+heroku container:rm web
+heroku container:push web
+heroku container:release web
+
+heroku open

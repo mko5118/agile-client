@@ -1,0 +1,48 @@
+version: "3"
+
+# Services
+services:
+  # POSTGRES DATABASE
+  db:
+    image: postgres:12-alpine
+    container_name: api
+    environment:
+      - POSTGRES_DB=agile_client
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 5432:5432
+    volumes:
+      - data:/var/lib/postgresql/data
+
+  # API
+  api:
+    build: .
+    # command: >
+    #   sh -c "python manage.py wait_for_db &&
+    #         python manage.py migrate && 
+    #         python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - PORT=80
+      - SECRET_KEY=hushush
+      - DATABASE_URL=postgresql://postgres:password@api:5432/agile_client
+      - ALLOWED_HOSTS=*
+      - CORS_ORIGIN_WHITELIST=http://localhost:8080,http://localhost:8000,http://localhost:8001,http://agile-client.herokuapp.com,https://agile-client.herokuapp.com
+    ports:
+      - 8000:80
+    depends_on:
+      - db
+
+  # CLIENT
+  client:
+    build:
+      context: ../client
+    ports:
+      - 8001:80
+    environment:
+      - PORT=80
+    depends_on:
+      - api
+
+volumes:
+  data:

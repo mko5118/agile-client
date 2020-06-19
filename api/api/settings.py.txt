@@ -11,29 +11,22 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import environ
-env = environ.Env()
 from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_LOC = environ.Path(__file__)-2
-dot_env = str(BASE_LOC.path(".env"))
-if os.path.exists(dot_env):
-    env.read_env(dot_env)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = 'r)=w#6!6to89##xo3+we%f!-c0r$jm#p5v6+#i7klhfu=7kr8l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG", default=False)
+DEBUG = True
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -44,9 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-
-    # Added Whitenoise App
-    "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
 
     # Imported Apps
@@ -67,10 +57,6 @@ MIDDLEWARE = [
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
-
-    # Added Middleware
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -102,18 +88,17 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         # THESE ENVIRONMENT VARIABLES ARE COMPOSED IN OUR 'docker-compose.yml' file
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'HOST': os.environ.get('DB_HOST'),
-#         'NAME': os.environ.get('DB_NAME'),
-#         'USER': os.environ.get('DB_USER'),
-#         'PASSWORD': os.environ.get('DB_PASS'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        # THESE ENVIRONMENT VARIABLES ARE COMPOSED IN OUR 'docker-compose.yml' file
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
+    }
+}
 
-DATABASES = {"default": env.db()}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -152,8 +137,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = str(BASE_LOC.path("staticfiles"))
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # REACT STATIC FILES (agile-client/client/build/static => CSS, JS, MEDIA files)
 STATICFILES_DIR = [
@@ -173,7 +156,4 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 # CORS MIDDLEWARE WHITELIST
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",        # React Frontend Endpoint
-    "http://localhost:8001",
-    "http://agile-client.herokuapp.com",
-    "https://agile-client.herokuapp.com"
 ]

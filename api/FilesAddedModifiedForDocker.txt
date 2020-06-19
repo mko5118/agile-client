@@ -1,0 +1,10 @@
+# ADDED
+1.  docker-compose.yml
+2.  Dockerfile
+3.  .dockerignore
+4.  .env (added django-environ-plus)
+5.  boot.sh
+
+# MODIFIED
+1.  settings.py
+2. 
